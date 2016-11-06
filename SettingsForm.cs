@@ -17,16 +17,16 @@ namespace Cliver.PdfMailer2
         {
             InitializeComponent();
 
-            //foreach (string name in settings.PartyProfileNames2PartyProfile.Keys)
-            //    PartyProfiles.Profiles.Items.Add(name);
-            //foreach (string name in settings.BuyerProfileNames2BuyerProfile.Keys)
-            //    BuyerProfiles.Profiles.Items.Add(name);
-            //foreach (string name in settings.BrokerProfileNames2BrokerProfile.Keys)
-            //    BrokerProfiles.Profiles.Items.Add(name);
-            //foreach (string name in settings.AgentProfileNames2AgentProfile.Keys)
-            //    AgentProfiles.Profiles.Items.Add(name);
-            //foreach (string name in settings.EscrowProfileNames2EscrowProfile.Keys)
-            //    EscrowProfiles.Profiles.Items.Add(name);
+            foreach (string name in Program.Settings.PartyProfileNames2PartyProfile.Keys)
+                PartyProfiles.Profiles.Items.Add(name);
+            foreach (string name in Program.Settings.BuyerProfileNames2BuyerProfile.Keys)
+                BuyerProfiles.Profiles.Items.Add(name);
+            foreach (string name in Program.Settings.BrokerProfileNames2BrokerProfile.Keys)
+                BrokerProfiles.Profiles.Items.Add(name);
+            foreach (string name in Program.Settings.AgentProfileNames2AgentProfile.Keys)
+                AgentProfiles.Profiles.Items.Add(name);
+            foreach (string name in Program.Settings.EscrowProfileNames2EscrowProfile.Keys)
+                EscrowProfiles.Profiles.Items.Add(name);
         }
 
 
