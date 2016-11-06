@@ -41,20 +41,46 @@ namespace Cliver.PdfMailer2
             SettingsForm sf = new SettingsForm();
             Application.Run(sf);
         }
-        internal static readonly SettingsObject Settings = Cliver.Settings.Load<SettingsObject>("Settings.txt", true);
+        internal static readonly SessionSettingsClass SessionSettings = Cliver.Settings.Load<SessionSettingsClass>("SessionSettings.txt");
+        internal static readonly ProfilesClass Profiles = Cliver.Settings.Load<ProfilesClass>("Profiles.txt");
 
-        public class SettingsObject : Settings
+        public class ProfilesClass : Settings
         {
             public Dictionary<string, PartyProfile> PartyProfileNames2PartyProfile = new Dictionary<string, PartyProfile>();
             public Dictionary<string, BuyerProfile> BuyerProfileNames2BuyerProfile = new Dictionary<string, BuyerProfile>();
             public Dictionary<string, BrokerProfile> BrokerProfileNames2BrokerProfile = new Dictionary<string, BrokerProfile>();
             public Dictionary<string, AgentProfile> AgentProfileNames2AgentProfile = new Dictionary<string, AgentProfile>();
             public Dictionary<string, EscrowProfile> EscrowProfileNames2EscrowProfile = new Dictionary<string, EscrowProfile>();
+            public Dictionary<string, EmailTemplateProfile> EmailTemplateProfileNames2EmailTemplateProfileProfile = new Dictionary<string, EmailTemplateProfile>();
+            public Dictionary<string, EmailServerProfile> EmailServerProfileNames2EmailServerProfile = new Dictionary<string, EmailServerProfile>();
+        }
+
+        public class SessionSettingsClass : Settings
+        {
+            public DateTime CloseOfEscrow;
+            public string Emd;
+            public bool ShortSaleAddendum;
+            public bool OtherAddendum1;
+            public bool OtherAddendum2;
         }
 
         public abstract class Profile
         {
-            internal string ProfileName;
+            public string _ProfileName;
+        }
+
+        public class EmailTemplateProfile : Profile
+        {
+            public string Subject;
+            public string Body;
+        }
+
+        public class EmailServerProfile : Profile
+        {
+            public string SmtpHost;
+            public int SmtpPort;
+            public string SmtpPassword;
+            public string SenderEmail;
         }
 
         public class PartyProfile : Profile
@@ -68,24 +94,24 @@ namespace Cliver.PdfMailer2
         public class BuyerProfile : Profile
         {
             public string Name;
-            public string Initial;
-            public string Signature;
+            public string InitialFile;
+            public string SignatureFile;
             public bool UseCoBuyer;
             public string CoBuyerName;
-            public string CoBuyerInitial;
-            string CoBuyerSignature;
-        }
-
-        public class BrokerProfile : Profile
-        {
-            public string Name;
-            public string LicenseNo;
-            public string Enail;
-            public string Initial;
-            public string Signature;
+            public string CoBuyerInitialFile;
+            public string CoBuyerSignatureFile;
         }
 
         public class AgentProfile : Profile
+        {
+            public string Name;
+            public string LicenseNo;
+            public string Email;
+            public string InitialFile;
+            public string SignatureFile;
+        }
+
+        public class  BrokerProfile: Profile
         {
             public string Name;
             public string LicenseNo;
@@ -100,7 +126,7 @@ namespace Cliver.PdfMailer2
         public class EscrowProfile : Profile
         {
             public string TitleCompany;
-            public string EscrowOfficer;
+            public string Officer;
         }
     }
 

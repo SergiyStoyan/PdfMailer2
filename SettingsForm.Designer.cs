@@ -32,79 +32,85 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.useCoBuyer = new System.Windows.Forms.CheckBox();
+            this.UseCoBuyer = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.cobuyerInitial = new System.Windows.Forms.PictureBox();
+            this.CoBuyerInitial = new System.Windows.Forms.PictureBox();
             this.selectCobuyerSignature = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.cobuyerSignature = new System.Windows.Forms.PictureBox();
+            this.CoBuyerName = new System.Windows.Forms.TextBox();
+            this.CoBuyerSignature = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.selectCoBuyerInitial = new System.Windows.Forms.Button();
+            this.BuyerProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.selectBuyerSignature = new System.Windows.Forms.Button();
-            this.buyerSignature = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.selectBuyerInitial = new System.Windows.Forms.Button();
-            this.buyerInitial = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.buyerName = new System.Windows.Forms.TextBox();
+            this.BuyerSignature = new System.Windows.Forms.PictureBox();
+            this.BuyerName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.selectBuyerInitial = new System.Windows.Forms.Button();
+            this.BuyerInitial = new System.Windows.Forms.PictureBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.label17 = new System.Windows.Forms.Label();
-            this.brokerState = new System.Windows.Forms.ComboBox();
+            this.BrokerState = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.brokerZip = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.brokerCompany = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.brokerLicenseNo = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.brokerPhone = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.brokerCity = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.brokerAddress = new System.Windows.Forms.TextBox();
+            this.BrokerZip = new System.Windows.Forms.TextBox();
+            this.BrokerName = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.brokerName = new System.Windows.Forms.TextBox();
+            this.BrokerCompany = new System.Windows.Forms.TextBox();
+            this.BrokerAddress = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.BrokerLicenseNo = new System.Windows.Forms.TextBox();
+            this.BrokerCity = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.BrokerPhone = new System.Windows.Forms.TextBox();
+            this.BrokerProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.selectAgentSignature = new System.Windows.Forms.Button();
             this.AgentSignature = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.selectAgentInitial = new System.Windows.Forms.Button();
+            this.AgentName = new System.Windows.Forms.TextBox();
             this.AgentInitial = new System.Windows.Forms.PictureBox();
+            this.AgentLicenseNo = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.AgentEmail = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.AgentLicenseNo = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.AgentName = new System.Windows.Forms.TextBox();
+            this.AgentProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label23 = new System.Windows.Forms.Label();
             this.EscrowOfficer = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.EscrowTitleCompany = new System.Windows.Forms.TextBox();
+            this.EscrowProfiles = new Cliver.PdfMailer2.ProfilesControl();
+            this.PartyProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl4 = new System.Windows.Forms.TabControl();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.CloseOfEscrow = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
-            this.Emd = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.Emd = new System.Windows.Forms.TextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.DeleteAttachment = new System.Windows.Forms.Button();
             this.bImportAttachment = new System.Windows.Forms.Button();
+            this.label21 = new System.Windows.Forms.Label();
             this.Attachments = new System.Windows.Forms.CheckedListBox();
+            this.ShortSaleAddendum = new System.Windows.Forms.CheckBox();
             this.OtherAddendum2 = new System.Windows.Forms.CheckBox();
             this.OtherAddendum1 = new System.Windows.Forms.CheckBox();
-            this.ShortSaleAddendum = new System.Windows.Forms.CheckBox();
-            this.label21 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
             this.EmailBody = new System.Windows.Forms.RichTextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.EmailSubject = new System.Windows.Forms.TextBox();
+            this.EmailTemplateProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.tabControl3 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
@@ -116,7 +122,8 @@
             this.SmtpPassword = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
-            this.SenderEmail = new System.Windows.Forms.TextBox();
+            this.EmailSenderEmail = new System.Windows.Forms.TextBox();
+            this.EmailServerProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
@@ -125,22 +132,15 @@
             this.label47 = new System.Windows.Forms.Label();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.Start = new System.Windows.Forms.Button();
-            this.BuyerProfiles = new Cliver.PdfMailer2.ProfilesControl();
-            this.BrokerProfiles = new Cliver.PdfMailer2.ProfilesControl();
-            this.AgentProfiles = new Cliver.PdfMailer2.ProfilesControl();
-            this.EscrowProfiles = new Cliver.PdfMailer2.ProfilesControl();
-            this.PartyProfiles = new Cliver.PdfMailer2.ProfilesControl();
-            this.EmailTemplates = new Cliver.PdfMailer2.ProfilesControl();
-            this.profilesControl2 = new Cliver.PdfMailer2.ProfilesControl();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cobuyerInitial)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cobuyerSignature)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buyerSignature)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buyerInitial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CoBuyerInitial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CoBuyerSignature)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyerSignature)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyerInitial)).BeginInit();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AgentSignature)).BeginInit();
@@ -201,17 +201,17 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.useCoBuyer);
+            this.tabPage3.Controls.Add(this.UseCoBuyer);
             this.tabPage3.Controls.Add(this.groupBox1);
             this.tabPage3.Controls.Add(this.BuyerProfiles);
             this.tabPage3.Controls.Add(this.selectBuyerSignature);
             this.tabPage3.Controls.Add(this.label2);
-            this.tabPage3.Controls.Add(this.buyerSignature);
-            this.tabPage3.Controls.Add(this.buyerName);
+            this.tabPage3.Controls.Add(this.BuyerSignature);
+            this.tabPage3.Controls.Add(this.BuyerName);
             this.tabPage3.Controls.Add(this.label6);
             this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Controls.Add(this.selectBuyerInitial);
-            this.tabPage3.Controls.Add(this.buyerInitial);
+            this.tabPage3.Controls.Add(this.BuyerInitial);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
@@ -220,24 +220,24 @@
             this.tabPage3.Text = "Buyer";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // useCoBuyer
+            // UseCoBuyer
             // 
-            this.useCoBuyer.AutoSize = true;
-            this.useCoBuyer.Location = new System.Drawing.Point(202, 66);
-            this.useCoBuyer.Name = "useCoBuyer";
-            this.useCoBuyer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.useCoBuyer.Size = new System.Drawing.Size(15, 14);
-            this.useCoBuyer.TabIndex = 62;
-            this.useCoBuyer.UseVisualStyleBackColor = true;
-            this.useCoBuyer.CheckedChanged += new System.EventHandler(this.useCoBuyer_CheckedChanged);
+            this.UseCoBuyer.AutoSize = true;
+            this.UseCoBuyer.Location = new System.Drawing.Point(202, 66);
+            this.UseCoBuyer.Name = "UseCoBuyer";
+            this.UseCoBuyer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.UseCoBuyer.Size = new System.Drawing.Size(15, 14);
+            this.UseCoBuyer.TabIndex = 62;
+            this.UseCoBuyer.UseVisualStyleBackColor = true;
+            this.UseCoBuyer.CheckedChanged += new System.EventHandler(this.useCoBuyer_CheckedChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.cobuyerInitial);
+            this.groupBox1.Controls.Add(this.CoBuyerInitial);
             this.groupBox1.Controls.Add(this.selectCobuyerSignature);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.cobuyerSignature);
+            this.groupBox1.Controls.Add(this.CoBuyerName);
+            this.groupBox1.Controls.Add(this.CoBuyerSignature);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.selectCoBuyerInitial);
@@ -257,13 +257,13 @@
             this.label7.Text = "Name:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // cobuyerInitial
+            // CoBuyerInitial
             // 
-            this.cobuyerInitial.Location = new System.Drawing.Point(29, 74);
-            this.cobuyerInitial.Name = "cobuyerInitial";
-            this.cobuyerInitial.Size = new System.Drawing.Size(100, 50);
-            this.cobuyerInitial.TabIndex = 57;
-            this.cobuyerInitial.TabStop = false;
+            this.CoBuyerInitial.Location = new System.Drawing.Point(29, 74);
+            this.CoBuyerInitial.Name = "CoBuyerInitial";
+            this.CoBuyerInitial.Size = new System.Drawing.Size(100, 50);
+            this.CoBuyerInitial.TabIndex = 57;
+            this.CoBuyerInitial.TabStop = false;
             // 
             // selectCobuyerSignature
             // 
@@ -275,20 +275,20 @@
             this.selectCobuyerSignature.UseVisualStyleBackColor = true;
             this.selectCobuyerSignature.Click += new System.EventHandler(this.selectCobuyerSignature_Click);
             // 
-            // textBox1
+            // CoBuyerName
             // 
-            this.textBox1.Location = new System.Drawing.Point(29, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 51;
+            this.CoBuyerName.Location = new System.Drawing.Point(29, 34);
+            this.CoBuyerName.Name = "CoBuyerName";
+            this.CoBuyerName.Size = new System.Drawing.Size(100, 20);
+            this.CoBuyerName.TabIndex = 51;
             // 
-            // cobuyerSignature
+            // CoBuyerSignature
             // 
-            this.cobuyerSignature.Location = new System.Drawing.Point(29, 144);
-            this.cobuyerSignature.Name = "cobuyerSignature";
-            this.cobuyerSignature.Size = new System.Drawing.Size(100, 50);
-            this.cobuyerSignature.TabIndex = 63;
-            this.cobuyerSignature.TabStop = false;
+            this.CoBuyerSignature.Location = new System.Drawing.Point(29, 144);
+            this.CoBuyerSignature.Name = "CoBuyerSignature";
+            this.CoBuyerSignature.Size = new System.Drawing.Size(100, 50);
+            this.CoBuyerSignature.TabIndex = 63;
+            this.CoBuyerSignature.TabStop = false;
             // 
             // label4
             // 
@@ -317,6 +317,16 @@
             this.selectCoBuyerInitial.Text = "...";
             this.selectCoBuyerInitial.UseVisualStyleBackColor = true;
             // 
+            // BuyerProfiles
+            // 
+            this.BuyerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BuyerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BuyerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BuyerProfiles.Location = new System.Drawing.Point(3, 3);
+            this.BuyerProfiles.Name = "BuyerProfiles";
+            this.BuyerProfiles.Size = new System.Drawing.Size(536, 45);
+            this.BuyerProfiles.TabIndex = 51;
+            // 
             // selectBuyerSignature
             // 
             this.selectBuyerSignature.Location = new System.Drawing.Point(115, 236);
@@ -327,13 +337,29 @@
             this.selectBuyerSignature.UseVisualStyleBackColor = true;
             this.selectBuyerSignature.Click += new System.EventHandler(this.selectBuyerSignature_Click);
             // 
-            // buyerSignature
+            // label2
             // 
-            this.buyerSignature.Location = new System.Drawing.Point(9, 209);
-            this.buyerSignature.Name = "buyerSignature";
-            this.buyerSignature.Size = new System.Drawing.Size(100, 50);
-            this.buyerSignature.TabIndex = 60;
-            this.buyerSignature.TabStop = false;
+            this.label2.Location = new System.Drawing.Point(6, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "Name:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BuyerSignature
+            // 
+            this.BuyerSignature.Location = new System.Drawing.Point(9, 209);
+            this.BuyerSignature.Name = "BuyerSignature";
+            this.BuyerSignature.Size = new System.Drawing.Size(100, 50);
+            this.BuyerSignature.TabIndex = 60;
+            this.BuyerSignature.TabStop = false;
+            // 
+            // BuyerName
+            // 
+            this.BuyerName.Location = new System.Drawing.Point(9, 99);
+            this.BuyerName.Name = "BuyerName";
+            this.BuyerName.Size = new System.Drawing.Size(100, 20);
+            this.BuyerName.TabIndex = 0;
             // 
             // label6
             // 
@@ -343,6 +369,15 @@
             this.label6.TabIndex = 59;
             this.label6.Text = "Signature:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Location = new System.Drawing.Point(6, 124);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "Initial:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // selectBuyerInitial
             // 
@@ -354,62 +389,37 @@
             this.selectBuyerInitial.UseVisualStyleBackColor = true;
             this.selectBuyerInitial.Click += new System.EventHandler(this.selectBuyerInitial_Click);
             // 
-            // buyerInitial
+            // BuyerInitial
             // 
-            this.buyerInitial.Location = new System.Drawing.Point(9, 140);
-            this.buyerInitial.Name = "buyerInitial";
-            this.buyerInitial.Size = new System.Drawing.Size(100, 50);
-            this.buyerInitial.TabIndex = 54;
-            this.buyerInitial.TabStop = false;
-            // 
-            // label3
-            // 
-            this.label3.Location = new System.Drawing.Point(6, 124);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 52;
-            this.label3.Text = "Initial:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(6, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 50;
-            this.label2.Text = "Name:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // buyerName
-            // 
-            this.buyerName.Location = new System.Drawing.Point(9, 99);
-            this.buyerName.Name = "buyerName";
-            this.buyerName.Size = new System.Drawing.Size(100, 20);
-            this.buyerName.TabIndex = 0;
+            this.BuyerInitial.Location = new System.Drawing.Point(9, 140);
+            this.BuyerInitial.Name = "BuyerInitial";
+            this.BuyerInitial.Size = new System.Drawing.Size(100, 50);
+            this.BuyerInitial.TabIndex = 54;
+            this.BuyerInitial.TabStop = false;
             // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.label17);
-            this.tabPage4.Controls.Add(this.brokerState);
+            this.tabPage4.Controls.Add(this.BrokerState);
             this.tabPage4.Controls.Add(this.label16);
             this.tabPage4.Controls.Add(this.label12);
-            this.tabPage4.Controls.Add(this.brokerZip);
-            this.tabPage4.Controls.Add(this.brokerName);
+            this.tabPage4.Controls.Add(this.BrokerZip);
+            this.tabPage4.Controls.Add(this.BrokerName);
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label14);
-            this.tabPage4.Controls.Add(this.brokerCompany);
-            this.tabPage4.Controls.Add(this.brokerAddress);
+            this.tabPage4.Controls.Add(this.BrokerCompany);
+            this.tabPage4.Controls.Add(this.BrokerAddress);
             this.tabPage4.Controls.Add(this.label9);
-            this.tabPage4.Controls.Add(this.brokerLicenseNo);
-            this.tabPage4.Controls.Add(this.brokerCity);
+            this.tabPage4.Controls.Add(this.BrokerLicenseNo);
+            this.tabPage4.Controls.Add(this.BrokerCity);
             this.tabPage4.Controls.Add(this.label11);
             this.tabPage4.Controls.Add(this.label10);
-            this.tabPage4.Controls.Add(this.brokerPhone);
+            this.tabPage4.Controls.Add(this.BrokerPhone);
             this.tabPage4.Controls.Add(this.BrokerProfiles);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(542, 274);
+            this.tabPage4.Size = new System.Drawing.Size(542, 271);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Broker";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -423,13 +433,13 @@
             this.label17.Text = "State:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // brokerState
+            // BrokerState
             // 
-            this.brokerState.FormattingEnabled = true;
-            this.brokerState.Location = new System.Drawing.Point(355, 131);
-            this.brokerState.Name = "brokerState";
-            this.brokerState.Size = new System.Drawing.Size(73, 21);
-            this.brokerState.TabIndex = 63;
+            this.BrokerState.FormattingEnabled = true;
+            this.BrokerState.Location = new System.Drawing.Point(355, 131);
+            this.BrokerState.Name = "BrokerState";
+            this.BrokerState.Size = new System.Drawing.Size(73, 21);
+            this.BrokerState.TabIndex = 63;
             // 
             // label16
             // 
@@ -440,12 +450,28 @@
             this.label16.Text = "ZIP:";
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // brokerZip
+            // label12
             // 
-            this.brokerZip.Location = new System.Drawing.Point(434, 132);
-            this.brokerZip.Name = "brokerZip";
-            this.brokerZip.Size = new System.Drawing.Size(100, 20);
-            this.brokerZip.TabIndex = 61;
+            this.label12.Location = new System.Drawing.Point(203, 63);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(76, 13);
+            this.label12.TabIndex = 58;
+            this.label12.Text = "License No:";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BrokerZip
+            // 
+            this.BrokerZip.Location = new System.Drawing.Point(434, 132);
+            this.BrokerZip.Name = "BrokerZip";
+            this.BrokerZip.Size = new System.Drawing.Size(100, 20);
+            this.BrokerZip.TabIndex = 61;
+            // 
+            // BrokerName
+            // 
+            this.BrokerName.Location = new System.Drawing.Point(17, 79);
+            this.BrokerName.Name = "BrokerName";
+            this.BrokerName.Size = new System.Drawing.Size(183, 20);
+            this.BrokerName.TabIndex = 0;
             // 
             // label13
             // 
@@ -456,60 +482,28 @@
             this.label13.Text = "Company:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // brokerCompany
+            // label14
             // 
-            this.brokerCompany.Location = new System.Drawing.Point(362, 79);
-            this.brokerCompany.Name = "brokerCompany";
-            this.brokerCompany.Size = new System.Drawing.Size(172, 20);
-            this.brokerCompany.TabIndex = 59;
+            this.label14.Location = new System.Drawing.Point(14, 63);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(49, 13);
+            this.label14.TabIndex = 50;
+            this.label14.Text = "Name:";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label12
+            // BrokerCompany
             // 
-            this.label12.Location = new System.Drawing.Point(203, 63);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(76, 13);
-            this.label12.TabIndex = 58;
-            this.label12.Text = "License No:";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BrokerCompany.Location = new System.Drawing.Point(362, 79);
+            this.BrokerCompany.Name = "BrokerCompany";
+            this.BrokerCompany.Size = new System.Drawing.Size(172, 20);
+            this.BrokerCompany.TabIndex = 59;
             // 
-            // brokerLicenseNo
+            // BrokerAddress
             // 
-            this.brokerLicenseNo.Location = new System.Drawing.Point(206, 79);
-            this.brokerLicenseNo.Name = "brokerLicenseNo";
-            this.brokerLicenseNo.Size = new System.Drawing.Size(150, 20);
-            this.brokerLicenseNo.TabIndex = 57;
-            // 
-            // label11
-            // 
-            this.label11.Location = new System.Drawing.Point(14, 170);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 13);
-            this.label11.TabIndex = 56;
-            this.label11.Text = "Phone:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // brokerPhone
-            // 
-            this.brokerPhone.Location = new System.Drawing.Point(17, 186);
-            this.brokerPhone.Name = "brokerPhone";
-            this.brokerPhone.Size = new System.Drawing.Size(153, 20);
-            this.brokerPhone.TabIndex = 55;
-            // 
-            // label10
-            // 
-            this.label10.Location = new System.Drawing.Point(203, 117);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 13);
-            this.label10.TabIndex = 54;
-            this.label10.Text = "City:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // brokerCity
-            // 
-            this.brokerCity.Location = new System.Drawing.Point(206, 131);
-            this.brokerCity.Name = "brokerCity";
-            this.brokerCity.Size = new System.Drawing.Size(143, 20);
-            this.brokerCity.TabIndex = 53;
+            this.BrokerAddress.Location = new System.Drawing.Point(17, 133);
+            this.BrokerAddress.Name = "BrokerAddress";
+            this.BrokerAddress.Size = new System.Drawing.Size(183, 20);
+            this.BrokerAddress.TabIndex = 51;
             // 
             // label9
             // 
@@ -520,28 +514,54 @@
             this.label9.Text = "Address:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // brokerAddress
+            // BrokerLicenseNo
             // 
-            this.brokerAddress.Location = new System.Drawing.Point(17, 133);
-            this.brokerAddress.Name = "brokerAddress";
-            this.brokerAddress.Size = new System.Drawing.Size(183, 20);
-            this.brokerAddress.TabIndex = 51;
+            this.BrokerLicenseNo.Location = new System.Drawing.Point(206, 79);
+            this.BrokerLicenseNo.Name = "BrokerLicenseNo";
+            this.BrokerLicenseNo.Size = new System.Drawing.Size(150, 20);
+            this.BrokerLicenseNo.TabIndex = 57;
             // 
-            // label14
+            // BrokerCity
             // 
-            this.label14.Location = new System.Drawing.Point(14, 63);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(49, 13);
-            this.label14.TabIndex = 50;
-            this.label14.Text = "Name:";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BrokerCity.Location = new System.Drawing.Point(206, 131);
+            this.BrokerCity.Name = "BrokerCity";
+            this.BrokerCity.Size = new System.Drawing.Size(143, 20);
+            this.BrokerCity.TabIndex = 53;
             // 
-            // brokerName
+            // label11
             // 
-            this.brokerName.Location = new System.Drawing.Point(17, 79);
-            this.brokerName.Name = "brokerName";
-            this.brokerName.Size = new System.Drawing.Size(183, 20);
-            this.brokerName.TabIndex = 0;
+            this.label11.Location = new System.Drawing.Point(14, 170);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(49, 13);
+            this.label11.TabIndex = 56;
+            this.label11.Text = "Phone:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(203, 117);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 13);
+            this.label10.TabIndex = 54;
+            this.label10.Text = "City:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // BrokerPhone
+            // 
+            this.BrokerPhone.Location = new System.Drawing.Point(17, 186);
+            this.BrokerPhone.Name = "BrokerPhone";
+            this.BrokerPhone.Size = new System.Drawing.Size(153, 20);
+            this.BrokerPhone.TabIndex = 55;
+            // 
+            // BrokerProfiles
+            // 
+            this.BrokerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BrokerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BrokerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BrokerProfiles.Location = new System.Drawing.Point(3, 3);
+            this.BrokerProfiles.Name = "BrokerProfiles";
+            this.BrokerProfiles.Size = new System.Drawing.Size(536, 45);
+            this.BrokerProfiles.TabIndex = 59;
             // 
             // tabPage5
             // 
@@ -561,7 +581,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(542, 274);
+            this.tabPage5.Size = new System.Drawing.Size(542, 271);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Agent";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -592,6 +612,15 @@
             this.label1.Text = "Signature:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // label22
+            // 
+            this.label22.Location = new System.Drawing.Point(15, 51);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(49, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "Name:";
+            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // selectAgentInitial
             // 
             this.selectAgentInitial.Location = new System.Drawing.Point(124, 142);
@@ -601,6 +630,13 @@
             this.selectAgentInitial.Text = "...";
             this.selectAgentInitial.UseVisualStyleBackColor = true;
             // 
+            // AgentName
+            // 
+            this.AgentName.Location = new System.Drawing.Point(18, 67);
+            this.AgentName.Name = "AgentName";
+            this.AgentName.Size = new System.Drawing.Size(180, 20);
+            this.AgentName.TabIndex = 0;
+            // 
             // AgentInitial
             // 
             this.AgentInitial.Location = new System.Drawing.Point(18, 118);
@@ -608,6 +644,13 @@
             this.AgentInitial.Size = new System.Drawing.Size(100, 50);
             this.AgentInitial.TabIndex = 63;
             this.AgentInitial.TabStop = false;
+            // 
+            // AgentLicenseNo
+            // 
+            this.AgentLicenseNo.Location = new System.Drawing.Point(204, 67);
+            this.AgentLicenseNo.Name = "AgentLicenseNo";
+            this.AgentLicenseNo.Size = new System.Drawing.Size(137, 20);
+            this.AgentLicenseNo.TabIndex = 57;
             // 
             // label8
             // 
@@ -617,6 +660,15 @@
             this.label8.TabIndex = 62;
             this.label8.Text = "Initial:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label18
+            // 
+            this.label18.Location = new System.Drawing.Point(201, 51);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(76, 13);
+            this.label18.TabIndex = 58;
+            this.label18.Text = "License No:";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label15
             // 
@@ -634,37 +686,15 @@
             this.AgentEmail.Size = new System.Drawing.Size(206, 20);
             this.AgentEmail.TabIndex = 59;
             // 
-            // label18
+            // AgentProfiles
             // 
-            this.label18.Location = new System.Drawing.Point(201, 51);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(76, 13);
-            this.label18.TabIndex = 58;
-            this.label18.Text = "License No:";
-            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // AgentLicenseNo
-            // 
-            this.AgentLicenseNo.Location = new System.Drawing.Point(204, 67);
-            this.AgentLicenseNo.Name = "AgentLicenseNo";
-            this.AgentLicenseNo.Size = new System.Drawing.Size(137, 20);
-            this.AgentLicenseNo.TabIndex = 57;
-            // 
-            // label22
-            // 
-            this.label22.Location = new System.Drawing.Point(15, 51);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(49, 13);
-            this.label22.TabIndex = 50;
-            this.label22.Text = "Name:";
-            this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // AgentName
-            // 
-            this.AgentName.Location = new System.Drawing.Point(18, 67);
-            this.AgentName.Name = "AgentName";
-            this.AgentName.Size = new System.Drawing.Size(180, 20);
-            this.AgentName.TabIndex = 0;
+            this.AgentProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.AgentProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AgentProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AgentProfiles.Location = new System.Drawing.Point(3, 3);
+            this.AgentProfiles.Name = "AgentProfiles";
+            this.AgentProfiles.Size = new System.Drawing.Size(536, 45);
+            this.AgentProfiles.TabIndex = 61;
             // 
             // tabPage6
             // 
@@ -676,7 +706,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(542, 274);
+            this.tabPage6.Size = new System.Drawing.Size(542, 271);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Escrow";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -712,6 +742,26 @@
             this.EscrowTitleCompany.Name = "EscrowTitleCompany";
             this.EscrowTitleCompany.Size = new System.Drawing.Size(183, 20);
             this.EscrowTitleCompany.TabIndex = 0;
+            // 
+            // EscrowProfiles
+            // 
+            this.EscrowProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.EscrowProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EscrowProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.EscrowProfiles.Location = new System.Drawing.Point(3, 3);
+            this.EscrowProfiles.Name = "EscrowProfiles";
+            this.EscrowProfiles.Size = new System.Drawing.Size(536, 45);
+            this.EscrowProfiles.TabIndex = 61;
+            // 
+            // PartyProfiles
+            // 
+            this.PartyProfiles.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.PartyProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PartyProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PartyProfiles.Location = new System.Drawing.Point(3, 3);
+            this.PartyProfiles.Name = "PartyProfiles";
+            this.PartyProfiles.Size = new System.Drawing.Size(550, 45);
+            this.PartyProfiles.TabIndex = 58;
             // 
             // tabPage2
             // 
@@ -768,13 +818,6 @@
             this.label19.Text = "EMD:";
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // Emd
-            // 
-            this.Emd.Location = new System.Drawing.Point(206, 41);
-            this.Emd.Name = "Emd";
-            this.Emd.Size = new System.Drawing.Size(150, 20);
-            this.Emd.TabIndex = 57;
-            // 
             // label20
             // 
             this.label20.Location = new System.Drawing.Point(14, 25);
@@ -783,6 +826,13 @@
             this.label20.TabIndex = 50;
             this.label20.Text = "Close of Escrow:";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Emd
+            // 
+            this.Emd.Location = new System.Drawing.Point(206, 41);
+            this.Emd.Name = "Emd";
+            this.Emd.Size = new System.Drawing.Size(150, 20);
+            this.Emd.TabIndex = 57;
             // 
             // tabPage9
             // 
@@ -796,7 +846,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(542, 319);
+            this.tabPage9.Size = new System.Drawing.Size(542, 316);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "Attachments and Addendums";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -819,6 +869,15 @@
             this.bImportAttachment.Text = "+";
             this.bImportAttachment.UseVisualStyleBackColor = true;
             // 
+            // label21
+            // 
+            this.label21.Location = new System.Drawing.Point(193, 29);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(121, 13);
+            this.label21.TabIndex = 58;
+            this.label21.Text = "Attachments:";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Attachments
             // 
             this.Attachments.FormattingEnabled = true;
@@ -826,6 +885,16 @@
             this.Attachments.Name = "Attachments";
             this.Attachments.Size = new System.Drawing.Size(120, 94);
             this.Attachments.TabIndex = 63;
+            // 
+            // ShortSaleAddendum
+            // 
+            this.ShortSaleAddendum.AutoSize = true;
+            this.ShortSaleAddendum.Location = new System.Drawing.Point(20, 60);
+            this.ShortSaleAddendum.Name = "ShortSaleAddendum";
+            this.ShortSaleAddendum.Size = new System.Drawing.Size(129, 17);
+            this.ShortSaleAddendum.TabIndex = 60;
+            this.ShortSaleAddendum.Text = "Short Sale Addendum";
+            this.ShortSaleAddendum.UseVisualStyleBackColor = true;
             // 
             // OtherAddendum2
             // 
@@ -847,36 +916,17 @@
             this.OtherAddendum1.Text = "Other Addendum1";
             this.OtherAddendum1.UseVisualStyleBackColor = true;
             // 
-            // ShortSaleAddendum
-            // 
-            this.ShortSaleAddendum.AutoSize = true;
-            this.ShortSaleAddendum.Location = new System.Drawing.Point(20, 60);
-            this.ShortSaleAddendum.Name = "ShortSaleAddendum";
-            this.ShortSaleAddendum.Size = new System.Drawing.Size(129, 17);
-            this.ShortSaleAddendum.TabIndex = 60;
-            this.ShortSaleAddendum.Text = "Short Sale Addendum";
-            this.ShortSaleAddendum.UseVisualStyleBackColor = true;
-            // 
-            // label21
-            // 
-            this.label21.Location = new System.Drawing.Point(193, 29);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(121, 13);
-            this.label21.TabIndex = 58;
-            this.label21.Text = "Attachments:";
-            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // tabPage11
             // 
             this.tabPage11.Controls.Add(this.EmailBody);
             this.tabPage11.Controls.Add(this.label24);
             this.tabPage11.Controls.Add(this.label25);
             this.tabPage11.Controls.Add(this.EmailSubject);
-            this.tabPage11.Controls.Add(this.EmailTemplates);
+            this.tabPage11.Controls.Add(this.EmailTemplateProfiles);
             this.tabPage11.Location = new System.Drawing.Point(4, 25);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(542, 319);
+            this.tabPage11.Size = new System.Drawing.Size(542, 316);
             this.tabPage11.TabIndex = 2;
             this.tabPage11.Text = "Email Template";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -886,15 +936,15 @@
             this.EmailBody.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EmailBody.Location = new System.Drawing.Point(15, 126);
+            this.EmailBody.Location = new System.Drawing.Point(4, 133);
             this.EmailBody.Name = "EmailBody";
-            this.EmailBody.Size = new System.Drawing.Size(528, 180);
+            this.EmailBody.Size = new System.Drawing.Size(532, 177);
             this.EmailBody.TabIndex = 59;
             this.EmailBody.Text = "";
             // 
             // label24
             // 
-            this.label24.Location = new System.Drawing.Point(15, 110);
+            this.label24.Location = new System.Drawing.Point(6, 117);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(121, 13);
             this.label24.TabIndex = 58;
@@ -903,7 +953,7 @@
             // 
             // label25
             // 
-            this.label25.Location = new System.Drawing.Point(15, 65);
+            this.label25.Location = new System.Drawing.Point(6, 65);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(99, 13);
             this.label25.TabIndex = 50;
@@ -914,10 +964,20 @@
             // 
             this.EmailSubject.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.EmailSubject.Location = new System.Drawing.Point(18, 81);
+            this.EmailSubject.Location = new System.Drawing.Point(6, 81);
             this.EmailSubject.Name = "EmailSubject";
-            this.EmailSubject.Size = new System.Drawing.Size(525, 20);
+            this.EmailSubject.Size = new System.Drawing.Size(530, 20);
             this.EmailSubject.TabIndex = 0;
+            // 
+            // EmailTemplateProfiles
+            // 
+            this.EmailTemplateProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.EmailTemplateProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EmailTemplateProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.EmailTemplateProfiles.Location = new System.Drawing.Point(3, 3);
+            this.EmailTemplateProfiles.Name = "EmailTemplateProfiles";
+            this.EmailTemplateProfiles.Size = new System.Drawing.Size(536, 45);
+            this.EmailTemplateProfiles.TabIndex = 63;
             // 
             // tabPage8
             // 
@@ -947,8 +1007,8 @@
             // 
             this.tabPage10.Controls.Add(this.groupBox15);
             this.tabPage10.Controls.Add(this.label39);
-            this.tabPage10.Controls.Add(this.SenderEmail);
-            this.tabPage10.Controls.Add(this.profilesControl2);
+            this.tabPage10.Controls.Add(this.EmailSenderEmail);
+            this.tabPage10.Controls.Add(this.EmailServerProfiles);
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
@@ -1031,12 +1091,22 @@
             this.label39.Text = "Sender Address:";
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // SenderEmail
+            // EmailSenderEmail
             // 
-            this.SenderEmail.Location = new System.Drawing.Point(15, 235);
-            this.SenderEmail.Name = "SenderEmail";
-            this.SenderEmail.Size = new System.Drawing.Size(257, 20);
-            this.SenderEmail.TabIndex = 51;
+            this.EmailSenderEmail.Location = new System.Drawing.Point(15, 235);
+            this.EmailSenderEmail.Name = "EmailSenderEmail";
+            this.EmailSenderEmail.Size = new System.Drawing.Size(257, 20);
+            this.EmailSenderEmail.TabIndex = 51;
+            // 
+            // EmailServerProfiles
+            // 
+            this.EmailServerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.EmailServerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.EmailServerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.EmailServerProfiles.Location = new System.Drawing.Point(3, 3);
+            this.EmailServerProfiles.Name = "EmailServerProfiles";
+            this.EmailServerProfiles.Size = new System.Drawing.Size(536, 45);
+            this.EmailServerProfiles.TabIndex = 59;
             // 
             // tabPage12
             // 
@@ -1044,7 +1114,7 @@
             this.tabPage12.Location = new System.Drawing.Point(4, 25);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(542, 319);
+            this.tabPage12.Size = new System.Drawing.Size(542, 316);
             this.tabPage12.TabIndex = 3;
             this.tabPage12.Text = "Mailer";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -1059,7 +1129,7 @@
             this.groupBox14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox14.Location = new System.Drawing.Point(3, 3);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(536, 313);
+            this.groupBox14.Size = new System.Drawing.Size(536, 310);
             this.groupBox14.TabIndex = 60;
             this.groupBox14.TabStop = false;
             // 
@@ -1115,76 +1185,6 @@
             this.Start.UseVisualStyleBackColor = true;
             this.Start.Click += new System.EventHandler(this.Start_Click);
             // 
-            // BuyerProfiles
-            // 
-            this.BuyerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.BuyerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BuyerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BuyerProfiles.Location = new System.Drawing.Point(3, 3);
-            this.BuyerProfiles.Name = "BuyerProfiles";
-            this.BuyerProfiles.Size = new System.Drawing.Size(536, 45);
-            this.BuyerProfiles.TabIndex = 51;
-            // 
-            // BrokerProfiles
-            // 
-            this.BrokerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.BrokerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BrokerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BrokerProfiles.Location = new System.Drawing.Point(3, 3);
-            this.BrokerProfiles.Name = "BrokerProfiles";
-            this.BrokerProfiles.Size = new System.Drawing.Size(536, 45);
-            this.BrokerProfiles.TabIndex = 59;
-            // 
-            // AgentProfiles
-            // 
-            this.AgentProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.AgentProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AgentProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AgentProfiles.Location = new System.Drawing.Point(3, 3);
-            this.AgentProfiles.Name = "AgentProfiles";
-            this.AgentProfiles.Size = new System.Drawing.Size(536, 45);
-            this.AgentProfiles.TabIndex = 61;
-            // 
-            // EscrowProfiles
-            // 
-            this.EscrowProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.EscrowProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EscrowProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EscrowProfiles.Location = new System.Drawing.Point(3, 3);
-            this.EscrowProfiles.Name = "EscrowProfiles";
-            this.EscrowProfiles.Size = new System.Drawing.Size(536, 45);
-            this.EscrowProfiles.TabIndex = 61;
-            // 
-            // PartyProfiles
-            // 
-            this.PartyProfiles.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.PartyProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PartyProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PartyProfiles.Location = new System.Drawing.Point(3, 3);
-            this.PartyProfiles.Name = "PartyProfiles";
-            this.PartyProfiles.Size = new System.Drawing.Size(550, 45);
-            this.PartyProfiles.TabIndex = 58;
-            // 
-            // EmailTemplates
-            // 
-            this.EmailTemplates.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.EmailTemplates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.EmailTemplates.Dock = System.Windows.Forms.DockStyle.Top;
-            this.EmailTemplates.Location = new System.Drawing.Point(3, 3);
-            this.EmailTemplates.Name = "EmailTemplates";
-            this.EmailTemplates.Size = new System.Drawing.Size(536, 45);
-            this.EmailTemplates.TabIndex = 63;
-            // 
-            // profilesControl2
-            // 
-            this.profilesControl2.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.profilesControl2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.profilesControl2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.profilesControl2.Location = new System.Drawing.Point(3, 3);
-            this.profilesControl2.Name = "profilesControl2";
-            this.profilesControl2.Size = new System.Drawing.Size(536, 45);
-            this.profilesControl2.TabIndex = 59;
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1201,10 +1201,10 @@
             this.tabPage3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cobuyerInitial)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cobuyerSignature)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buyerSignature)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buyerInitial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CoBuyerInitial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CoBuyerSignature)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyerSignature)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BuyerInitial)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
             this.tabPage5.ResumeLayout(false);
@@ -1240,19 +1240,19 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button selectBuyerInitial;
-        private System.Windows.Forms.PictureBox buyerInitial;
+        private System.Windows.Forms.PictureBox BuyerInitial;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox CoBuyerName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox buyerName;
+        private System.Windows.Forms.TextBox BuyerName;
         private System.Windows.Forms.Button selectCobuyerSignature;
-        private System.Windows.Forms.PictureBox cobuyerSignature;
+        private System.Windows.Forms.PictureBox CoBuyerSignature;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button selectBuyerSignature;
-        private System.Windows.Forms.PictureBox buyerSignature;
+        private System.Windows.Forms.PictureBox BuyerSignature;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button selectCoBuyerInitial;
-        private System.Windows.Forms.PictureBox cobuyerInitial;
+        private System.Windows.Forms.PictureBox CoBuyerInitial;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label7;
@@ -1260,25 +1260,25 @@
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox brokerName;
+        private System.Windows.Forms.TextBox BrokerName;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox brokerZip;
+        private System.Windows.Forms.TextBox BrokerZip;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox brokerCompany;
+        private System.Windows.Forms.TextBox BrokerCompany;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox brokerLicenseNo;
+        private System.Windows.Forms.TextBox BrokerLicenseNo;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox brokerPhone;
+        private System.Windows.Forms.TextBox BrokerPhone;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox brokerCity;
+        private System.Windows.Forms.TextBox BrokerCity;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox brokerAddress;
+        private System.Windows.Forms.TextBox BrokerAddress;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.ComboBox brokerState;
+        private System.Windows.Forms.ComboBox BrokerState;
         private ProfilesControl PartyProfiles;
         private ProfilesControl BrokerProfiles;
         private ProfilesControl BuyerProfiles;
-        private System.Windows.Forms.CheckBox useCoBuyer;
+        private System.Windows.Forms.CheckBox UseCoBuyer;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox AgentEmail;
@@ -1322,10 +1322,10 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TextBox SmtpPassword;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.TextBox SenderEmail;
+        private System.Windows.Forms.TextBox EmailSenderEmail;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox SmtpHost;
-        private ProfilesControl profilesControl2;
+        private ProfilesControl EmailServerProfiles;
         private System.Windows.Forms.TabPage tabPage12;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.Label label46;
@@ -1338,7 +1338,7 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TabPage tabPage11;
-        private ProfilesControl EmailTemplates;
+        private ProfilesControl EmailTemplateProfiles;
         private System.Windows.Forms.Button Start;
     }
 }

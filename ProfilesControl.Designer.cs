@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.bDelete = new System.Windows.Forms.Button();
-            this.Profiles = new System.Windows.Forms.ComboBox();
+            this.Names = new System.Windows.Forms.ComboBox();
             this.bSave = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -42,14 +42,15 @@
             this.bDelete.TabIndex = 55;
             this.bDelete.Text = "-";
             this.bDelete.UseVisualStyleBackColor = false;
+            this.bDelete.Click += new System.EventHandler(this.bDelete_Click);
             // 
-            // Profiles
+            // Names
             // 
-            this.Profiles.FormattingEnabled = true;
-            this.Profiles.Location = new System.Drawing.Point(13, 10);
-            this.Profiles.Name = "Profiles";
-            this.Profiles.Size = new System.Drawing.Size(121, 21);
-            this.Profiles.TabIndex = 53;
+            this.Names.FormattingEnabled = true;
+            this.Names.Location = new System.Drawing.Point(13, 10);
+            this.Names.Name = "Names";
+            this.Names.Size = new System.Drawing.Size(121, 21);
+            this.Names.TabIndex = 53;
             // 
             // bSave
             // 
@@ -60,6 +61,7 @@
             this.bSave.TabIndex = 54;
             this.bSave.Text = "+";
             this.bSave.UseVisualStyleBackColor = false;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
             // 
             // ProfilesControl
             // 
@@ -68,7 +70,7 @@
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.bDelete);
-            this.Controls.Add(this.Profiles);
+            this.Controls.Add(this.Names);
             this.Controls.Add(this.bSave);
             this.Name = "ProfilesControl";
             this.Size = new System.Drawing.Size(404, 42);
@@ -77,7 +79,7 @@
         }
 
         #endregion
-        internal System.Windows.Forms.ComboBox Profiles;
+        internal System.Windows.Forms.ComboBox Names;
         internal System.Windows.Forms.Button bDelete;
         internal System.Windows.Forms.Button bSave;
     }
