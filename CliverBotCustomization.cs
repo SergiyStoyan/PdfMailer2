@@ -41,10 +41,9 @@ namespace Cliver.PdfMailer2
             SettingsForm sf = new SettingsForm();
             Application.Run(sf);
         }
-        internal static readonly SessionSettingsClass SessionSettings = Cliver.Settings.Load<SessionSettingsClass>("SessionSettings.txt");
-        internal static readonly ProfilesClass Profiles = Cliver.Settings.Load<ProfilesClass>("Profiles.txt");
+        internal static readonly SettingsClass Settings = Cliver.SettingsBase.Load<SettingsClass>("Settings.txt");
 
-        public class ProfilesClass : Settings
+        public class SettingsClass : SettingsBase
         {
             public Dictionary<string, PartyProfile> PartyProfileNames2PartyProfile = new Dictionary<string, PartyProfile>();
             public Dictionary<string, BuyerProfile> BuyerProfileNames2BuyerProfile = new Dictionary<string, BuyerProfile>();
@@ -53,10 +52,15 @@ namespace Cliver.PdfMailer2
             public Dictionary<string, EscrowProfile> EscrowProfileNames2EscrowProfile = new Dictionary<string, EscrowProfile>();
             public Dictionary<string, EmailTemplateProfile> EmailTemplateProfileNames2EmailTemplateProfileProfile = new Dictionary<string, EmailTemplateProfile>();
             public Dictionary<string, EmailServerProfile> EmailServerProfileNames2EmailServerProfile = new Dictionary<string, EmailServerProfile>();
-        }
+            
+            public string PartyProfileName;
+            public string BuyerProfileName;
+            public string BrokerProfileName;
+            public string AgentProfileName;
+            public string EscrowProfileName;
+            public string EmailTemplateProfileName;
+            public string EmailServerProfileName;
 
-        public class SessionSettingsClass : Settings
-        {
             public DateTime CloseOfEscrow;
             public string Emd;
             public bool ShortSaleAddendum;

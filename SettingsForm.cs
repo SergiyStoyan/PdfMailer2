@@ -18,31 +18,31 @@ namespace Cliver.PdfMailer2
             InitializeComponent();
 
             PartyProfiles.Save= PartyProfiles_Save;
-            foreach (string name in Program.Profiles.PartyProfileNames2PartyProfile.Keys)
+            foreach (string name in Program.Settings.PartyProfileNames2PartyProfile.Keys)
                 PartyProfiles.Names.Items.Add(name);
 
             BuyerProfiles.Save = BuyerProfiles_Save;
-            foreach (string name in Program.Profiles.BuyerProfileNames2BuyerProfile.Keys)
+            foreach (string name in Program.Settings.BuyerProfileNames2BuyerProfile.Keys)
                 BuyerProfiles.Names.Items.Add(name);
 
             BrokerProfiles.Save = BrokerProfiles_Save;
-            foreach (string name in Program.Profiles.BrokerProfileNames2BrokerProfile.Keys)
+            foreach (string name in Program.Settings.BrokerProfileNames2BrokerProfile.Keys)
                 BrokerProfiles.Names.Items.Add(name);
 
             AgentProfiles.Save = AgentProfiles_Save;
-            foreach (string name in Program.Profiles.AgentProfileNames2AgentProfile.Keys)
+            foreach (string name in Program.Settings.AgentProfileNames2AgentProfile.Keys)
                 AgentProfiles.Names.Items.Add(name);
 
             EscrowProfiles.Save = EscrowProfiles_Save;
-            foreach (string name in Program.Profiles.EscrowProfileNames2EscrowProfile.Keys)
+            foreach (string name in Program.Settings.EscrowProfileNames2EscrowProfile.Keys)
                 EscrowProfiles.Names.Items.Add(name);
 
             EmailTemplateProfiles.Save = EmailTemplateProfiles_Save;
-            foreach (string name in Program.Profiles.EmailTemplateProfileNames2EmailTemplateProfileProfile.Keys)
+            foreach (string name in Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile.Keys)
                 EmailTemplateProfiles.Names.Items.Add(name);
 
             EmailServerProfiles.Save = EmailServerProfiles_Save;
-            foreach (string name in Program.Profiles.EmailServerProfileNames2EmailServerProfile.Keys)
+            foreach (string name in Program.Settings.EmailServerProfileNames2EmailServerProfile.Keys)
                 EmailServerProfiles.Names.Items.Add(name);
         }
 
@@ -89,7 +89,7 @@ namespace Cliver.PdfMailer2
                 return false;
             }
 
-            Program.Profiles.EmailServerProfileNames2EmailServerProfile[EmailServerProfiles.Names.Text] = p;
+            Program.Settings.EmailServerProfileNames2EmailServerProfile[EmailServerProfiles.Names.Text] = p;
             EmailServerProfiles.Names.Items.Remove(EmailServerProfiles.Names.Text);
             EmailServerProfiles.Names.Items.Insert(0, EmailServerProfiles.Names.Text);
             EmailServerProfiles.Names.SelectedIndex = 0;
@@ -122,7 +122,7 @@ namespace Cliver.PdfMailer2
                 return false;
             }
 
-            Program.Profiles.EmailTemplateProfileNames2EmailTemplateProfileProfile[EmailTemplateProfiles.Names.Text] = p;
+            Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[EmailTemplateProfiles.Names.Text] = p;
             EmailTemplateProfiles.Names.Items.Remove(EmailTemplateProfiles.Names.Text);
             EmailTemplateProfiles.Names.Items.Insert(0, EmailTemplateProfiles.Names.Text);
             EmailTemplateProfiles.Names.SelectedIndex = 0;
@@ -155,7 +155,7 @@ namespace Cliver.PdfMailer2
                 return false;
             }
 
-            Program.Profiles.EscrowProfileNames2EscrowProfile[EscrowProfiles.Names.Text] = p;
+            Program.Settings.EscrowProfileNames2EscrowProfile[EscrowProfiles.Names.Text] = p;
             EscrowProfiles.Names.Items.Remove(EscrowProfiles.Names.Text);
             EscrowProfiles.Names.Items.Insert(0, EscrowProfiles.Names.Text);
             EscrowProfiles.Names.SelectedIndex = 0;
@@ -206,7 +206,7 @@ namespace Cliver.PdfMailer2
                 return false;
             }
 
-            Program.Profiles.AgentProfileNames2AgentProfile[AgentProfiles.Names.Text] = p;
+            Program.Settings.AgentProfileNames2AgentProfile[AgentProfiles.Names.Text] = p;
             AgentProfiles.Names.Items.Remove(AgentProfiles.Names.Text);
             AgentProfiles.Names.Items.Insert(0, AgentProfiles.Names.Text);
             AgentProfiles.Names.SelectedIndex = 0;
@@ -275,7 +275,7 @@ namespace Cliver.PdfMailer2
                 return false;
             }
 
-            Program.Profiles.BrokerProfileNames2BrokerProfile[BrokerProfiles.Names.Text] = p;
+            Program.Settings.BrokerProfileNames2BrokerProfile[BrokerProfiles.Names.Text] = p;
             BrokerProfiles.Names.Items.Remove(BrokerProfiles.Names.Text);
             BrokerProfiles.Names.Items.Insert(0, BrokerProfiles.Names.Text);
             BrokerProfiles.Names.SelectedIndex = 0;
@@ -336,7 +336,7 @@ namespace Cliver.PdfMailer2
                 }
             }
 
-            Program.Profiles.BuyerProfileNames2BuyerProfile[BuyerProfiles.Names.Text] = p;
+            Program.Settings.BuyerProfileNames2BuyerProfile[BuyerProfiles.Names.Text] = p;
             BuyerProfiles.Names.Items.Remove(BuyerProfiles.Names.Text);
             BuyerProfiles.Names.Items.Insert(0, BuyerProfiles.Names.Text);
             BuyerProfiles.Names.SelectedIndex = 0;
@@ -388,7 +388,7 @@ namespace Cliver.PdfMailer2
                 return false;
             }
 
-            Program.Profiles.PartyProfileNames2PartyProfile[PartyProfiles.Names.Text] = p;
+            Program.Settings.PartyProfileNames2PartyProfile[PartyProfiles.Names.Text] = p;
             PartyProfiles.Names.Items.Remove(PartyProfiles.Names.Text);
             PartyProfiles.Names.Items.Insert(0, PartyProfiles.Names.Text);
             PartyProfiles.Names.SelectedIndex = 0;
