@@ -229,7 +229,7 @@
             this.UseCoBuyer.Size = new System.Drawing.Size(15, 14);
             this.UseCoBuyer.TabIndex = 62;
             this.UseCoBuyer.UseVisualStyleBackColor = true;
-            this.UseCoBuyer.CheckedChanged += new System.EventHandler(this.useCoBuyer_CheckedChanged);
+            this.UseCoBuyer.CheckedChanged += new System.EventHandler(this.UseCoBuyer_CheckedChanged);
             // 
             // gCoBuyer
             // 

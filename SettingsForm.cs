@@ -74,6 +74,7 @@ namespace Cliver.PdfMailer2
             OtherAddendum2.Checked = Program.Settings.OtherAddendum2;
 
             UseRandomDelay.Checked = Program.Settings.UseRandomDelay;
+            UseRandomDelay_CheckedChanged(null, null);
             MinRandomDelay.Text = Program.Settings.MinRandomDelayMss.ToString();
             MaxRandomDelay.Text = Program.Settings.MaxRandomDelayMss.ToString();
 
@@ -85,7 +86,7 @@ namespace Cliver.PdfMailer2
 
         private void EmailServerProfiles_Select()
         {
-            Program.EmailServerProfile p = Program.Settings.EmailServerProfileNames2EmailServerProfile[EmailServerProfiles.Names.SelectedText];
+            Program.EmailServerProfile p = Program.Settings.EmailServerProfileNames2EmailServerProfile[(string)EmailServerProfiles.Names.SelectedItem];
             EmailSenderEmail.Text = p.SenderEmail;
             SmtpHost.Text = p.SmtpHost;
             SmtpPassword.Text = p.SmtpPassword;
@@ -94,21 +95,21 @@ namespace Cliver.PdfMailer2
 
         private void EmailTemplateProfiles_Select()
         {
-            Program.EmailTemplateProfile p = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[EmailTemplateProfiles.Names.SelectedText];
+            Program.EmailTemplateProfile p = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[(string)EmailTemplateProfiles.Names.SelectedItem];
             EmailBody.Text = p.Body;
             EmailSubject.Text = p.Subject;
         }
 
         private void EscrowProfiles_Select()
         {
-            Program.EscrowProfile p = Program.Settings.EscrowProfileNames2EscrowProfile[EscrowProfiles.Names.SelectedText];
+            Program.EscrowProfile p = Program.Settings.EscrowProfileNames2EscrowProfile[(string)EscrowProfiles.Names.SelectedItem];
             EscrowOfficer.Text = p.Officer;
             EscrowTitleCompany.Text = p.TitleCompany;
         }
 
         private void AgentProfiles_Select()
         {
-            Program.AgentProfile p = Program.Settings.AgentProfileNames2AgentProfile[AgentProfiles.Names.SelectedText];
+            Program.AgentProfile p = Program.Settings.AgentProfileNames2AgentProfile[(string)AgentProfiles.Names.SelectedItem];
             AgentEmail.Text = p.Email;
             AgentInitial.Text = p.InitialFile;
             AgentLicenseNo.Text = p.LicenseNo;
@@ -118,7 +119,7 @@ namespace Cliver.PdfMailer2
 
         private void BrokerProfiles_Select()
         {
-            Program.BrokerProfile p = Program.Settings.BrokerProfileNames2BrokerProfile[BrokerProfiles.Names.SelectedText];
+            Program.BrokerProfile p = Program.Settings.BrokerProfileNames2BrokerProfile[(string)BrokerProfiles.Names.SelectedItem];
             BrokerAddress.Text = p.Address;
             BrokerCity.Text = p.City;
             BrokerCompany.Text = p.Company;
@@ -131,7 +132,7 @@ namespace Cliver.PdfMailer2
 
         private void BuyerProfiles_Select()
         {
-            Program.BuyerProfile p = Program.Settings.BuyerProfileNames2BuyerProfile[BuyerProfiles.Names.SelectedText];
+            Program.BuyerProfile p = Program.Settings.BuyerProfileNames2BuyerProfile[(string)BuyerProfiles.Names.SelectedItem];
             CoBuyerInitial.Text = p.CoBuyerInitialFile;
             CoBuyerName.Text = p.CoBuyerName;
             CoBuyerSignature.Text = p.CoBuyerSignatureFile;
@@ -139,15 +140,16 @@ namespace Cliver.PdfMailer2
             BuyerName.Text = p.Name;
             BuyerSignature.Text = p.SignatureFile;
             UseCoBuyer.Checked = p.UseCoBuyer;
+            UseCoBuyer_CheckedChanged(null, null);
         }
 
         private void PartyProfiles_Select()
         {
-            Program.PartyProfile p = Program.Settings.PartyProfileNames2PartyProfile[PartyProfiles.Names.SelectedText];
-            AgentProfiles.Names.SelectedText = p.AgentProfileName;
-            BrokerProfiles.Names.SelectedText = p.BrokerProfileName;
-            BuyerProfiles.Names.SelectedText = p.BuyerProfileName;
-            EscrowProfiles.Names.SelectedText = p.EscrowProfileName;
+            Program.PartyProfile p = Program.Settings.PartyProfileNames2PartyProfile[(string)PartyProfiles.Names.SelectedItem];
+            AgentProfiles.Names.SelectedItem = p.AgentProfileName;
+            BrokerProfiles.Names.SelectedItem = p.BrokerProfileName;
+            BuyerProfiles.Names.SelectedItem = p.BuyerProfileName;
+            EscrowProfiles.Names.SelectedItem = p.EscrowProfileName;
         }
 
         private bool EmailServerProfiles_Add()
@@ -518,7 +520,7 @@ namespace Cliver.PdfMailer2
             selectImage(CoBuyerInitial);
         }
 
-        private void useCoBuyer_CheckedChanged(object sender, EventArgs e)
+        private void UseCoBuyer_CheckedChanged(object sender, EventArgs e)
         {
             gCoBuyer.Enabled = UseCoBuyer.Checked;
         }
@@ -645,7 +647,8 @@ namespace Cliver.PdfMailer2
 
         private void UseRandomDelay_CheckedChanged(object sender, EventArgs e)
         {
-
+            MinRandomDelay.Enabled = UseRandomDelay.Checked;
+            MaxRandomDelay.Enabled = UseRandomDelay.Checked;
         }
     }
 }
