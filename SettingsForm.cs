@@ -65,6 +65,11 @@ namespace Cliver.PdfMailer2
             ShortSaleAddendum.Checked = Program.Settings.ShortSaleAddendum;
             OtherAddendum1.Checked = Program.Settings.OtherAddendum1;
             OtherAddendum2.Checked = Program.Settings.OtherAddendum2;
+
+            foreach (string file in Program.Settings.AttachmentFiles)
+                Attachments.Items.Add(file);
+            foreach (int id in Program.Settings.SelectedAttachmentIds)
+                Attachments.SetItemChecked(id, true);
         }
 
         private bool EmailServerProfiles_Save()
@@ -435,24 +440,9 @@ namespace Cliver.PdfMailer2
             selectImage(CoBuyerInitial);
         }
 
-        private void useCobuyerName_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void deleteBroker_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void saveBroker_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void useCoBuyer_CheckedChanged(object sender, EventArgs e)
         {
-
+            gCoBuyer.Enabled = UseCoBuyer.Checked;
         }
 
         private bool save()
@@ -523,6 +513,8 @@ namespace Cliver.PdfMailer2
             Program.Settings.ShortSaleAddendum = ShortSaleAddendum.Checked;
             Program.Settings.OtherAddendum1 = OtherAddendum1.Checked;
             Program.Settings.OtherAddendum2 = OtherAddendum2.Checked;
+            Program.Settings.SelectedAttachmentIds = new int[Attachments.CheckedIndices.Count];
+            Attachments.CheckedIndices.CopyTo(Program.Settings.SelectedAttachmentIds, 0);
 
             Program.Settings.Save();
             return true;
@@ -531,6 +523,21 @@ namespace Cliver.PdfMailer2
         private void Start_Click(object sender, EventArgs e)
         {
             save();
+        }
+
+        private void bImportAttachment_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            d.Title = "Pick an attachment file";
+            //d.Filter = "Filter tree files (*." + Program.FilterTreeFileExtension + ")|*." + Program.FilterTreeFileExtension + "|All files (*.*)|*.*";
+            if (d.ShowDialog(this) != DialogResult.OK || string.IsNullOrWhiteSpace(d.FileName))
+                return;
+            Attachments.Items.Add(d.FileName);
+        }
+
+        private void DeleteAttachment_Click(object sender, EventArgs e)
+        {
+            Attachments.Items.Remove(Attachments.SelectedIndex);
         }
     }
 }
