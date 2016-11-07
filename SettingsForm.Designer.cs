@@ -262,18 +262,19 @@
             this.CoBuyerInitial.Location = new System.Drawing.Point(29, 74);
             this.CoBuyerInitial.Name = "CoBuyerInitial";
             this.CoBuyerInitial.Size = new System.Drawing.Size(100, 50);
+            this.CoBuyerInitial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.CoBuyerInitial.TabIndex = 57;
             this.CoBuyerInitial.TabStop = false;
             // 
             // selectCobuyerSignature
             // 
-            this.selectCobuyerSignature.Location = new System.Drawing.Point(135, 171);
+            this.selectCobuyerSignature.Location = new System.Drawing.Point(135, 170);
             this.selectCobuyerSignature.Name = "selectCobuyerSignature";
             this.selectCobuyerSignature.Size = new System.Drawing.Size(24, 23);
             this.selectCobuyerSignature.TabIndex = 64;
             this.selectCobuyerSignature.Text = "...";
             this.selectCobuyerSignature.UseVisualStyleBackColor = true;
-            this.selectCobuyerSignature.Click += new System.EventHandler(this.selectCobuyerSignature_Click);
+            this.selectCobuyerSignature.Click += new System.EventHandler(this.selectCoBuyerSignature_Click);
             // 
             // CoBuyerName
             // 
@@ -287,6 +288,7 @@
             this.CoBuyerSignature.Location = new System.Drawing.Point(29, 144);
             this.CoBuyerSignature.Name = "CoBuyerSignature";
             this.CoBuyerSignature.Size = new System.Drawing.Size(100, 50);
+            this.CoBuyerSignature.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.CoBuyerSignature.TabIndex = 63;
             this.CoBuyerSignature.TabStop = false;
             // 
@@ -310,12 +312,13 @@
             // 
             // selectCoBuyerInitial
             // 
-            this.selectCoBuyerInitial.Location = new System.Drawing.Point(135, 98);
+            this.selectCoBuyerInitial.Location = new System.Drawing.Point(135, 101);
             this.selectCoBuyerInitial.Name = "selectCoBuyerInitial";
             this.selectCoBuyerInitial.Size = new System.Drawing.Size(24, 23);
             this.selectCoBuyerInitial.TabIndex = 58;
             this.selectCoBuyerInitial.Text = "...";
             this.selectCoBuyerInitial.UseVisualStyleBackColor = true;
+            this.selectCoBuyerInitial.Click += new System.EventHandler(this.selectCoBuyerInitial_Click);
             // 
             // BuyerProfiles
             // 
@@ -351,6 +354,7 @@
             this.BuyerSignature.Location = new System.Drawing.Point(9, 209);
             this.BuyerSignature.Name = "BuyerSignature";
             this.BuyerSignature.Size = new System.Drawing.Size(100, 50);
+            this.BuyerSignature.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.BuyerSignature.TabIndex = 60;
             this.BuyerSignature.TabStop = false;
             // 
@@ -381,7 +385,7 @@
             // 
             // selectBuyerInitial
             // 
-            this.selectBuyerInitial.Location = new System.Drawing.Point(115, 164);
+            this.selectBuyerInitial.Location = new System.Drawing.Point(115, 167);
             this.selectBuyerInitial.Name = "selectBuyerInitial";
             this.selectBuyerInitial.Size = new System.Drawing.Size(24, 23);
             this.selectBuyerInitial.TabIndex = 55;
@@ -394,6 +398,7 @@
             this.BuyerInitial.Location = new System.Drawing.Point(9, 140);
             this.BuyerInitial.Name = "BuyerInitial";
             this.BuyerInitial.Size = new System.Drawing.Size(100, 50);
+            this.BuyerInitial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.BuyerInitial.TabIndex = 54;
             this.BuyerInitial.TabStop = false;
             // 
@@ -594,12 +599,14 @@
             this.selectAgentSignature.TabIndex = 67;
             this.selectAgentSignature.Text = "...";
             this.selectAgentSignature.UseVisualStyleBackColor = true;
+            this.selectAgentSignature.Click += new System.EventHandler(this.selectAgentSignature_Click);
             // 
             // AgentSignature
             // 
             this.AgentSignature.Location = new System.Drawing.Point(18, 189);
             this.AgentSignature.Name = "AgentSignature";
             this.AgentSignature.Size = new System.Drawing.Size(100, 50);
+            this.AgentSignature.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.AgentSignature.TabIndex = 66;
             this.AgentSignature.TabStop = false;
             // 
@@ -623,12 +630,13 @@
             // 
             // selectAgentInitial
             // 
-            this.selectAgentInitial.Location = new System.Drawing.Point(124, 142);
+            this.selectAgentInitial.Location = new System.Drawing.Point(124, 145);
             this.selectAgentInitial.Name = "selectAgentInitial";
             this.selectAgentInitial.Size = new System.Drawing.Size(24, 23);
             this.selectAgentInitial.TabIndex = 64;
             this.selectAgentInitial.Text = "...";
             this.selectAgentInitial.UseVisualStyleBackColor = true;
+            this.selectAgentInitial.Click += new System.EventHandler(this.selectAgentInitial_Click);
             // 
             // AgentName
             // 
@@ -642,6 +650,7 @@
             this.AgentInitial.Location = new System.Drawing.Point(18, 118);
             this.AgentInitial.Name = "AgentInitial";
             this.AgentInitial.Size = new System.Drawing.Size(100, 50);
+            this.AgentInitial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.AgentInitial.TabIndex = 63;
             this.AgentInitial.TabStop = false;
             // 

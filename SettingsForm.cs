@@ -17,31 +17,38 @@ namespace Cliver.PdfMailer2
         {
             InitializeComponent();
 
-            PartyProfiles.Save= PartyProfiles_Save;
+            PartyProfiles.Save = PartyProfiles_Save;
+            PartyProfiles.Delete = () => { Program.Settings.PartyProfileNames2PartyProfile.Remove(PartyProfiles.Names.Text); };
             foreach (string name in Program.Settings.PartyProfileNames2PartyProfile.Keys)
                 PartyProfiles.Names.Items.Add(name);
 
             BuyerProfiles.Save = BuyerProfiles_Save;
+            BuyerProfiles.Delete = () => { Program.Settings.BuyerProfileNames2BuyerProfile.Remove(BuyerProfiles.Names.Text); };
             foreach (string name in Program.Settings.BuyerProfileNames2BuyerProfile.Keys)
                 BuyerProfiles.Names.Items.Add(name);
 
             BrokerProfiles.Save = BrokerProfiles_Save;
+            BrokerProfiles.Delete = () => { Program.Settings.BrokerProfileNames2BrokerProfile.Remove(BrokerProfiles.Names.Text); };
             foreach (string name in Program.Settings.BrokerProfileNames2BrokerProfile.Keys)
                 BrokerProfiles.Names.Items.Add(name);
 
             AgentProfiles.Save = AgentProfiles_Save;
+            AgentProfiles.Delete = () => { Program.Settings.AgentProfileNames2AgentProfile.Remove(AgentProfiles.Names.Text); };
             foreach (string name in Program.Settings.AgentProfileNames2AgentProfile.Keys)
                 AgentProfiles.Names.Items.Add(name);
 
             EscrowProfiles.Save = EscrowProfiles_Save;
+            EscrowProfiles.Delete = () => { Program.Settings.EscrowProfileNames2EscrowProfile.Remove(EscrowProfiles.Names.Text); };
             foreach (string name in Program.Settings.EscrowProfileNames2EscrowProfile.Keys)
                 EscrowProfiles.Names.Items.Add(name);
 
             EmailTemplateProfiles.Save = EmailTemplateProfiles_Save;
+            EmailTemplateProfiles.Delete = () => { Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile.Remove(EmailTemplateProfiles.Names.Text); };
             foreach (string name in Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile.Keys)
                 EmailTemplateProfiles.Names.Items.Add(name);
 
             EmailServerProfiles.Save = EmailServerProfiles_Save;
+            EmailServerProfiles.Delete = () => { Program.Settings.EmailServerProfileNames2EmailServerProfile.Remove(EmailServerProfiles.Names.Text); };
             foreach (string name in Program.Settings.EmailServerProfileNames2EmailServerProfile.Keys)
                 EmailServerProfiles.Names.Items.Add(name);
         }
@@ -90,9 +97,6 @@ namespace Cliver.PdfMailer2
             }
 
             Program.Settings.EmailServerProfileNames2EmailServerProfile[EmailServerProfiles.Names.Text] = p;
-            EmailServerProfiles.Names.Items.Remove(EmailServerProfiles.Names.Text);
-            EmailServerProfiles.Names.Items.Insert(0, EmailServerProfiles.Names.Text);
-            EmailServerProfiles.Names.SelectedIndex = 0;
             return true;
         }
 
@@ -123,9 +127,6 @@ namespace Cliver.PdfMailer2
             }
 
             Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[EmailTemplateProfiles.Names.Text] = p;
-            EmailTemplateProfiles.Names.Items.Remove(EmailTemplateProfiles.Names.Text);
-            EmailTemplateProfiles.Names.Items.Insert(0, EmailTemplateProfiles.Names.Text);
-            EmailTemplateProfiles.Names.SelectedIndex = 0;
             return true;
         }
 
@@ -156,9 +157,6 @@ namespace Cliver.PdfMailer2
             }
 
             Program.Settings.EscrowProfileNames2EscrowProfile[EscrowProfiles.Names.Text] = p;
-            EscrowProfiles.Names.Items.Remove(EscrowProfiles.Names.Text);
-            EscrowProfiles.Names.Items.Insert(0, EscrowProfiles.Names.Text);
-            EscrowProfiles.Names.SelectedIndex = 0;
             return true;
         }
 
@@ -207,9 +205,6 @@ namespace Cliver.PdfMailer2
             }
 
             Program.Settings.AgentProfileNames2AgentProfile[AgentProfiles.Names.Text] = p;
-            AgentProfiles.Names.Items.Remove(AgentProfiles.Names.Text);
-            AgentProfiles.Names.Items.Insert(0, AgentProfiles.Names.Text);
-            AgentProfiles.Names.SelectedIndex = 0;
             return true;
         }
 
@@ -276,9 +271,6 @@ namespace Cliver.PdfMailer2
             }
 
             Program.Settings.BrokerProfileNames2BrokerProfile[BrokerProfiles.Names.Text] = p;
-            BrokerProfiles.Names.Items.Remove(BrokerProfiles.Names.Text);
-            BrokerProfiles.Names.Items.Insert(0, BrokerProfiles.Names.Text);
-            BrokerProfiles.Names.SelectedIndex = 0;
             return true;
         }
 
@@ -337,9 +329,6 @@ namespace Cliver.PdfMailer2
             }
 
             Program.Settings.BuyerProfileNames2BuyerProfile[BuyerProfiles.Names.Text] = p;
-            BuyerProfiles.Names.Items.Remove(BuyerProfiles.Names.Text);
-            BuyerProfiles.Names.Items.Insert(0, BuyerProfiles.Names.Text);
-            BuyerProfiles.Names.SelectedIndex = 0;
             return true;
         }
 
@@ -389,25 +378,47 @@ namespace Cliver.PdfMailer2
             }
 
             Program.Settings.PartyProfileNames2PartyProfile[PartyProfiles.Names.Text] = p;
-            PartyProfiles.Names.Items.Remove(PartyProfiles.Names.Text);
-            PartyProfiles.Names.Items.Insert(0, PartyProfiles.Names.Text);
-            PartyProfiles.Names.SelectedIndex = 0;
             return true;
+        }
+
+        private void selectImage(PictureBox pictureBox)
+        {
+            OpenFileDialog d = new OpenFileDialog();
+            d.Title = "Pick an image file";
+            //d.Filter = "Filter tree files (*." + Program.FilterTreeFileExtension + ")|*." + Program.FilterTreeFileExtension + "|All files (*.*)|*.*";
+            if (d.ShowDialog(this) != DialogResult.OK || string.IsNullOrWhiteSpace(d.FileName))
+                return;
+            pictureBox.ImageLocation = d.FileName;
         }
 
         private void selectBuyerInitial_Click(object sender, EventArgs e)
         {
-
+            selectImage(BuyerInitial);
         }
 
         private void selectBuyerSignature_Click(object sender, EventArgs e)
         {
-
+            selectImage(BuyerSignature);
         }
 
-        private void selectCobuyerSignature_Click(object sender, EventArgs e)
+        private void selectCoBuyerSignature_Click(object sender, EventArgs e)
         {
+            selectImage(CoBuyerSignature);
+        }
 
+        private void selectAgentInitial_Click(object sender, EventArgs e)
+        {
+            selectImage(AgentInitial);
+        }
+
+        private void selectAgentSignature_Click(object sender, EventArgs e)
+        {
+            selectImage(AgentSignature);
+        }
+
+        private void selectCoBuyerInitial_Click(object sender, EventArgs e)
+        {
+            selectImage(CoBuyerInitial);
         }
 
         private void useCobuyerName_CheckedChanged(object sender, EventArgs e)
@@ -430,14 +441,81 @@ namespace Cliver.PdfMailer2
 
         }
 
-        private void Start_Click(object sender, EventArgs e)
+        private bool save()
         {
+            string m1 = "";
+            string m2 = " is not set.";
+            if (string.IsNullOrWhiteSpace(PartyProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "PartyProfileName" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(BuyerProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "BrokerProfileName" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(BrokerProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "BuyerProfileName" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(AgentProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "AgentProfileName" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(EscrowProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "EscrowProfileName" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(EmailTemplateProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "EmailTemplateProfileName" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(EmailServerProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "EmailServerProfileName" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(EmailServerProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "EmailServerProfileName" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(CloseOfEscrow.Text))
+            {
+                Message.Exclaim(m1 + "CloseOfEscrow" + m2);
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(Emd.Text))
+            {
+                Message.Exclaim(m1 + "Emd" + m2);
+                return false;
+            }
 
+            Program.Settings.PartyProfileName = PartyProfiles.Names.Text;
+            Program.Settings.BuyerProfileName = BuyerProfiles.Names.Text;
+            Program.Settings.BrokerProfileName = BrokerProfiles.Names.Text;
+            Program.Settings.AgentProfileName = AgentProfiles.Names.Text;
+            Program.Settings.EscrowProfileName = EscrowProfiles.Names.Text;
+            Program.Settings.EmailTemplateProfileName = EmailTemplateProfiles.Names.Text;
+            Program.Settings.EmailServerProfileName = EmailServerProfiles.Names.Text;
+
+            Program.Settings.CloseOfEscrow = CloseOfEscrow.Value;
+            Program.Settings.Emd = Emd.Text;
+            Program.Settings.ShortSaleAddendum = ShortSaleAddendum.Checked;
+            Program.Settings.OtherAddendum1 = OtherAddendum1.Checked;
+            Program.Settings.OtherAddendum2 = OtherAddendum2.Checked;
+
+            Program.Settings.Save();
         }
 
-        //private List<string> get_profiles(string key)
-        //{
-        //}
-
+        private void Start_Click(object sender, EventArgs e)
+        {
+            save();
+        }
     }
 }

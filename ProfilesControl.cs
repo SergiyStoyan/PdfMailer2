@@ -19,18 +19,26 @@ namespace Cliver.PdfMailer2
 
         private void bSave_Click(object sender, EventArgs e)
         {
-            if (Save != null)
-                Save();
+            if (Save == null || !Save())
+                return;
+            Names.Items.Remove(Names.Text);
+            Names.Items.Insert(0, Names.Text);
+            Names.SelectedIndex = 0;
         }
         public delegate bool OnSave();
         public OnSave Save = null;
 
         private void bDelete_Click(object sender, EventArgs e)
         {
-            if (Delete != null)
-                Delete();
+            if (!Message.YesNo("Are you sure?"))
+                return;
+            if (Delete == null)
+                return;
+            Delete();
+            Names.Items.Remove(Names.Text);
+            Names.Text = "";
         }
-        public delegate bool OnDelete();
+        public delegate void OnDelete();
         public OnDelete Delete = null;
     }
 }
