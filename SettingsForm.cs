@@ -51,6 +51,20 @@ namespace Cliver.PdfMailer2
             EmailServerProfiles.Delete = () => { Program.Settings.EmailServerProfileNames2EmailServerProfile.Remove(EmailServerProfiles.Names.Text); };
             foreach (string name in Program.Settings.EmailServerProfileNames2EmailServerProfile.Keys)
                 EmailServerProfiles.Names.Items.Add(name);
+
+            PartyProfiles.Names.SelectedItem = Program.Settings.PartyProfileName;
+            BuyerProfiles.Names.SelectedItem = Program.Settings.BuyerProfileName;
+            BrokerProfiles.Names.SelectedItem = Program.Settings.BrokerProfileName;
+            AgentProfiles.Names.SelectedItem = Program.Settings.AgentProfileName;
+            EscrowProfiles.Names.SelectedItem = Program.Settings.EscrowProfileName;
+            EmailTemplateProfiles.Names.SelectedItem = Program.Settings.EmailTemplateProfileName;
+            EmailServerProfiles.Names.SelectedItem = Program.Settings.EmailServerProfileName;
+
+            CloseOfEscrow.Value = Program.Settings.CloseOfEscrow;
+            Emd.Text = Program.Settings.Emd;
+            ShortSaleAddendum.Checked = Program.Settings.ShortSaleAddendum;
+            OtherAddendum1.Checked = Program.Settings.OtherAddendum1;
+            OtherAddendum2.Checked = Program.Settings.OtherAddendum2;
         }
 
         private bool EmailServerProfiles_Save()
@@ -511,6 +525,7 @@ namespace Cliver.PdfMailer2
             Program.Settings.OtherAddendum2 = OtherAddendum2.Checked;
 
             Program.Settings.Save();
+            return true;
         }
 
         private void Start_Click(object sender, EventArgs e)
