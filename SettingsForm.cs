@@ -17,37 +17,44 @@ namespace Cliver.PdfMailer2
         {
             InitializeComponent();
 
-            PartyProfiles.Save = PartyProfiles_Save;
+            PartyProfiles.Add = PartyProfiles_Add;
+            PartyProfiles.Select = PartyProfiles_Select;
             PartyProfiles.Delete = () => { Program.Settings.PartyProfileNames2PartyProfile.Remove(PartyProfiles.Names.Text); };
             foreach (string name in Program.Settings.PartyProfileNames2PartyProfile.Keys)
                 PartyProfiles.Names.Items.Add(name);
 
-            BuyerProfiles.Save = BuyerProfiles_Save;
+            BuyerProfiles.Add = BuyerProfiles_Add;
+            BuyerProfiles.Select = BuyerProfiles_Select;
             BuyerProfiles.Delete = () => { Program.Settings.BuyerProfileNames2BuyerProfile.Remove(BuyerProfiles.Names.Text); };
             foreach (string name in Program.Settings.BuyerProfileNames2BuyerProfile.Keys)
                 BuyerProfiles.Names.Items.Add(name);
 
-            BrokerProfiles.Save = BrokerProfiles_Save;
+            BrokerProfiles.Add = BrokerProfiles_Add;
+            BrokerProfiles.Select = BrokerProfiles_Select;
             BrokerProfiles.Delete = () => { Program.Settings.BrokerProfileNames2BrokerProfile.Remove(BrokerProfiles.Names.Text); };
             foreach (string name in Program.Settings.BrokerProfileNames2BrokerProfile.Keys)
                 BrokerProfiles.Names.Items.Add(name);
 
-            AgentProfiles.Save = AgentProfiles_Save;
+            AgentProfiles.Add = AgentProfiles_Add;
+            AgentProfiles.Select = AgentProfiles_Select;
             AgentProfiles.Delete = () => { Program.Settings.AgentProfileNames2AgentProfile.Remove(AgentProfiles.Names.Text); };
             foreach (string name in Program.Settings.AgentProfileNames2AgentProfile.Keys)
                 AgentProfiles.Names.Items.Add(name);
 
-            EscrowProfiles.Save = EscrowProfiles_Save;
+            EscrowProfiles.Add = EscrowProfiles_Add;
+            EscrowProfiles.Select = EscrowProfiles_Select;
             EscrowProfiles.Delete = () => { Program.Settings.EscrowProfileNames2EscrowProfile.Remove(EscrowProfiles.Names.Text); };
             foreach (string name in Program.Settings.EscrowProfileNames2EscrowProfile.Keys)
                 EscrowProfiles.Names.Items.Add(name);
 
-            EmailTemplateProfiles.Save = EmailTemplateProfiles_Save;
+            EmailTemplateProfiles.Add = EmailTemplateProfiles_Add;
+            EmailTemplateProfiles.Select = EmailTemplateProfiles_Select;
             EmailTemplateProfiles.Delete = () => { Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile.Remove(EmailTemplateProfiles.Names.Text); };
             foreach (string name in Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile.Keys)
                 EmailTemplateProfiles.Names.Items.Add(name);
 
-            EmailServerProfiles.Save = EmailServerProfiles_Save;
+            EmailServerProfiles.Add = EmailServerProfiles_Add;
+            EmailServerProfiles.Select = EmailServerProfiles_Select;
             EmailServerProfiles.Delete = () => { Program.Settings.EmailServerProfileNames2EmailServerProfile.Remove(EmailServerProfiles.Names.Text); };
             foreach (string name in Program.Settings.EmailServerProfileNames2EmailServerProfile.Keys)
                 EmailServerProfiles.Names.Items.Add(name);
@@ -66,13 +73,84 @@ namespace Cliver.PdfMailer2
             OtherAddendum1.Checked = Program.Settings.OtherAddendum1;
             OtherAddendum2.Checked = Program.Settings.OtherAddendum2;
 
+            UseRandomDelay.Checked = Program.Settings.UseRandomDelay;
+            MinRandomDelay.Text = Program.Settings.MinRandomDelayMss.ToString();
+            MaxRandomDelay.Text = Program.Settings.MaxRandomDelayMss.ToString();
+
             foreach (string file in Program.Settings.AttachmentFiles)
                 Attachments.Items.Add(file);
             foreach (int id in Program.Settings.SelectedAttachmentIds)
                 Attachments.SetItemChecked(id, true);
         }
 
-        private bool EmailServerProfiles_Save()
+        private void EmailServerProfiles_Select()
+        {
+            Program.EmailServerProfile p = Program.Settings.EmailServerProfileNames2EmailServerProfile[EmailServerProfiles.Names.SelectedText];
+            EmailSenderEmail.Text = p.SenderEmail;
+            SmtpHost.Text = p.SmtpHost;
+            SmtpPassword.Text = p.SmtpPassword;
+            SmtpPort.Text = p.SmtpPort.ToString();
+        }
+
+        private void EmailTemplateProfiles_Select()
+        {
+            Program.EmailTemplateProfile p = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[EmailTemplateProfiles.Names.SelectedText];
+            EmailBody.Text = p.Body;
+            EmailSubject.Text = p.Subject;
+        }
+
+        private void EscrowProfiles_Select()
+        {
+            Program.EscrowProfile p = Program.Settings.EscrowProfileNames2EscrowProfile[EscrowProfiles.Names.SelectedText];
+            EscrowOfficer.Text = p.Officer;
+            EscrowTitleCompany.Text = p.TitleCompany;
+        }
+
+        private void AgentProfiles_Select()
+        {
+            Program.AgentProfile p = Program.Settings.AgentProfileNames2AgentProfile[AgentProfiles.Names.SelectedText];
+            AgentEmail.Text = p.Email;
+            AgentInitial.Text = p.InitialFile;
+            AgentLicenseNo.Text = p.LicenseNo;
+            AgentName.Text = p.Name;
+            AgentSignature.Text = p.SignatureFile;
+        }
+
+        private void BrokerProfiles_Select()
+        {
+            Program.BrokerProfile p = Program.Settings.BrokerProfileNames2BrokerProfile[BrokerProfiles.Names.SelectedText];
+            BrokerAddress.Text = p.Address;
+            BrokerCity.Text = p.City;
+            BrokerCompany.Text = p.Company;
+            BrokerLicenseNo.Text = p.LicenseNo;
+            BrokerName.Text = p.Name;
+            BrokerPhone.Text = p.Phone;
+            BrokerState.Text = p.State;
+            BrokerZip.Text = p.Zip;
+        }
+
+        private void BuyerProfiles_Select()
+        {
+            Program.BuyerProfile p = Program.Settings.BuyerProfileNames2BuyerProfile[BuyerProfiles.Names.SelectedText];
+            CoBuyerInitial.Text = p.CoBuyerInitialFile;
+            CoBuyerName.Text = p.CoBuyerName;
+            CoBuyerSignature.Text = p.CoBuyerSignatureFile;
+            BuyerInitial.Text = p.InitialFile;
+            BuyerName.Text = p.Name;
+            BuyerSignature.Text = p.SignatureFile;
+            UseCoBuyer.Checked = p.UseCoBuyer;
+        }
+
+        private void PartyProfiles_Select()
+        {
+            Program.PartyProfile p = Program.Settings.PartyProfileNames2PartyProfile[PartyProfiles.Names.SelectedText];
+            AgentProfiles.Names.SelectedText = p.AgentProfileName;
+            BrokerProfiles.Names.SelectedText = p.BrokerProfileName;
+            BuyerProfiles.Names.SelectedText = p.BuyerProfileName;
+            EscrowProfiles.Names.SelectedText = p.EscrowProfileName;
+        }
+
+        private bool EmailServerProfiles_Add()
         {
             string m1 = "";
             string m2 = " is not set.";
@@ -119,7 +197,7 @@ namespace Cliver.PdfMailer2
             return true;
         }
 
-        private bool EmailTemplateProfiles_Save()
+        private bool EmailTemplateProfiles_Add()
         {
             Program.EmailTemplateProfile p = new Program.EmailTemplateProfile();
 
@@ -149,7 +227,7 @@ namespace Cliver.PdfMailer2
             return true;
         }
 
-        private bool EscrowProfiles_Save()
+        private bool EscrowProfiles_Add()
         {
             Program.EscrowProfile p = new Program.EscrowProfile();
 
@@ -179,7 +257,7 @@ namespace Cliver.PdfMailer2
             return true;
         }
 
-        private bool AgentProfiles_Save()
+        private bool AgentProfiles_Add()
         {
             Program.AgentProfile p = new Program.AgentProfile();
 
@@ -227,7 +305,7 @@ namespace Cliver.PdfMailer2
             return true;
         }
 
-        private bool BrokerProfiles_Save()
+        private bool BrokerProfiles_Add()
         {
             Program.BrokerProfile p = new Program.BrokerProfile();
 
@@ -293,7 +371,7 @@ namespace Cliver.PdfMailer2
             return true;
         }
 
-        private bool BuyerProfiles_Save()
+        private bool BuyerProfiles_Add()
         {
             Program.BuyerProfile p = new Program.BuyerProfile();
 
@@ -351,14 +429,14 @@ namespace Cliver.PdfMailer2
             return true;
         }
 
-        private bool PartyProfiles_Save()
+        private bool PartyProfiles_Add()
         {
             Program.PartyProfile p = new Program.PartyProfile();
 
-            if (!AgentProfiles_Save()
-                || !BrokerProfiles_Save()
-                || !BuyerProfiles_Save()
-                || !EscrowProfiles_Save()
+            if (!AgentProfiles_Add()
+                || !BrokerProfiles_Add()
+                || !BuyerProfiles_Add()
+                || !EscrowProfiles_Add()
                 )
                 return false;
 
@@ -500,6 +578,7 @@ namespace Cliver.PdfMailer2
                 return false;
             }
 
+
             Program.Settings.PartyProfileName = PartyProfiles.Names.Text;
             Program.Settings.BuyerProfileName = BuyerProfiles.Names.Text;
             Program.Settings.BrokerProfileName = BrokerProfiles.Names.Text;
@@ -514,6 +593,30 @@ namespace Cliver.PdfMailer2
             Program.Settings.OtherAddendum1 = OtherAddendum1.Checked;
             Program.Settings.OtherAddendum2 = OtherAddendum2.Checked;
             Program.Settings.SelectedAttachmentIds = new int[Attachments.CheckedIndices.Count];
+            Program.Settings.UseRandomDelay = UseRandomDelay.Checked;
+
+            if (string.IsNullOrWhiteSpace(MinRandomDelay.Text))
+            {
+                Message.Exclaim(m1 + "MinRandomDelay" + m2);
+                return false;
+            }
+            if (!int.TryParse(SmtpPort.Text, out Program.Settings.MinRandomDelayMss))
+            {
+                Message.Exclaim("MinRandomDelay is not number.");
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(MaxRandomDelay.Text))
+            {
+                Message.Exclaim(m1 + "MaxRandomDelay" + m2);
+                return false;
+            }
+            if (!int.TryParse(SmtpPort.Text, out Program.Settings.MaxRandomDelayMss))
+            {
+                Message.Exclaim("MaxRandomDelay is not number.");
+                return false;
+            }
+
             Attachments.CheckedIndices.CopyTo(Program.Settings.SelectedAttachmentIds, 0);
 
             Program.Settings.Save();
@@ -538,6 +641,11 @@ namespace Cliver.PdfMailer2
         private void DeleteAttachment_Click(object sender, EventArgs e)
         {
             Attachments.Items.Remove(Attachments.SelectedIndex);
+        }
+
+        private void UseRandomDelay_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

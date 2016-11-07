@@ -51,6 +51,7 @@
             this.Names.Name = "Names";
             this.Names.Size = new System.Drawing.Size(121, 21);
             this.Names.TabIndex = 53;
+            this.Names.SelectedIndexChanged += new System.EventHandler(this.Names_SelectedIndexChanged);
             // 
             // bSave
             // 

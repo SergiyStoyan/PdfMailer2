@@ -53,7 +53,7 @@ namespace Cliver.PdfMailer2
             public Dictionary<string, EmailTemplateProfile> EmailTemplateProfileNames2EmailTemplateProfileProfile = new Dictionary<string, EmailTemplateProfile>();
             public Dictionary<string, EmailServerProfile> EmailServerProfileNames2EmailServerProfile = new Dictionary<string, EmailServerProfile>();
             public List<string> AttachmentFiles;
-            
+
             public string PartyProfileName;
             public string BuyerProfileName;
             public string BrokerProfileName;
@@ -63,11 +63,14 @@ namespace Cliver.PdfMailer2
             public string EmailServerProfileName;
             public int[] SelectedAttachmentIds;
 
-            public DateTime CloseOfEscrow;
+            public DateTime CloseOfEscrow = DateTime.Now;
             public string Emd;
             public bool ShortSaleAddendum;
             public bool OtherAddendum1;
             public bool OtherAddendum2;
+            public bool UseRandomDelay;
+            public int MinRandomDelayMss;
+            public int MaxRandomDelayMss;
         }
 
         public abstract class Profile

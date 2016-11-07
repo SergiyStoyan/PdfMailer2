@@ -119,11 +119,11 @@
             this.EmailSenderEmail = new System.Windows.Forms.TextBox();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.UseRandomDelay = new System.Windows.Forms.CheckBox();
             this.label46 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
+            this.MaxRandomDelay = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
+            this.MinRandomDelay = new System.Windows.Forms.TextBox();
             this.Start = new System.Windows.Forms.Button();
             this.BuyerProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.BrokerProfiles = new Cliver.PdfMailer2.ProfilesControl();
@@ -1063,11 +1063,11 @@
             // 
             // groupBox14
             // 
-            this.groupBox14.Controls.Add(this.checkBox1);
+            this.groupBox14.Controls.Add(this.UseRandomDelay);
             this.groupBox14.Controls.Add(this.label46);
-            this.groupBox14.Controls.Add(this.textBox14);
+            this.groupBox14.Controls.Add(this.MaxRandomDelay);
             this.groupBox14.Controls.Add(this.label47);
-            this.groupBox14.Controls.Add(this.textBox15);
+            this.groupBox14.Controls.Add(this.MinRandomDelay);
             this.groupBox14.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox14.Location = new System.Drawing.Point(3, 3);
             this.groupBox14.Name = "groupBox14";
@@ -1075,15 +1075,16 @@
             this.groupBox14.TabIndex = 60;
             this.groupBox14.TabStop = false;
             // 
-            // checkBox1
+            // UseRandomDelay
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(20, 41);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(211, 17);
-            this.checkBox1.TabIndex = 59;
-            this.checkBox1.Text = "Use Random Delay Within The Range:";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.UseRandomDelay.AutoSize = true;
+            this.UseRandomDelay.Location = new System.Drawing.Point(20, 41);
+            this.UseRandomDelay.Name = "UseRandomDelay";
+            this.UseRandomDelay.Size = new System.Drawing.Size(211, 17);
+            this.UseRandomDelay.TabIndex = 59;
+            this.UseRandomDelay.Text = "Use Random Delay Within The Range:";
+            this.UseRandomDelay.UseVisualStyleBackColor = true;
+            this.UseRandomDelay.CheckedChanged += new System.EventHandler(this.UseRandomDelay_CheckedChanged);
             // 
             // label46
             // 
@@ -1094,12 +1095,12 @@
             this.label46.Text = "milliseconds";
             this.label46.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox14
+            // MaxRandomDelay
             // 
-            this.textBox14.Location = new System.Drawing.Point(110, 64);
-            this.textBox14.Name = "textBox14";
-            this.textBox14.Size = new System.Drawing.Size(54, 20);
-            this.textBox14.TabIndex = 57;
+            this.MaxRandomDelay.Location = new System.Drawing.Point(110, 64);
+            this.MaxRandomDelay.Name = "MaxRandomDelay";
+            this.MaxRandomDelay.Size = new System.Drawing.Size(54, 20);
+            this.MaxRandomDelay.TabIndex = 57;
             // 
             // label47
             // 
@@ -1110,12 +1111,12 @@
             this.label47.Text = "<>";
             this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox15
+            // MinRandomDelay
             // 
-            this.textBox15.Location = new System.Drawing.Point(20, 64);
-            this.textBox15.Name = "textBox15";
-            this.textBox15.Size = new System.Drawing.Size(54, 20);
-            this.textBox15.TabIndex = 0;
+            this.MinRandomDelay.Location = new System.Drawing.Point(20, 64);
+            this.MinRandomDelay.Name = "MinRandomDelay";
+            this.MinRandomDelay.Size = new System.Drawing.Size(54, 20);
+            this.MinRandomDelay.TabIndex = 0;
             // 
             // Start
             // 
@@ -1341,11 +1342,11 @@
         private System.Windows.Forms.TabPage tabPage12;
         private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox textBox14;
+        private System.Windows.Forms.TextBox MaxRandomDelay;
         private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.TextBox textBox15;
+        private System.Windows.Forms.TextBox MinRandomDelay;
         private System.Windows.Forms.GroupBox groupBox15;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox UseRandomDelay;
         private System.Windows.Forms.TabControl tabControl4;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.TabPage tabPage9;
