@@ -86,6 +86,14 @@ namespace Cliver.PdfMailer2
 
         private void EmailServerProfiles_Select()
         {
+            if (EmailServerProfiles.Names.SelectedItem == null)
+            {
+                EmailSenderEmail.Text = "";
+                SmtpHost.Text = "";
+                SmtpPassword.Text = "";
+                SmtpPort.Text = "";
+                return;
+            }
             Program.EmailServerProfile p = Program.Settings.EmailServerProfileNames2EmailServerProfile[(string)EmailServerProfiles.Names.SelectedItem];
             EmailSenderEmail.Text = p.SenderEmail;
             SmtpHost.Text = p.SmtpHost;
@@ -95,6 +103,12 @@ namespace Cliver.PdfMailer2
 
         private void EmailTemplateProfiles_Select()
         {
+            if (EmailTemplateProfiles.Names.SelectedItem == null)
+            {
+                EmailBody.Text = "";
+                EmailSubject.Text = "";
+                return;
+            }
             Program.EmailTemplateProfile p = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[(string)EmailTemplateProfiles.Names.SelectedItem];
             EmailBody.Text = p.Body;
             EmailSubject.Text = p.Subject;
@@ -102,6 +116,12 @@ namespace Cliver.PdfMailer2
 
         private void EscrowProfiles_Select()
         {
+            if (EscrowProfiles.Names.SelectedItem == null)
+            {
+                EscrowOfficer.Text = "";
+                EscrowTitleCompany.Text = "";
+                return;
+            }
             Program.EscrowProfile p = Program.Settings.EscrowProfileNames2EscrowProfile[(string)EscrowProfiles.Names.SelectedItem];
             EscrowOfficer.Text = p.Officer;
             EscrowTitleCompany.Text = p.TitleCompany;
@@ -109,16 +129,37 @@ namespace Cliver.PdfMailer2
 
         private void AgentProfiles_Select()
         {
+            if (AgentProfiles.Names.SelectedItem == null)
+            {
+                AgentEmail.Text = "";
+                AgentInitial.ImageLocation = "";
+                AgentLicenseNo.Text = "";
+                AgentName.Text = "";
+                AgentSignature.ImageLocation = "";
+                return;
+            }
             Program.AgentProfile p = Program.Settings.AgentProfileNames2AgentProfile[(string)AgentProfiles.Names.SelectedItem];
             AgentEmail.Text = p.Email;
-            AgentInitial.Text = p.InitialFile;
+            AgentInitial.ImageLocation = p.InitialFile;
             AgentLicenseNo.Text = p.LicenseNo;
             AgentName.Text = p.Name;
-            AgentSignature.Text = p.SignatureFile;
+            AgentSignature.ImageLocation = p.SignatureFile;
         }
 
         private void BrokerProfiles_Select()
         {
+            if (BrokerProfiles.Names.SelectedItem == null)
+            {
+                BrokerAddress.Text = "";
+                BrokerCity.Text = "";
+                BrokerCompany.Text = "";
+                BrokerLicenseNo.Text = "";
+                BrokerName.Text = "";
+                BrokerPhone.Text = "";
+                BrokerState.Text = "";
+                BrokerZip.Text = "";
+                return;
+            }
             Program.BrokerProfile p = Program.Settings.BrokerProfileNames2BrokerProfile[(string)BrokerProfiles.Names.SelectedItem];
             BrokerAddress.Text = p.Address;
             BrokerCity.Text = p.City;
@@ -132,19 +173,39 @@ namespace Cliver.PdfMailer2
 
         private void BuyerProfiles_Select()
         {
+            if (BuyerProfiles.Names.SelectedItem == null)
+            {
+                CoBuyerInitial.ImageLocation = null;
+                CoBuyerName.Text = null;
+                CoBuyerSignature.ImageLocation = null;
+                BuyerInitial.ImageLocation = null;
+                BuyerName.Text = null;
+                BuyerSignature.ImageLocation = null;
+                UseCoBuyer.Checked = false;
+                UseCoBuyer_CheckedChanged(null, null);
+                return;
+            }
             Program.BuyerProfile p = Program.Settings.BuyerProfileNames2BuyerProfile[(string)BuyerProfiles.Names.SelectedItem];
-            CoBuyerInitial.Text = p.CoBuyerInitialFile;
+            CoBuyerInitial.ImageLocation = p.CoBuyerInitialFile;
             CoBuyerName.Text = p.CoBuyerName;
-            CoBuyerSignature.Text = p.CoBuyerSignatureFile;
-            BuyerInitial.Text = p.InitialFile;
+            CoBuyerSignature.ImageLocation = p.CoBuyerSignatureFile;
+            BuyerInitial.ImageLocation = p.InitialFile;
             BuyerName.Text = p.Name;
-            BuyerSignature.Text = p.SignatureFile;
+            BuyerSignature.ImageLocation = p.SignatureFile;
             UseCoBuyer.Checked = p.UseCoBuyer;
             UseCoBuyer_CheckedChanged(null, null);
         }
 
         private void PartyProfiles_Select()
         {
+            if (PartyProfiles.Names.SelectedItem == null)
+            {
+                AgentProfiles.Names.SelectedItem = null;
+                BrokerProfiles.Names.SelectedItem = null;
+                BuyerProfiles.Names.SelectedItem = null;
+                EscrowProfiles.Names.SelectedItem = null;
+                return;
+            }
             Program.PartyProfile p = Program.Settings.PartyProfileNames2PartyProfile[(string)PartyProfiles.Names.SelectedItem];
             AgentProfiles.Names.SelectedItem = p.AgentProfileName;
             BrokerProfiles.Names.SelectedItem = p.BrokerProfileName;
@@ -596,6 +657,8 @@ namespace Cliver.PdfMailer2
             Program.Settings.OtherAddendum2 = OtherAddendum2.Checked;
             Program.Settings.SelectedAttachmentIds = new int[Attachments.CheckedIndices.Count];
             Program.Settings.UseRandomDelay = UseRandomDelay.Checked;
+            Program.Settings.AttachmentFiles = new string[Attachments.Items.Count];
+            Attachments.Items.CopyTo(Program.Settings.AttachmentFiles, 0);
 
             if (string.IsNullOrWhiteSpace(MinRandomDelay.Text))
             {
@@ -642,7 +705,7 @@ namespace Cliver.PdfMailer2
 
         private void DeleteAttachment_Click(object sender, EventArgs e)
         {
-            Attachments.Items.Remove(Attachments.SelectedIndex);
+            Attachments.Items.Remove(Attachments.SelectedItem);
         }
 
         private void UseRandomDelay_CheckedChanged(object sender, EventArgs e)

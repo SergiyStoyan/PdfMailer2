@@ -52,7 +52,7 @@ namespace Cliver.PdfMailer2
             public Dictionary<string, EscrowProfile> EscrowProfileNames2EscrowProfile = new Dictionary<string, EscrowProfile>();
             public Dictionary<string, EmailTemplateProfile> EmailTemplateProfileNames2EmailTemplateProfileProfile = new Dictionary<string, EmailTemplateProfile>();
             public Dictionary<string, EmailServerProfile> EmailServerProfileNames2EmailServerProfile = new Dictionary<string, EmailServerProfile>();
-            public List<string> AttachmentFiles = new List<string>();
+            public string[] AttachmentFiles = new string[0];
 
             public string PartyProfileName;
             public string BuyerProfileName;
