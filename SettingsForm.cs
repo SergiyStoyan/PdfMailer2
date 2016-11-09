@@ -641,7 +641,6 @@ namespace Cliver.PdfMailer2
                 return false;
             }
 
-
             Program.Settings.PartyProfileName = PartyProfiles.Names.Text;
             Program.Settings.BuyerProfileName = BuyerProfiles.Names.Text;
             Program.Settings.BrokerProfileName = BrokerProfiles.Names.Text;

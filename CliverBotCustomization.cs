@@ -37,13 +37,13 @@ namespace Cliver.PdfMailer2
         {
             //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
             //Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
-            
+
             SettingsForm sf = new SettingsForm();
             Application.Run(sf);
         }
-        internal static readonly SettingsClass Settings = Cliver.SettingsBase.Load<SettingsClass>("Settings.txt");
+        internal static readonly SettingsClass Settings = Cliver.Serializable.Load<SettingsClass>("Settings.txt");
 
-        public class SettingsClass : SettingsBase
+        public class SettingsClass : Serializable
         {
             public Dictionary<string, PartyProfile> PartyProfileNames2PartyProfile = new Dictionary<string, PartyProfile>();
             public Dictionary<string, BuyerProfile> BuyerProfileNames2BuyerProfile = new Dictionary<string, BuyerProfile>();
@@ -120,7 +120,7 @@ namespace Cliver.PdfMailer2
             public string SignatureFile;
         }
 
-        public class  BrokerProfile: Profile
+        public class BrokerProfile : Profile
         {
             public string Name;
             public string LicenseNo;
@@ -139,30 +139,30 @@ namespace Cliver.PdfMailer2
         }
     }
 
-    public class CustomBotGui : Cliver.BotGui.BotGui
-    {
-        override public string[] GetConfigControlNames()
-        {
-            return new string[] { "General", "Input", "Output", /*"Web", "Browser", "Spider", "Proxy",*/ "Log" };
-        }
+    //public class CustomBotGui : Cliver.BotGui.BotGui
+    //{
+    //    override public string[] GetConfigControlNames()
+    //    {
+    //        return new string[] { "General", "Input", "Output", /*"Web", "Browser", "Spider", "Proxy",*/ "Log" };
+    //    }
 
-        override public Cliver.BaseForm GetToolsForm()
-        {
-            return null;
-        }
+    //    override public Cliver.BaseForm GetToolsForm()
+    //    {
+    //        return null;
+    //    }
 
-        //override public Type GetBotThreadControlType()
-        //{
-        //    return typeof(IeRoutineBotThreadControl);
-        //    //return typeof(WebRoutineBotThreadControl);
-        //}
-    }
+    //    //override public Type GetBotThreadControlType()
+    //    //{
+    //    //    return typeof(IeRoutineBotThreadControl);
+    //    //    //return typeof(WebRoutineBotThreadControl);
+    //    //}
+    //}
 
     public class CustomBot : Cliver.Bot.Bot
     {
         new static public string GetAbout()
         {
-            return @"WEB CRAWLER
+            return @"PDF MAILER
 Created: " + Cliver.Bot.Program.GetCustomizationCompiledTime().ToString() + @"
 Developed by: www.cliversoft.com";
         }
@@ -189,157 +189,111 @@ Developed by: www.cliversoft.com";
 
         override public void CycleStarting()
         {
-            //IR = new IeRoutine(((IeRoutineBotThreadControl)BotThreadControl.GetInstanceForThisThread()).Browser);
-            //IR.UseCache = false;
-            HR = new HttpRoutine();
         }
 
-        //IeRoutine IR;
-
-        HttpRoutine HR;
-
-        public class StateItem : InputItem
+        public class DataItem : InputItem
         {
-            //readonly public string City;
-            readonly public string State;
-
-            override public void PROCESSOR(BotCycle bc)
-            {
-                CustomBot cb = (CustomBot)bc.Bot;
-                string url = "http://www.rent.com/" + Regex.Replace(State, @"\s", "-");
-                if (!cb.HR.GetPage(url))
-                    throw new ProcessorException(ProcessorExceptionType.RESTORE_AS_NEW, "Could not get: " + url);
-
-                DataSifter.Capture c = cities.Parse(cb.HR.HtmlResult);
-
-                string[] us = c.ValuesOf("Url");
-                for (int i = 0; i < us.Length; i++)
-                    bc.Add(new SearchItem("http://www.rent.com" + us[i]));
-            }
-            static DataSifter.Parser cities = new DataSifter.Parser("cities.fltr");
-        }
-
-        public class SearchItem : InputItem
-        {
-            readonly public string Url;
-
-            public SearchItem(string url)
-            {
-                Url = url;
-            }
-
-            override public void PROCESSOR(BotCycle bc)
-            {
-                CustomBot cb = (CustomBot)bc.Bot;
-                cb.search_processor(Url);
-            }
-        }
-
-        void search_processor(string url)
-        {
-            if (!HR.GetPage(url))
-                throw new ProcessorException(ProcessorExceptionType.RESTORE_AS_NEW, "Could not get: " + url);
-
-            DataSifter.Capture c0 = search.Parse(HR.HtmlResult);
-
-            string npu = c0.ValueOf("NextPageUrl");
-            if (npu != null)
-                BotCycle.Add(new SearchNextPageItem(npu));
-
-            foreach (DataSifter.Capture c in c0["Product"])
-                BotCycle.Add(new CompanyItem(Spider.GetAbsoluteUrl(c.ValueOf("Url"), url), c.ValueOf("Name"), c.ValueOf("City"), c.ValueOf("State"), c.ValueOf("Phone")));
-        }
-        static DataSifter.Parser search = new DataSifter.Parser("search.fltr");
-
-        public class SearchNextPageItem : InputItem
-        {
-            readonly public string Url;
-
-            public SearchNextPageItem(string url)
-            {
-                Url = url;
-            }
-
-            override public void PROCESSOR(BotCycle bc)
-            {
-                CustomBot cb = (CustomBot)bc.Bot;
-                cb.search_processor(Url);
-            }
-        }
-
-        public class CompanyItem : InputItem
-        {
-            readonly public string Url;
-            readonly public string Name;
+            readonly public string Status;
+            readonly public string ML_Id;
+            readonly public string Address;
+            readonly public string UnitNumber;
             readonly public string City;
-            readonly public string State;
-            readonly public string Phone;
+            readonly public string ZipCode;
+            readonly public string ParcelNumber;
+            readonly public string BldgDes;
+            readonly public string SubdivisionName;
+            readonly public string Sub;
+            readonly public string ShortSale;
+            readonly public string ApproxLivArea;
+            readonly public string BedsTotal;
+            readonly public string BathsTotal;
+            readonly public string Garage;
+            readonly public string PvPool;
+            readonly public string Spa;
+            readonly public string YearBuilt;
+            readonly public string LotSqft;
+            readonly public string CurrentPrice;
+            readonly public string OfferAmt;
+            readonly public string AdditionalTerms;
+            readonly public string Agent2AgentRemarks;
+            readonly public string ListAgentFullName;
+            readonly public string ListAgentEmail;
+            readonly public string ListOfficeName;
+            readonly public string ActualCloseDate;
+            readonly public string ListAgentDirectWorkPhone;
+            readonly public string DOM;
+            readonly public string OfferSentDate;
 
-            public CompanyItem(string url, string name, string city, string state, string phone)
+            override public void PROCESSOR(BotCycle bc)
             {
-                Url = url;
-                Name = name;
-                City = city;
-                State = state;
-                Phone = phone;
+                CustomBot cb = (CustomBot)bc.Bot;
+
+                bc.Add(new PdfItem("http://www.rent.com"));
+            }
+        }
+
+        public class PdfItem : InputItem
+        {
+            readonly public DataItem Data;
+            readonly public string File;
+
+            public PdfItem(string pdf_file)
+            {
+                File = pdf_file;
             }
 
             override public void PROCESSOR(BotCycle bc)
             {
                 CustomBot cb = (CustomBot)bc.Bot;
 
-                string name = FieldPreparation.Html.GetCsvField(Name);
-
-                if (!cb.HR.GetPage(Url))
-                    throw new ProcessorException(ProcessorExceptionType.RESTORE_AS_NEW, "Could not get: " + Url);
-
-                DataSifter.Capture c = product.Parse(cb.HR.HtmlResult);
-                string zip_code = Regex.Replace(c.ValueOf("ZipCode"), @"[^\d]", "", RegexOptions.Singleline);
-                string url2 = "http://www.yellowpages.com/search?search_terms=" + name + "&geo_location_terms=" + zip_code;
-                string email = null;
-                string url3 = url2;
-                if (cb.HR.GetPage(url2))
+                MailMessage mm = new MailMessage(
+                    Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail,
+                    Data.ListAgentEmail
+                    )
                 {
-                    DataSifter.Capture c2 = yp.Parse(cb.HR.HtmlResult);
-                    string regex_name = get_stripped_name(name);
-                    regex_name = Regex.Escape((regex_name.Length > 10 ? regex_name.Substring(0, 10) : regex_name).Trim());
-                    foreach (DataSifter.Capture cc in c2["Company"])
-                        if (cc.ValueOf("ZipCode") != null
-                            && Regex.Replace(cc.ValueOf("ZipCode"), @"[^\d]", "", RegexOptions.Singleline) == zip_code
-                            && Regex.IsMatch(get_stripped_name(cc.ValueOf("Name")), regex_name, RegexOptions.IgnoreCase)
-                            )
-                        {
-                            url3 = Spider.GetAbsoluteUrl(cc.ValueOf("Url"), url2);
-                            if (!cb.HR.GetPage(url3))
-                                throw new ProcessorException(ProcessorExceptionType.RESTORE_AS_NEW, "Could not get: " + url3);
+                    Subject = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[Program.Settings.EmailTemplateProfileName].Subject,
+                    Body = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[Program.Settings.EmailTemplateProfileName].Body,
+                    From = new MailAddress(Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail)
+                };
+                foreach (int i in Program.Settings.SelectedAttachmentIds)
+                    mm.Attachments.Add(new Attachment(Program.Settings.AttachmentFiles[i]));
+                Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
+                cb.email(mm);
+            }
+        }
 
-                            DataSifter.Capture c3 = yp2.Parse(cb.HR.HtmlResult);
-                            email = c3.ValueOf("Email");
-                            break;
-                        }
-                }
-                else if (cb.HR.HWResponse.StatusCode != HttpStatusCode.NotFound)
-                    throw new ProcessorException(ProcessorExceptionType.RESTORE_AS_NEW, "Could not get: " + url2);
-
-                FileWriter.This.PrepareAndWriteHtmlLineWithHeader(
-                    "Name", Name,
-                    "City", City,
-                    "ZipCode", zip_code,
-                    "State", State,
-                    "Phone", Phone,
-                    "Email", email,
-                    "Url", Url,
-                    "Url2", url3
+        void email(MailMessage mm)
+        {
+            try
+            {
+                Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
+                smtp_client.Send(mm);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                Log.Write("Host: " + smtp_client.Host
+                    + "\r\nPort: " + smtp_client.Port
+                    + "\r\nEnableSsl: " + smtp_client.EnableSsl
+                    + "\r\nDeliveryMethod: " + smtp_client.DeliveryMethod
+                    + "\r\nUserName: " + Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail
+                    + "\r\nSmtpPassword: " + Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPassword
+                    + "\r\nFrom: " + mm.From.Address
+                    + "\r\nTo: " + mm.To
                     );
             }
-            static DataSifter.Parser product = new DataSifter.Parser("product.fltr");
-            static DataSifter.Parser yp = new DataSifter.Parser("yp.fltr");
-            static DataSifter.Parser yp2 = new DataSifter.Parser("yp2.fltr");
-
-            static string get_stripped_name(string name)
-            {
-                return FieldPreparation.Html.GetCsvField(Regex.Replace(name, @"(the|a)\s", "", RegexOptions.IgnoreCase));
-            }
         }
+        SmtpClient smtp_client = new SmtpClient
+        {
+            Host = Custom.Default.SmtpHost,
+            Port = Custom.Default.SmtpPort,
+            EnableSsl = true,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false,
+            Credentials = new NetworkCredential(
+                Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail,
+                Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPassword
+                )
+        };
     }
 }
