@@ -27,6 +27,8 @@ using Cliver.Bot;
 using Cliver.BotGui;
 using Microsoft.Win32;
 using System.Reflection;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace Cliver.PdfMailer2
 {
@@ -36,10 +38,10 @@ namespace Cliver.PdfMailer2
         static void Main()
         {
             //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
-            //Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
+            Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
 
             SettingsForm sf = new SettingsForm();
-            Application.Run(sf);
+            //Application.Run(sf);
         }
         internal static readonly SettingsClass Settings = Cliver.Serializable.Load<SettingsClass>("Settings.txt");
 
@@ -139,24 +141,24 @@ namespace Cliver.PdfMailer2
         }
     }
 
-    //public class CustomBotGui : Cliver.BotGui.BotGui
-    //{
-    //    override public string[] GetConfigControlNames()
-    //    {
-    //        return new string[] { "General", "Input", "Output", /*"Web", "Browser", "Spider", "Proxy",*/ "Log" };
-    //    }
+    public class CustomBotGui : Cliver.BotGui.BotGui
+    {
+        override public string[] GetConfigControlNames()
+        {
+            return new string[] { "General", "Input", "Output", /*"Web", "Browser", "Spider", "Proxy",*/ "Log" };
+        }
 
-    //    override public Cliver.BaseForm GetToolsForm()
-    //    {
-    //        return null;
-    //    }
+        override public Cliver.BaseForm GetToolsForm()
+        {
+            return null;
+        }
 
-    //    //override public Type GetBotThreadControlType()
-    //    //{
-    //    //    return typeof(IeRoutineBotThreadControl);
-    //    //    //return typeof(WebRoutineBotThreadControl);
-    //    //}
-    //}
+        //override public Type GetBotThreadControlType()
+        //{
+        //    return typeof(IeRoutineBotThreadControl);
+        //    //return typeof(WebRoutineBotThreadControl);
+        //}
+    }
 
     public class CustomBot : Cliver.Bot.Bot
     {
@@ -169,18 +171,7 @@ Developed by: www.cliversoft.com";
 
         new static public void SessionCreating()
         {
-            //InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 10, 7);
-
-            FileWriter.This.WriteHeader(
-               "Name",
-               "City",
-                        "ZipCode",
-               "State",
-               "Phone",
-               "Email",
-               "Url",
-               "Url2"
-            );
+            InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 11, 25);
         }
 
         new static public void SessionClosing()
@@ -228,8 +219,27 @@ Developed by: www.cliversoft.com";
             {
                 CustomBot cb = (CustomBot)bc.Bot;
 
+                string d = Log.OutputDir + "\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
+                Directory.CreateDirectory(d);
+                string pdf = d + "\\" + PathRoutines.GetFileNameFromPath(template_pdf);
+                lock (template_pdf)
+                {
+                    File.Copy(template_pdf, pdf);
+                }
+                
+                PdfReader.unethicalreading = true;
+                PdfReader pr;
+                pr = new PdfReader(pdf);
+                string fs = "";
+                foreach (KeyValuePair<string, AcroFields.Item> kvp in pr.AcroFields.Fields)
+                    fs += "\n{\"" + kvp.Key + "\", \"\"},";
+                    //fs += "\n{\"\", \"" + kvp.Key + "\"},";
+
+
+
                 bc.Add(new PdfItem("http://www.rent.com"));
             }
+            static readonly string template_pdf = Log.GetAppCommonDataDir() + "\\RPA template.pdf";
         }
 
         public class PdfItem : InputItem
@@ -285,8 +295,8 @@ Developed by: www.cliversoft.com";
         }
         SmtpClient smtp_client = new SmtpClient
         {
-            Host = Custom.Default.SmtpHost,
-            Port = Custom.Default.SmtpPort,
+            Host = Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpHost,
+            Port = Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPort,
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
