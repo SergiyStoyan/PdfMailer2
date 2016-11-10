@@ -11,11 +11,14 @@ using System.Windows.Forms;
 
 namespace Cliver.PdfMailer2
 {
-    public partial class SettingsForm : Form
+    public partial class SettingsForm : BaseForm//Form//
     {
         public SettingsForm()
         {
             InitializeComponent();
+
+            Text = "Campaign Settings";
+            Name = "Campaign";
 
             PartyProfiles.Add = PartyProfiles_Add;
             PartyProfiles.Select = PartyProfiles_Select;
@@ -590,74 +593,76 @@ namespace Cliver.PdfMailer2
         {
             string m1 = "";
             string m2 = " is not set.";
+
+            if (!PartyProfiles_Add())
+                return false;
+            if (!EmailServerProfiles_Add())
+                return false;
+            if (!EmailTemplateProfiles_Add())
+                return false;
+            
             if (string.IsNullOrWhiteSpace(PartyProfiles.Names.Text))
             {
                 Message.Exclaim(m1 + "PartyProfileName" + m2);
                 return false;
             }
+            Program.Settings.PartyProfileName = PartyProfiles.Names.Text;
+
             if (string.IsNullOrWhiteSpace(BuyerProfiles.Names.Text))
             {
                 Message.Exclaim(m1 + "BrokerProfileName" + m2);
                 return false;
             }
+            Program.Settings.BuyerProfileName = BuyerProfiles.Names.Text;
+
             if (string.IsNullOrWhiteSpace(BrokerProfiles.Names.Text))
             {
                 Message.Exclaim(m1 + "BuyerProfileName" + m2);
                 return false;
             }
+            Program.Settings.BrokerProfileName = BrokerProfiles.Names.Text;
+
             if (string.IsNullOrWhiteSpace(AgentProfiles.Names.Text))
             {
                 Message.Exclaim(m1 + "AgentProfileName" + m2);
                 return false;
             }
+            Program.Settings.AgentProfileName = AgentProfiles.Names.Text;
+
             if (string.IsNullOrWhiteSpace(EscrowProfiles.Names.Text))
             {
                 Message.Exclaim(m1 + "EscrowProfileName" + m2);
                 return false;
             }
+            Program.Settings.EscrowProfileName = EscrowProfiles.Names.Text;
+            
             if (string.IsNullOrWhiteSpace(EmailTemplateProfiles.Names.Text))
             {
                 Message.Exclaim(m1 + "EmailTemplateProfileName" + m2);
                 return false;
             }
+            Program.Settings.EmailTemplateProfileName = EmailTemplateProfiles.Names.Text;
+
             if (string.IsNullOrWhiteSpace(EmailServerProfiles.Names.Text))
             {
                 Message.Exclaim(m1 + "EmailServerProfileName" + m2);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(EmailServerProfiles.Names.Text))
-            {
-                Message.Exclaim(m1 + "EmailServerProfileName" + m2);
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(CloseOfEscrow.Text))
+            Program.Settings.EmailServerProfileName = EmailServerProfiles.Names.Text;
+
+            if (CloseOfEscrow.Value == null)
             {
                 Message.Exclaim(m1 + "CloseOfEscrow" + m2);
                 return false;
             }
+            Program.Settings.CloseOfEscrow = CloseOfEscrow.Value;
+
             if (string.IsNullOrWhiteSpace(Emd.Text))
             {
                 Message.Exclaim(m1 + "Emd" + m2);
                 return false;
             }
-
-            Program.Settings.PartyProfileName = PartyProfiles.Names.Text;
-            Program.Settings.BuyerProfileName = BuyerProfiles.Names.Text;
-            Program.Settings.BrokerProfileName = BrokerProfiles.Names.Text;
-            Program.Settings.AgentProfileName = AgentProfiles.Names.Text;
-            Program.Settings.EscrowProfileName = EscrowProfiles.Names.Text;
-            Program.Settings.EmailTemplateProfileName = EmailTemplateProfiles.Names.Text;
-            Program.Settings.EmailServerProfileName = EmailServerProfiles.Names.Text;
-
-            Program.Settings.CloseOfEscrow = CloseOfEscrow.Value;
             Program.Settings.Emd = Emd.Text;
-            Program.Settings.ShortSaleAddendum = ShortSaleAddendum.Checked;
-            Program.Settings.OtherAddendum1 = OtherAddendum1.Checked;
-            Program.Settings.OtherAddendum2 = OtherAddendum2.Checked;
-            Program.Settings.SelectedAttachmentIds = new int[Attachments.CheckedIndices.Count];
-            Program.Settings.UseRandomDelay = UseRandomDelay.Checked;
-            Program.Settings.AttachmentFiles = new string[Attachments.Items.Count];
-            Attachments.Items.CopyTo(Program.Settings.AttachmentFiles, 0);
 
             if (string.IsNullOrWhiteSpace(MinRandomDelay.Text))
             {
@@ -680,16 +685,19 @@ namespace Cliver.PdfMailer2
                 Message.Exclaim("MaxRandomDelay is not number.");
                 return false;
             }
-
+            
+            Program.Settings.ShortSaleAddendum = ShortSaleAddendum.Checked;
+            Program.Settings.OtherAddendum1 = OtherAddendum1.Checked;
+            Program.Settings.OtherAddendum2 = OtherAddendum2.Checked;
+            Program.Settings.UseRandomDelay = UseRandomDelay.Checked;
+            Program.Settings.SelectedAttachmentIds = new int[Attachments.CheckedIndices.Count];
+            Program.Settings.AttachmentFiles = new string[Attachments.Items.Count];
+            Attachments.Items.CopyTo(Program.Settings.AttachmentFiles, 0);
+            Program.Settings.SelectedAttachmentIds = new int[Attachments.CheckedIndices.Count];
             Attachments.CheckedIndices.CopyTo(Program.Settings.SelectedAttachmentIds, 0);
 
             Program.Settings.Save();
             return true;
-        }
-
-        private void Start_Click(object sender, EventArgs e)
-        {
-            save();
         }
 
         private void bImportAttachment_Click(object sender, EventArgs e)
@@ -711,6 +719,18 @@ namespace Cliver.PdfMailer2
         {
             MinRandomDelay.Enabled = UseRandomDelay.Checked;
             MaxRandomDelay.Enabled = UseRandomDelay.Checked;
+        }
+
+        private void bSave_Click(object sender, EventArgs e)
+        {
+            if (!save())
+                return;
+            Close();
+        }
+
+        private void bCancel_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

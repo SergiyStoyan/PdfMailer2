@@ -118,13 +118,14 @@
             this.label39 = new System.Windows.Forms.Label();
             this.EmailSenderEmail = new System.Windows.Forms.TextBox();
             this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
             this.UseRandomDelay = new System.Windows.Forms.CheckBox();
             this.label46 = new System.Windows.Forms.Label();
             this.MaxRandomDelay = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.MinRandomDelay = new System.Windows.Forms.TextBox();
-            this.Start = new System.Windows.Forms.Button();
+            this.bSave = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.bCancel = new System.Windows.Forms.Button();
             this.BuyerProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.BrokerProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.AgentProfiles = new Cliver.PdfMailer2.ProfilesControl();
@@ -156,7 +157,7 @@
             this.tabPage10.SuspendLayout();
             this.groupBox15.SuspendLayout();
             this.tabPage12.SuspendLayout();
-            this.groupBox14.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -165,11 +166,11 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage8);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(564, 380);
+            this.tabControl1.Size = new System.Drawing.Size(564, 395);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -180,7 +181,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(556, 351);
+            this.tabPage1.Size = new System.Drawing.Size(556, 366);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parties";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -193,10 +194,10 @@
             this.tabControl2.Controls.Add(this.tabPage5);
             this.tabControl2.Controls.Add(this.tabPage6);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl2.Location = new System.Drawing.Point(3, 48);
+            this.tabControl2.Location = new System.Drawing.Point(3, 35);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(550, 300);
+            this.tabControl2.Size = new System.Drawing.Size(550, 328);
             this.tabControl2.TabIndex = 57;
             // 
             // tabPage3
@@ -215,7 +216,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(542, 271);
+            this.tabPage3.Size = new System.Drawing.Size(542, 299);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Buyer";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -414,7 +415,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(542, 271);
+            this.tabPage4.Size = new System.Drawing.Size(542, 299);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Broker";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -566,7 +567,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(542, 271);
+            this.tabPage5.Size = new System.Drawing.Size(542, 299);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Agent";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -685,7 +686,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(542, 271);
+            this.tabPage6.Size = new System.Drawing.Size(542, 299);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Escrow";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -729,7 +730,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(556, 351);
+            this.tabPage2.Size = new System.Drawing.Size(556, 366);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Offer";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -744,7 +745,7 @@
             this.tabControl4.Location = new System.Drawing.Point(3, 3);
             this.tabControl4.Name = "tabControl4";
             this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(550, 345);
+            this.tabControl4.Size = new System.Drawing.Size(550, 360);
             this.tabControl4.TabIndex = 64;
             // 
             // tabPage7
@@ -756,7 +757,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(542, 316);
+            this.tabPage7.Size = new System.Drawing.Size(542, 331);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Offer";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -805,7 +806,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(542, 316);
+            this.tabPage9.Size = new System.Drawing.Size(542, 331);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "Attachments and Addendums";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -888,7 +889,7 @@
             this.tabPage11.Location = new System.Drawing.Point(4, 25);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(542, 316);
+            this.tabPage11.Size = new System.Drawing.Size(542, 331);
             this.tabPage11.TabIndex = 2;
             this.tabPage11.Text = "Email Template";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -938,7 +939,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(556, 351);
+            this.tabPage8.Size = new System.Drawing.Size(556, 366);
             this.tabPage8.TabIndex = 3;
             this.tabPage8.Text = "Settings";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -952,7 +953,7 @@
             this.tabControl3.Location = new System.Drawing.Point(3, 3);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(550, 345);
+            this.tabControl3.Size = new System.Drawing.Size(550, 360);
             this.tabControl3.TabIndex = 57;
             // 
             // tabPage10
@@ -964,7 +965,7 @@
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(542, 316);
+            this.tabPage10.Size = new System.Drawing.Size(542, 331);
             this.tabPage10.TabIndex = 1;
             this.tabPage10.Text = "Email";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -1052,33 +1053,23 @@
             // 
             // tabPage12
             // 
-            this.tabPage12.Controls.Add(this.groupBox14);
+            this.tabPage12.Controls.Add(this.UseRandomDelay);
+            this.tabPage12.Controls.Add(this.label46);
+            this.tabPage12.Controls.Add(this.MaxRandomDelay);
+            this.tabPage12.Controls.Add(this.MinRandomDelay);
+            this.tabPage12.Controls.Add(this.label47);
             this.tabPage12.Location = new System.Drawing.Point(4, 25);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(542, 316);
+            this.tabPage12.Size = new System.Drawing.Size(542, 331);
             this.tabPage12.TabIndex = 3;
             this.tabPage12.Text = "Mailer";
             this.tabPage12.UseVisualStyleBackColor = true;
             // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.UseRandomDelay);
-            this.groupBox14.Controls.Add(this.label46);
-            this.groupBox14.Controls.Add(this.MaxRandomDelay);
-            this.groupBox14.Controls.Add(this.label47);
-            this.groupBox14.Controls.Add(this.MinRandomDelay);
-            this.groupBox14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox14.Location = new System.Drawing.Point(3, 3);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(536, 310);
-            this.groupBox14.TabIndex = 60;
-            this.groupBox14.TabStop = false;
-            // 
             // UseRandomDelay
             // 
             this.UseRandomDelay.AutoSize = true;
-            this.UseRandomDelay.Location = new System.Drawing.Point(20, 41);
+            this.UseRandomDelay.Location = new System.Drawing.Point(16, 26);
             this.UseRandomDelay.Name = "UseRandomDelay";
             this.UseRandomDelay.Size = new System.Drawing.Size(211, 17);
             this.UseRandomDelay.TabIndex = 59;
@@ -1088,7 +1079,7 @@
             // 
             // label46
             // 
-            this.label46.Location = new System.Drawing.Point(170, 67);
+            this.label46.Location = new System.Drawing.Point(166, 52);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(121, 13);
             this.label46.TabIndex = 58;
@@ -1097,14 +1088,14 @@
             // 
             // MaxRandomDelay
             // 
-            this.MaxRandomDelay.Location = new System.Drawing.Point(110, 64);
+            this.MaxRandomDelay.Location = new System.Drawing.Point(106, 49);
             this.MaxRandomDelay.Name = "MaxRandomDelay";
             this.MaxRandomDelay.Size = new System.Drawing.Size(54, 20);
             this.MaxRandomDelay.TabIndex = 57;
             // 
             // label47
             // 
-            this.label47.Location = new System.Drawing.Point(80, 67);
+            this.label47.Location = new System.Drawing.Point(76, 52);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(24, 13);
             this.label47.TabIndex = 50;
@@ -1113,20 +1104,41 @@
             // 
             // MinRandomDelay
             // 
-            this.MinRandomDelay.Location = new System.Drawing.Point(20, 64);
+            this.MinRandomDelay.Location = new System.Drawing.Point(16, 49);
             this.MinRandomDelay.Name = "MinRandomDelay";
             this.MinRandomDelay.Size = new System.Drawing.Size(54, 20);
             this.MinRandomDelay.TabIndex = 0;
             // 
-            // Start
+            // bSave
             // 
-            this.Start.Location = new System.Drawing.Point(461, 387);
-            this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(75, 23);
-            this.Start.TabIndex = 1;
-            this.Start.Text = "Start";
-            this.Start.UseVisualStyleBackColor = true;
-            this.Start.Click += new System.EventHandler(this.Start_Click);
+            this.bSave.Location = new System.Drawing.Point(405, 3);
+            this.bSave.Name = "bSave";
+            this.bSave.Size = new System.Drawing.Size(75, 23);
+            this.bSave.TabIndex = 1;
+            this.bSave.Text = "Save";
+            this.bSave.UseVisualStyleBackColor = true;
+            this.bSave.Click += new System.EventHandler(this.bSave_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.bCancel);
+            this.flowLayoutPanel1.Controls.Add(this.bSave);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 395);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(564, 28);
+            this.flowLayoutPanel1.TabIndex = 2;
+            // 
+            // bCancel
+            // 
+            this.bCancel.Location = new System.Drawing.Point(486, 3);
+            this.bCancel.Name = "bCancel";
+            this.bCancel.Size = new System.Drawing.Size(75, 23);
+            this.bCancel.TabIndex = 2;
+            this.bCancel.Text = "Cancel";
+            this.bCancel.UseVisualStyleBackColor = true;
+            this.bCancel.Click += new System.EventHandler(this.bCancel_Click);
             // 
             // BuyerProfiles
             // 
@@ -1135,7 +1147,7 @@
             this.BuyerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.BuyerProfiles.Location = new System.Drawing.Point(3, 3);
             this.BuyerProfiles.Name = "BuyerProfiles";
-            this.BuyerProfiles.Size = new System.Drawing.Size(536, 45);
+            this.BuyerProfiles.Size = new System.Drawing.Size(536, 31);
             this.BuyerProfiles.TabIndex = 51;
             // 
             // BrokerProfiles
@@ -1145,7 +1157,7 @@
             this.BrokerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.BrokerProfiles.Location = new System.Drawing.Point(3, 3);
             this.BrokerProfiles.Name = "BrokerProfiles";
-            this.BrokerProfiles.Size = new System.Drawing.Size(536, 45);
+            this.BrokerProfiles.Size = new System.Drawing.Size(536, 31);
             this.BrokerProfiles.TabIndex = 59;
             // 
             // AgentProfiles
@@ -1155,7 +1167,7 @@
             this.AgentProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.AgentProfiles.Location = new System.Drawing.Point(3, 3);
             this.AgentProfiles.Name = "AgentProfiles";
-            this.AgentProfiles.Size = new System.Drawing.Size(536, 45);
+            this.AgentProfiles.Size = new System.Drawing.Size(536, 31);
             this.AgentProfiles.TabIndex = 61;
             // 
             // EscrowProfiles
@@ -1165,7 +1177,7 @@
             this.EscrowProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.EscrowProfiles.Location = new System.Drawing.Point(3, 3);
             this.EscrowProfiles.Name = "EscrowProfiles";
-            this.EscrowProfiles.Size = new System.Drawing.Size(536, 45);
+            this.EscrowProfiles.Size = new System.Drawing.Size(536, 31);
             this.EscrowProfiles.TabIndex = 61;
             // 
             // PartyProfiles
@@ -1175,7 +1187,7 @@
             this.PartyProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.PartyProfiles.Location = new System.Drawing.Point(3, 3);
             this.PartyProfiles.Name = "PartyProfiles";
-            this.PartyProfiles.Size = new System.Drawing.Size(550, 45);
+            this.PartyProfiles.Size = new System.Drawing.Size(550, 32);
             this.PartyProfiles.TabIndex = 58;
             // 
             // EmailTemplateProfiles
@@ -1185,7 +1197,7 @@
             this.EmailTemplateProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.EmailTemplateProfiles.Location = new System.Drawing.Point(3, 3);
             this.EmailTemplateProfiles.Name = "EmailTemplateProfiles";
-            this.EmailTemplateProfiles.Size = new System.Drawing.Size(536, 45);
+            this.EmailTemplateProfiles.Size = new System.Drawing.Size(536, 31);
             this.EmailTemplateProfiles.TabIndex = 63;
             // 
             // EmailServerProfiles
@@ -1195,7 +1207,7 @@
             this.EmailServerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.EmailServerProfiles.Location = new System.Drawing.Point(3, 3);
             this.EmailServerProfiles.Name = "EmailServerProfiles";
-            this.EmailServerProfiles.Size = new System.Drawing.Size(536, 45);
+            this.EmailServerProfiles.Size = new System.Drawing.Size(536, 31);
             this.EmailServerProfiles.TabIndex = 59;
             // 
             // SettingsForm
@@ -1203,8 +1215,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(564, 423);
-            this.Controls.Add(this.Start);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "SettingsForm";
             this.Text = "SettingsForm";
             this.tabControl1.ResumeLayout(false);
@@ -1241,8 +1253,8 @@
             this.groupBox15.ResumeLayout(false);
             this.groupBox15.PerformLayout();
             this.tabPage12.ResumeLayout(false);
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
+            this.tabPage12.PerformLayout();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1340,7 +1352,6 @@
         private System.Windows.Forms.TextBox SmtpHost;
         private ProfilesControl EmailServerProfiles;
         private System.Windows.Forms.TabPage tabPage12;
-        private System.Windows.Forms.GroupBox groupBox14;
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.TextBox MaxRandomDelay;
         private System.Windows.Forms.Label label47;
@@ -1352,6 +1363,8 @@
         private System.Windows.Forms.TabPage tabPage9;
         private System.Windows.Forms.TabPage tabPage11;
         private ProfilesControl EmailTemplateProfiles;
-        private System.Windows.Forms.Button Start;
+        private System.Windows.Forms.Button bSave;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button bCancel;
     }
 }

@@ -150,7 +150,7 @@ namespace Cliver.PdfMailer2
 
         override public Cliver.BaseForm GetToolsForm()
         {
-            return null;
+            return new SettingsForm();
         }
 
         //override public Type GetBotThreadControlType()
@@ -227,17 +227,27 @@ Developed by: www.cliversoft.com";
                     File.Copy(template_pdf, pdf);
                 }
                 
-                PdfReader.unethicalreading = true;
-                PdfReader pr;
-                pr = new PdfReader(pdf);
-                string fs = "";
-                foreach (KeyValuePair<string, AcroFields.Item> kvp in pr.AcroFields.Fields)
-                    fs += "\n{\"" + kvp.Key + "\", \"\"},";
-                    //fs += "\n{\"\", \"" + kvp.Key + "\"},";
+                //PdfReader.unethicalreading = true;
+                //PdfReader pr;
+                //pr = new PdfReader(pdf);
+                
+                //MemoryStream ms = new MemoryStream();
+                //pr.RemoveUsageRights();
+                ////pr.SelectPages("7,8");
+                //PdfStamper ps = new PdfStamper(pr, ms);
 
+                //ps.FormFlattening = true;
 
+                //var pcb = ps.GetOverContent(1);
+                //add_image(pcb, employee_signature, new System.Drawing.Point(140, 213));
+                //add_image(pcb, preparer_signature, new System.Drawing.Point(180, 120));
+                //pcb = ps.GetOverContent(2);
+                //add_image(pcb, employer_signature, new System.Drawing.Point(60, 256));
+                //add_image(pcb, employer_signature, new System.Drawing.Point(65, 30));
+                //ps.Close();
+                //pr.Close();
 
-                bc.Add(new PdfItem("http://www.rent.com"));
+                bc.Add(new PdfItem(pdf));
             }
             static readonly string template_pdf = Log.GetAppCommonDataDir() + "\\RPA template.pdf";
         }

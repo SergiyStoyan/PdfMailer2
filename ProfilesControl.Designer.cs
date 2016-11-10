@@ -36,7 +36,7 @@
             // bDelete
             // 
             this.bDelete.BackColor = System.Drawing.SystemColors.Control;
-            this.bDelete.Location = new System.Drawing.Point(170, 9);
+            this.bDelete.Location = new System.Drawing.Point(160, 3);
             this.bDelete.Name = "bDelete";
             this.bDelete.Size = new System.Drawing.Size(24, 23);
             this.bDelete.TabIndex = 55;
@@ -47,7 +47,7 @@
             // Names
             // 
             this.Names.FormattingEnabled = true;
-            this.Names.Location = new System.Drawing.Point(13, 10);
+            this.Names.Location = new System.Drawing.Point(3, 3);
             this.Names.Name = "Names";
             this.Names.Size = new System.Drawing.Size(121, 21);
             this.Names.TabIndex = 53;
@@ -56,7 +56,7 @@
             // bSave
             // 
             this.bSave.BackColor = System.Drawing.SystemColors.Control;
-            this.bSave.Location = new System.Drawing.Point(140, 9);
+            this.bSave.Location = new System.Drawing.Point(130, 3);
             this.bSave.Name = "bSave";
             this.bSave.Size = new System.Drawing.Size(24, 23);
             this.bSave.TabIndex = 54;
@@ -74,7 +74,7 @@
             this.Controls.Add(this.Names);
             this.Controls.Add(this.bSave);
             this.Name = "ProfilesControl";
-            this.Size = new System.Drawing.Size(404, 42);
+            this.Size = new System.Drawing.Size(404, 29);
             this.ResumeLayout(false);
 
         }
