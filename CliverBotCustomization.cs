@@ -176,6 +176,7 @@ Developed by: www.cliversoft.com";
 
         new static public void SessionClosing()
         {
+            while (send_pdf()) ;
         }
 
         override public void CycleStarting()
@@ -226,11 +227,15 @@ Developed by: www.cliversoft.com";
                 {
                     File.Copy(template_pdf, pdf);
                 }
-                
-                //PdfReader.unethicalreading = true;
-                //PdfReader pr;
-                //pr = new PdfReader(pdf);
-                
+
+                PdfReader.unethicalreading = true;
+                PdfReader pr;
+                pr = new PdfReader(pdf);
+                string fs = "";
+                foreach (KeyValuePair<string, AcroFields.Item> kvp in pr.AcroFields.Fields)
+                    fs += "\n{\"" + kvp.Key + "\", \"\"},";
+
+
                 //MemoryStream ms = new MemoryStream();
                 //pr.RemoveUsageRights();
                 ////pr.SelectPages("7,8");
@@ -247,46 +252,89 @@ Developed by: www.cliversoft.com";
                 //ps.Close();
                 //pr.Close();
 
-                bc.Add(new PdfItem(pdf));
+                CustomBot.send_pdf(pdf, ListAgentEmail);
             }
-            static readonly string template_pdf = Log.GetAppCommonDataDir() + "\\RPA template.pdf";
+            static readonly string template_pdf = Log.GetAppCommonDataDir() + "\\RPA template - Acrobat forms.pdf";
+
         }
 
-        public class PdfItem : InputItem
+        static bool send_pdf(string pdf = null, string email = null)
         {
-            readonly public DataItem Data;
-            readonly public string File;
-
-            public PdfItem(string pdf_file)
+            lock (pdfs2email)
             {
-                File = pdf_file;
+                if (pdf != null)
+                    pdfs2email[pdf] = email;
+                pdf = get_next_pdf(pdf == null);
+                if (pdf != null)
+                    send(pdf, pdfs2email[pdf]);
+                return pdf != null;
             }
+        }
 
-            override public void PROCESSOR(BotCycle bc)
+        static string get_next_pdf(bool blocking_wait)
+        {
+            lock (pdfs2email)
             {
-                CustomBot cb = (CustomBot)bc.Bot;
-
-                MailMessage mm = new MailMessage(
-                    Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail,
-                    Data.ListAgentEmail
-                    )
+                TimeSpan min_wait_period = TimeSpan.MaxValue;
+                string min_wait_period_pdf = null;
+                foreach (string pdf in pdfs2email.Keys)
                 {
-                    Subject = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[Program.Settings.EmailTemplateProfileName].Subject,
-                    Body = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[Program.Settings.EmailTemplateProfileName].Body,
-                    From = new MailAddress(Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail)
-                };
-                foreach (int i in Program.Settings.SelectedAttachmentIds)
-                    mm.Attachments.Add(new Attachment(Program.Settings.AttachmentFiles[i]));
-                Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
-                cb.email(mm);
+                    if (pdf == null)
+                        continue;
+                    int delay = Program.Settings.MinRandomDelayMss + (int)((float)(Program.Settings.MaxRandomDelayMss - Program.Settings.MinRandomDelayMss) * random.NextDouble());
+                    DateTime sent_time;
+                    if (!emails2sent_time.TryGetValue(pdfs2email[pdf], out sent_time))
+                    {
+                        emails2sent_time[pdfs2email[pdf]] = DateTime.Now;
+                        pdfs2email[pdf] = null;
+                        return pdf;
+                    }
+                    TimeSpan wait_period = sent_time.AddMilliseconds(delay) - DateTime.Now;
+                    if (wait_period < TimeSpan.FromSeconds(0))
+                    {
+                        emails2sent_time[pdfs2email[pdf]] = DateTime.Now;
+                        pdfs2email[pdf] = null;
+                        return pdf;
+                    }
+                    else if (blocking_wait && wait_period > min_wait_period)
+                    {
+                        min_wait_period = wait_period;
+                        min_wait_period_pdf = pdf;
+                    }
+                }
+                if (blocking_wait && min_wait_period_pdf != null)
+                {
+                    Thread.Sleep(min_wait_period);
+                    emails2sent_time[pdfs2email[min_wait_period_pdf]] = DateTime.Now;
+                    pdfs2email[min_wait_period_pdf] = null;
+                    return min_wait_period_pdf;
+                }
+                return null;
             }
         }
+        static Random random = new Random();
+        static Dictionary<string, DateTime> emails2sent_time = new Dictionary<string, DateTime>();
+        static SingleValueWorkItemDictionary<SingleValueWorkItem<string>, string> pdfs2email = Session.GetSingleValueWorkItemDictionary<SingleValueWorkItem<string>, string>();
 
-        void email(MailMessage mm)
+        static void send(string pdf, string to_email)
         {
+            MailMessage mm = new MailMessage(
+                Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail,
+                to_email
+                )
+            {
+                Subject = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[Program.Settings.EmailTemplateProfileName].Subject,
+                Body = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[Program.Settings.EmailTemplateProfileName].Body,
+                From = new MailAddress(Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail)
+            };
+            foreach (int i in Program.Settings.SelectedAttachmentIds)
+            {
+                mm.Attachments.Add(new Attachment(pdf));
+                mm.Attachments.Add(new Attachment(Program.Settings.AttachmentFiles[i]));
+            }
+            Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
             try
             {
-                Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
                 smtp_client.Send(mm);
             }
             catch (Exception e)
@@ -303,7 +351,8 @@ Developed by: www.cliversoft.com";
                     );
             }
         }
-        SmtpClient smtp_client = new SmtpClient
+
+        static SmtpClient smtp_client = new SmtpClient
         {
             Host = Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpHost,
             Port = Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPort,
@@ -311,9 +360,9 @@ Developed by: www.cliversoft.com";
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
             Credentials = new NetworkCredential(
-                Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail,
-                Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPassword
-                )
+                 Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail,
+                 Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPassword
+                 )
         };
     }
 }

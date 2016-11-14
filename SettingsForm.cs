@@ -669,7 +669,7 @@ namespace Cliver.PdfMailer2
                 Message.Exclaim(m1 + "MinRandomDelay" + m2);
                 return false;
             }
-            if (!int.TryParse(SmtpPort.Text, out Program.Settings.MinRandomDelayMss))
+            if (!int.TryParse(MinRandomDelay.Text, out Program.Settings.MinRandomDelayMss))
             {
                 Message.Exclaim("MinRandomDelay is not number.");
                 return false;
@@ -680,12 +680,18 @@ namespace Cliver.PdfMailer2
                 Message.Exclaim(m1 + "MaxRandomDelay" + m2);
                 return false;
             }
-            if (!int.TryParse(SmtpPort.Text, out Program.Settings.MaxRandomDelayMss))
+            if (!int.TryParse(MaxRandomDelay.Text, out Program.Settings.MaxRandomDelayMss))
             {
                 Message.Exclaim("MaxRandomDelay is not number.");
                 return false;
             }
             
+            if (Program.Settings.MinRandomDelayMss>=Program.Settings.MaxRandomDelayMss)
+            {
+                Message.Exclaim("MinRandomDelay should be less than MaxRandomDelay.");
+                return false;
+            }
+
             Program.Settings.ShortSaleAddendum = ShortSaleAddendum.Checked;
             Program.Settings.OtherAddendum1 = OtherAddendum1.Checked;
             Program.Settings.OtherAddendum2 = OtherAddendum2.Checked;
