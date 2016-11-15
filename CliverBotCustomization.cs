@@ -36,6 +36,8 @@ TBD:
 - serialize InputItems into json and thus allow arrays etc
 - FatalError()
 - change Cliver.Bot virtual members to event subscriptions
+- change settings engine to json
+- separate Web from Bot
 */
 namespace Cliver.PdfMailer2
 {
@@ -112,6 +114,13 @@ namespace Cliver.PdfMailer2
                 get
                 {
                     return EmailTemplateProfileNames2EmailTemplateProfileProfile[EmailTemplateProfileName];
+                }
+            }
+            public EmailServerProfile EmailServerProfile
+            {
+                get
+                {
+                    return EmailServerProfileNames2EmailServerProfile[EmailServerProfileName];
                 }
             }
 
@@ -223,8 +232,8 @@ Developed by: www.cliversoft.com";
         {
             InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 11, 25);
 
-            Cliver.BotGui.Program.BindProgressBar2InputItemQueue<PdfItem>();
-            Session.GetInputItemQueue<PdfItem>().PickNext = pick_next_PdfItem;
+            Cliver.BotGui.Program.BindProgressBar2InputItemQueue<EmailItem>();
+            Session.GetInputItemQueue<EmailItem>().PickNext = pick_next_PdfItem;
         }
 
         static InputItem pick_next_PdfItem()
@@ -233,35 +242,35 @@ Developed by: www.cliversoft.com";
             {
                 int delay = Program.Settings.MinRandomDelayMss + (int)((float)(Program.Settings.MaxRandomDelayMss - Program.Settings.MinRandomDelayMss) * random.NextDouble());
                 TimeSpan min_wait_period = TimeSpan.MaxValue;
-                PdfItem min_wait_period_pi = null;
-                System.Collections.IEnumerator ie = Session.GetInputItemQueue<PdfItem>().GetEnnumerator();
+                EmailItem min_wait_period_ei = null;
+                System.Collections.IEnumerator ie = Session.GetInputItemQueue<EmailItem>().GetEnnumerator();
                 for (ie.Reset(); ie.MoveNext();)
                 {
-                    PdfItem pi = ((PdfItem)ie.Current);
-                    string to_email = pi.__ParentItem.ListAgentEmail;
+                    EmailItem ei = ((EmailItem)ie.Current);
+                    string to_email = ei.__ParentItem.ListAgentEmail;
                     DateTime sent_time;
                     if (!emails2sent_time.TryGetValue(to_email, out sent_time))
                     {
                         emails2sent_time[to_email] = DateTime.Now;
-                        return pi;
+                        return ei;
                     }
                     TimeSpan wait_period = sent_time.AddMilliseconds(delay) - DateTime.Now;
                     if (wait_period < TimeSpan.FromSeconds(0))
                     {
                         emails2sent_time[to_email] = DateTime.Now;
-                        return pi;
+                        return ei;
                     }
                     if (wait_period > min_wait_period)
                     {
                         min_wait_period = wait_period;
-                        min_wait_period_pi = pi;
+                        min_wait_period_ei = ei;
                     }
                 }
-                if (min_wait_period_pi != null && Session.GetInputItemQueue<DataItem>().CountOfNew < 1)
+                if (min_wait_period_ei != null && Session.GetInputItemQueue<DataItem>().CountOfNew < 1)
                 {
                     Thread.Sleep(min_wait_period);
-                    emails2sent_time[min_wait_period_pi.__ParentItem.ListAgentEmail] = DateTime.Now;
-                    return min_wait_period_pi;
+                    emails2sent_time[min_wait_period_ei.__ParentItem.ListAgentEmail] = DateTime.Now;
+                    return min_wait_period_ei;
                 }
                 return null;
             }
@@ -271,7 +280,6 @@ Developed by: www.cliversoft.com";
 
         new static public void SessionClosing()
         {
-            //while (send_pdf()) ;
         }
 
         override public void CycleStarting()
@@ -317,89 +325,118 @@ Developed by: www.cliversoft.com";
 
                 string d = Log.OutputDir + "\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
                 Directory.CreateDirectory(d);
+
                 string output_pdf = d + "\\" + PathRoutines.GetFileNameFromPath(template_pdf);
-                //lock (template_pdf)
-                //{
-                //    File.Copy(template_pdf, pdf);
-                //}
-
-                PdfReader.unethicalreading = true;
-                PdfReader pr = new PdfReader(template_pdf);
-                //pr.RemoveUsageRights();
-                //pr.SelectPages("7,8");
-                PdfStamper ps = new PdfStamper(pr, new FileStream(output_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
-
-                //string fs = "";
-                //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
-                //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
-
-                set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
-                set_field(ps.AcroFields, "Buyer Name", Program.Settings.BuyerProfile.Name);
-                set_field(ps.AcroFields, "Address and Unit Number", Address + " " + UnitNumber);
-                set_field(ps.AcroFields, "City/Town", City);
-                //set_field(ps.AcroFields, "CLARK", );
-                set_field(ps.AcroFields, "Zip", ZipCode);
-                set_field(ps.AcroFields, "PARCEL NUMBER", ParcelNumber);
-                set_field(ps.AcroFields, "OfferAmt", OfferAmt);
-                string oa = Regex.Replace(OfferAmt, @"[^\d]", "");
-                if (oa.Length > 0)
-                    set_field(ps.AcroFields, "OfferAmt in words", ConvertionRoutines.NumberToWords(int.Parse(oa)));
-                set_field(ps.AcroFields, "EMD", Program.Settings.Emd);
-                //set_field(ps.AcroFields, "Check Box1", );
-                //set_field(ps.AcroFields, "Balance", );
-                set_field(ps.AcroFields, "Co Buyer Name", Program.Settings.BuyerProfile.CoBuyerName);
-                //set_field(ps.AcroFields, "<address> <UnitNumber> <City/town> NV <ZIP Code>", );
-                set_field(ps.AcroFields, "ML#", ML_Id);
-                set_field(ps.AcroFields, "Title Company", Program.Settings.EscrowProfile.TitleCompany);
-                set_field(ps.AcroFields, "Escrow Officer", Program.Settings.EscrowProfile.Officer);
-                set_field(ps.AcroFields, "Close of Escrow", Program.Settings.CloseOfEscrow.ToShortDateString());
-                set_field(ps.AcroFields, "ADDITIONAL TERMS", AdditionalTerms);
-                set_field(ps.AcroFields, "Additional  terms", AdditionalTerms);
-                set_field(ps.AcroFields, "Buyer Broker", Program.Settings.BrokerProfile.Name);
-                set_field(ps.AcroFields, "Agent Name", Program.Settings.AgentProfile.Name);
-                set_field(ps.AcroFields, "Company Name", Program.Settings.BrokerProfile.Company);
-                set_field(ps.AcroFields, "Agents License", Program.Settings.AgentProfile.LicenseNo);
-                set_field(ps.AcroFields, "Brokers License", Program.Settings.BrokerProfile.LicenseNo);
-                set_field(ps.AcroFields, "Office Address", Program.Settings.BrokerProfile.Address);
-                set_field(ps.AcroFields, "Office Phone", Program.Settings.BrokerProfile.Phone);
-                set_field(ps.AcroFields, "City State Zip", Program.Settings.BrokerProfile.Zip);
-                set_field(ps.AcroFields, "Agent Email", Program.Settings.AgentProfile.Email);
-                //set_field(ps.AcroFields, "Response Month", );
-                //set_field(ps.AcroFields, "Response day", );
-                //set_field(ps.AcroFields, "year", );
-                //set_field(ps.AcroFields,  "Date_2", );
-                //set_field(ps.AcroFields, "Date_3", );
-                //set_field(ps.AcroFields, "Sellers Broker", );
-                set_field(ps.AcroFields, "Agents Name_2", Program.Settings.AgentProfile.Name);
-                set_field(ps.AcroFields, "Company Name_2", Program.Settings.BrokerProfile.Company);
-                set_field(ps.AcroFields, "Agents License Number_2", Program.Settings.AgentProfile.LicenseNo);
-                set_field(ps.AcroFields, "Brokers License Number_2", Program.Settings.BrokerProfile.LicenseNo);
-                set_field(ps.AcroFields, "Office Address_2", Program.Settings.BrokerProfile.Address);
-                set_field(ps.AcroFields, "Phone_2", Program.Settings.BrokerProfile.Phone);
-                set_field(ps.AcroFields, "City State Zip_2", Program.Settings.BrokerProfile.Zip);
-                set_field(ps.AcroFields, "Email_2", Program.Settings.AgentProfile.Email);
-
-                ps.FormFlattening = true;
-
-                for (int i = 1; i <= pr.NumberOfPages; i++)
                 {
-                    var pcb = ps.GetOverContent(i);
-                    add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.InitialFile), new System.Drawing.Point(500, 50));
-                    add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(380, 30));
+                    //lock (template_pdf)
+                    //{
+                    //    File.Copy(template_pdf, pdf);
+                    //}
+
+                    PdfReader.unethicalreading = true;
+                    PdfReader pr = new PdfReader(template_pdf);
+                    //pr.RemoveUsageRights();
+                    //pr.SelectPages("7,8");
+                    PdfStamper ps = new PdfStamper(pr, new FileStream(output_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
+
+                    //string fs = "";
+                    //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
+                    //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
+
+                    set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
+                    set_field(ps.AcroFields, "Buyer Name", Program.Settings.BuyerProfile.Name);
+                    set_field(ps.AcroFields, "Address and Unit Number", Address + " " + UnitNumber);
+                    set_field(ps.AcroFields, "City/Town", City);
+                    //set_field(ps.AcroFields, "CLARK", );
+                    set_field(ps.AcroFields, "Zip", ZipCode);
+                    set_field(ps.AcroFields, "PARCEL NUMBER", ParcelNumber);
+                    set_field(ps.AcroFields, "OfferAmt", OfferAmt);
+                    string oa = Regex.Replace(OfferAmt, @"[^\d]", "");
+                    if (oa.Length > 0)
+                        set_field(ps.AcroFields, "OfferAmt in words", ConvertionRoutines.NumberToWords(int.Parse(oa)));
+                    set_field(ps.AcroFields, "EMD", Program.Settings.Emd);
+                    //set_field(ps.AcroFields, "Check Box1", );
+                    //set_field(ps.AcroFields, "Balance", );
+                    set_field(ps.AcroFields, "Co Buyer Name", Program.Settings.BuyerProfile.CoBuyerName);
+                    set_field(ps.AcroFields, "<address> <UnitNumber> <City/town> NV <ZIP Code>", Address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
+                    set_field(ps.AcroFields, "ML#", ML_Id);
+                    set_field(ps.AcroFields, "Title Company", Program.Settings.EscrowProfile.TitleCompany);
+                    set_field(ps.AcroFields, "Escrow Officer", Program.Settings.EscrowProfile.Officer);
+                    set_field(ps.AcroFields, "Close of Escrow", Program.Settings.CloseOfEscrow.ToShortDateString());
+                    set_field(ps.AcroFields, "ADDITIONAL TERMS", AdditionalTerms);
+                    set_field(ps.AcroFields, "Additional  terms", AdditionalTerms);
+                    set_field(ps.AcroFields, "Buyer Broker", Program.Settings.BrokerProfile.Name);
+                    set_field(ps.AcroFields, "Agent Name", Program.Settings.AgentProfile.Name);
+                    set_field(ps.AcroFields, "Company Name", Program.Settings.BrokerProfile.Company);
+                    set_field(ps.AcroFields, "Agents License", Program.Settings.AgentProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Brokers License", Program.Settings.BrokerProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Office Address", Program.Settings.BrokerProfile.Address);
+                    set_field(ps.AcroFields, "Office Phone", Program.Settings.BrokerProfile.Phone);
+                    set_field(ps.AcroFields, "City State Zip", Program.Settings.BrokerProfile.City + " " + Program.Settings.BrokerProfile.State + " " + Program.Settings.BrokerProfile.Zip);
+                    set_field(ps.AcroFields, "Agent Email", Program.Settings.AgentProfile.Email);
+                    //set_field(ps.AcroFields, "Response Month", );
+                    //set_field(ps.AcroFields, "Response day", );
+                    //set_field(ps.AcroFields, "year", );
+                    //set_field(ps.AcroFields,  "Date_2", );
+                    //set_field(ps.AcroFields, "Date_3", );
+                    //set_field(ps.AcroFields, "Sellers Broker", );
+                    set_field(ps.AcroFields, "Agents Name_2", Program.Settings.AgentProfile.Name);
+                    set_field(ps.AcroFields, "Company Name_2", Program.Settings.BrokerProfile.Company);
+                    set_field(ps.AcroFields, "Agents License Number_2", Program.Settings.AgentProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Brokers License Number_2", Program.Settings.BrokerProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Office Address_2", Program.Settings.BrokerProfile.Address);
+                    set_field(ps.AcroFields, "Phone_2", Program.Settings.BrokerProfile.Phone);
+                    set_field(ps.AcroFields, "City State Zip_2", Program.Settings.BrokerProfile.Zip);
+                    set_field(ps.AcroFields, "Email_2", Program.Settings.AgentProfile.Email);
+
+                    ps.FormFlattening = true;
+
+                    for (int i = 1; i <= pr.NumberOfPages; i++)
+                    {
+                        var pcb = ps.GetOverContent(i);
+                        add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.InitialFile), new System.Drawing.Point(497, 67));
+                        add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(536, 67));
+                    }
+                    {
+                        var pcb = ps.GetOverContent(9);
+                        add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.SignatureFile), new System.Drawing.Point(60, 190));
+                        add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(60, 155));
+                    }
+
+                    ps.Close();
+                    pr.Close();
                 }
+
+                string output_addendum_pdf = null;
+                if (Program.Settings.ShortSaleAddendum)
                 {
-                    var pcb = ps.GetOverContent(9);
-                    add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.SignatureFile), new System.Drawing.Point(100, 160));
-                    add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(40, 100));
+                    output_addendum_pdf = d + "\\" + PathRoutines.GetFileNameFromPath(template_addendum_pdf);
+
+                    PdfReader.unethicalreading = true;
+                    PdfReader pr = new PdfReader(template_addendum_pdf);
+                    PdfStamper ps = new PdfStamper(pr, new FileStream(output_addendum_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
+
+                    //string fs = "";
+                    //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
+                    //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
+
+                    set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Program.Settings.BuyerProfile.Name + " " + Program.Settings.BuyerProfile.CoBuyerName);
+                    set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
+                    set_field(ps.AcroFields, "<Address> <UnitNumber> <City/Town> NV <Zip Code>", Address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
+                    set_field(ps.AcroFields, "Agent Name", Program.Settings.AgentProfile.Name);
+                    //set_field(ps.AcroFields, "Agent Phone", );
+
+                    ps.FormFlattening = true;
+
+                    ps.Close();
+                    pr.Close();
                 }
 
-                ps.Close();
-                pr.Close();
-
-                bc.Add(new PdfItem(output_pdf));
+                bc.Add(new EmailItem(output_pdf, output_addendum_pdf));
                 //CustomBot.send_pdf(output_pdf, ListAgentEmail);
             }
-            static readonly string template_pdf = Log.GetAppCommonDataDir() + "\\RPA.pdf";
+            static readonly string template_pdf = Log.AppDir + "\\RPA.pdf";
+            static readonly string template_addendum_pdf = Log.AppDir + "\\addendum.pdf";
         }
 
         static void set_field(AcroFields form, string field_key, string value)
@@ -408,19 +445,6 @@ Developed by: www.cliversoft.com";
             {
                 case AcroFields.FIELD_TYPE_CHECKBOX:
                 case AcroFields.FIELD_TYPE_RADIOBUTTON:
-                //bool v;
-                //if (bool.TryParse(value, out v))
-                //    value = !v ? "false" : "true";
-                //else
-                //{
-                //    int i;
-                //    if (int.TryParse(value, out i))
-                //        value = i == 0 ? "false" : "true";
-                //    else
-                //        value = string.IsNullOrEmpty(value) ? "false" : "true";
-                //}
-                //form.SetField(field_key, value);
-                //break;
                 case AcroFields.FIELD_TYPE_COMBO:
                 case AcroFields.FIELD_TYPE_LIST:
                 case AcroFields.FIELD_TYPE_NONE:
@@ -443,41 +467,45 @@ Developed by: www.cliversoft.com";
             i.SetAbsolutePosition(point.X, point.Y);
             pcb.AddImage(i);
         }
-        static System.Drawing.Size image_max_size = new System.Drawing.Size(200, 50);
+        static System.Drawing.Size image_max_size = new System.Drawing.Size(105, 22);
 
-        class PdfItem : InputItem
+        class EmailItem : InputItem
         {
             public readonly DataItem __ParentItem;
             public readonly string Pdf;
+            public readonly string Addendum;
 
-            internal PdfItem(string pdf)
+            internal EmailItem(string pdf, string addendum)
             {
                 Pdf = pdf;
+                Addendum = addendum;
             }
 
             override public void PROCESSOR(BotCycle bc)
             {
                 CustomBot cb = (CustomBot)bc.Bot;
 
-                cb.send(Pdf, __ParentItem.ListAgentEmail);
+                cb.send( __ParentItem.ListAgentEmail, Pdf, Addendum);
             }
         }
 
-        void send(string pdf, string to_email)
+        void send(string to_email, params string[] attachments)
         {
-            to_email = "sergey.stoyan@gmail.com";
             MailMessage mm = new MailMessage(
-                Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail,
+                Program.Settings.EmailServerProfile.SenderEmail,
                 to_email
                 )
             {
-                Subject = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[Program.Settings.EmailTemplateProfileName].Subject,
-                Body = Program.Settings.EmailTemplateProfileNames2EmailTemplateProfileProfile[Program.Settings.EmailTemplateProfileName].Body,
-                From = new MailAddress(Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail)
+                Subject = Program.Settings.EmailTemplateProfile.Subject,
+                Body = Program.Settings.EmailTemplateProfile.Body,
+                From = new MailAddress(Program.Settings.EmailServerProfile.SenderEmail)
             };
+            foreach (string a in attachments)
+            {
+                mm.Attachments.Add(new Attachment(a));
+            }
             foreach (int i in Program.Settings.SelectedAttachmentIds)
             {
-                mm.Attachments.Add(new Attachment(pdf));
                 mm.Attachments.Add(new Attachment(Program.Settings.AttachmentFiles[i]));
             }
             Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
@@ -491,8 +519,8 @@ Developed by: www.cliversoft.com";
                     + "\r\nPort: " + smtp_client.Port
                     + "\r\nEnableSsl: " + smtp_client.EnableSsl
                     + "\r\nDeliveryMethod: " + smtp_client.DeliveryMethod
-                    + "\r\nUserName: " + Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail
-                    + "\r\nSmtpPassword: " + Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPassword
+                    + "\r\nUserName: " + Program.Settings.EmailServerProfile.SenderEmail
+                    + "\r\nSmtpPassword: " + Program.Settings.EmailServerProfile.SmtpPassword
                     + "\r\nFrom: " + mm.From.Address
                     + "\r\nTo: " + mm.To
                     );
@@ -502,14 +530,14 @@ Developed by: www.cliversoft.com";
 
         SmtpClient smtp_client = new SmtpClient
         {
-            Host = Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpHost,
-            Port = Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPort,
+            Host = Program.Settings.EmailServerProfile.SmtpHost,
+            Port = Program.Settings.EmailServerProfile.SmtpPort,
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
             Credentials = new NetworkCredential(
-                 Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SenderEmail,
-                 Program.Settings.EmailServerProfileNames2EmailServerProfile[Program.Settings.EmailServerProfileName].SmtpPassword
+                 Program.Settings.EmailServerProfile.SenderEmail,
+                 Program.Settings.EmailServerProfile.SmtpPassword
                  )
         };
     }

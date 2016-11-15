@@ -17,8 +17,8 @@ namespace Cliver.PdfMailer2
         {
             InitializeComponent();
 
-            Text = "Campaign Settings";
-            Name = "Campaign";
+            Text = "Offers";
+            Name = "Offers";
 
             PartyProfiles.Add = PartyProfiles_Add;
             PartyProfiles.Select = PartyProfiles_Select;
@@ -664,32 +664,35 @@ namespace Cliver.PdfMailer2
             }
             Program.Settings.Emd = Emd.Text;
 
-            if (string.IsNullOrWhiteSpace(MinRandomDelay.Text))
+            if (UseRandomDelay.Checked)
             {
-                Message.Exclaim(m1 + "MinRandomDelay" + m2);
-                return false;
-            }
-            if (!int.TryParse(MinRandomDelay.Text, out Program.Settings.MinRandomDelayMss))
-            {
-                Message.Exclaim("MinRandomDelay is not number.");
-                return false;
-            }
+                if (string.IsNullOrWhiteSpace(MinRandomDelay.Text))
+                {
+                    Message.Exclaim(m1 + "MinRandomDelay" + m2);
+                    return false;
+                }
+                if (!int.TryParse(MinRandomDelay.Text, out Program.Settings.MinRandomDelayMss))
+                {
+                    Message.Exclaim("MinRandomDelay is not number.");
+                    return false;
+                }
 
-            if (string.IsNullOrWhiteSpace(MaxRandomDelay.Text))
-            {
-                Message.Exclaim(m1 + "MaxRandomDelay" + m2);
-                return false;
-            }
-            if (!int.TryParse(MaxRandomDelay.Text, out Program.Settings.MaxRandomDelayMss))
-            {
-                Message.Exclaim("MaxRandomDelay is not number.");
-                return false;
-            }
-            
-            if (Program.Settings.MinRandomDelayMss>=Program.Settings.MaxRandomDelayMss)
-            {
-                Message.Exclaim("MinRandomDelay should be less than MaxRandomDelay.");
-                return false;
+                if (string.IsNullOrWhiteSpace(MaxRandomDelay.Text))
+                {
+                    Message.Exclaim(m1 + "MaxRandomDelay" + m2);
+                    return false;
+                }
+                if (!int.TryParse(MaxRandomDelay.Text, out Program.Settings.MaxRandomDelayMss))
+                {
+                    Message.Exclaim("MaxRandomDelay is not number.");
+                    return false;
+                }
+
+                if (Program.Settings.MinRandomDelayMss >= Program.Settings.MaxRandomDelayMss)
+                {
+                    Message.Exclaim("MinRandomDelay should be less than MaxRandomDelay.");
+                    return false;
+                }
             }
 
             Program.Settings.ShortSaleAddendum = ShortSaleAddendum.Checked;

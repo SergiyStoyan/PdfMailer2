@@ -4,7 +4,7 @@
 [Code]
 function AppName(Param: String): String;
 begin
-  Result := 'rent.com_yp.com';
+  Result := 'PdfMailer2';
 end;
 
 function Version(Param: String): String;
@@ -13,7 +13,7 @@ begin
 end;
 
 [Setup]
-OutputBaseFilename=rent.com_yp.com.Setup
+OutputBaseFilename=PdfMailer2.Setup
 AppName={code:AppName}
 AppVerName={code:AppName} {code:Version}
 AppPublisher=CliverSoft.com
