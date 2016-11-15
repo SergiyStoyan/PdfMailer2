@@ -30,6 +30,13 @@ using System.Reflection;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
+
+/*
+TBD:
+- serialize InputItems into json and thus allow arrays etc
+- FatalError()
+- change Cliver.Bot virtual members to event subscriptions
+*/
 namespace Cliver.PdfMailer2
 {
     public class Program
@@ -220,7 +227,7 @@ Developed by: www.cliversoft.com";
             Session.GetInputItemQueue<PdfItem>().PickNext = pick_next_PdfItem;
         }
 
-       static InputItem pick_next_PdfItem()
+        static InputItem pick_next_PdfItem()
         {
             lock (emails2sent_time)
             {
@@ -228,7 +235,7 @@ Developed by: www.cliversoft.com";
                 TimeSpan min_wait_period = TimeSpan.MaxValue;
                 PdfItem min_wait_period_pi = null;
                 System.Collections.IEnumerator ie = Session.GetInputItemQueue<PdfItem>().GetEnnumerator();
-                for (ie.Reset(); ie.MoveNext(); )
+                for (ie.Reset(); ie.MoveNext();)
                 {
                     PdfItem pi = ((PdfItem)ie.Current);
                     string to_email = pi.__ParentItem.ListAgentEmail;
@@ -259,6 +266,8 @@ Developed by: www.cliversoft.com";
                 return null;
             }
         }
+        static Random random = new Random();
+        static Dictionary<string, DateTime> emails2sent_time = new Dictionary<string, DateTime>();
 
         new static public void SessionClosing()
         {
@@ -319,20 +328,22 @@ Developed by: www.cliversoft.com";
                 //pr.RemoveUsageRights();
                 //pr.SelectPages("7,8");
                 PdfStamper ps = new PdfStamper(pr, new FileStream(output_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
-                
+
                 //string fs = "";
                 //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
                 //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
-                
-                set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString() );
-                set_field(ps.AcroFields, "Buyer Name", Program.Settings.BuyerProfile.Name );
+
+                set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
+                set_field(ps.AcroFields, "Buyer Name", Program.Settings.BuyerProfile.Name);
                 set_field(ps.AcroFields, "Address and Unit Number", Address + " " + UnitNumber);
                 set_field(ps.AcroFields, "City/Town", City);
                 //set_field(ps.AcroFields, "CLARK", );
                 set_field(ps.AcroFields, "Zip", ZipCode);
                 set_field(ps.AcroFields, "PARCEL NUMBER", ParcelNumber);
                 set_field(ps.AcroFields, "OfferAmt", OfferAmt);
-                //set_field(ps.AcroFields, "OfferAmt in words", );
+                string oa = Regex.Replace(OfferAmt, @"[^\d]", "");
+                if (oa.Length > 0)
+                    set_field(ps.AcroFields, "OfferAmt in words", ConvertionRoutines.NumberToWords(int.Parse(oa)));
                 set_field(ps.AcroFields, "EMD", Program.Settings.Emd);
                 //set_field(ps.AcroFields, "Check Box1", );
                 //set_field(ps.AcroFields, "Balance", );
@@ -367,24 +378,28 @@ Developed by: www.cliversoft.com";
                 set_field(ps.AcroFields, "Phone_2", Program.Settings.BrokerProfile.Phone);
                 set_field(ps.AcroFields, "City State Zip_2", Program.Settings.BrokerProfile.Zip);
                 set_field(ps.AcroFields, "Email_2", Program.Settings.AgentProfile.Email);
-                
+
                 ps.FormFlattening = true;
 
-                //var pcb = ps.GetOverContent(1);
-                //add_image(pcb, employee_signature, new System.Drawing.Point(140, 213));
-                //add_image(pcb, preparer_signature, new System.Drawing.Point(180, 120));
-                //pcb = ps.GetOverContent(2);
-                //add_image(pcb, employer_signature, new System.Drawing.Point(60, 256));
-                //add_image(pcb, employer_signature, new System.Drawing.Point(65, 30));
+                for (int i = 1; i <= pr.NumberOfPages; i++)
+                {
+                    var pcb = ps.GetOverContent(i);
+                    add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.InitialFile), new System.Drawing.Point(500, 50));
+                    add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(380, 30));
+                }
+                {
+                    var pcb = ps.GetOverContent(9);
+                    add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.SignatureFile), new System.Drawing.Point(100, 160));
+                    add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(40, 100));
+                }
 
                 ps.Close();
                 pr.Close();
-                               
+
                 bc.Add(new PdfItem(output_pdf));
                 //CustomBot.send_pdf(output_pdf, ListAgentEmail);
             }
-            static readonly string template_pdf = Log.GetAppCommonDataDir() + "\\RPA template - Acrobat forms.pdf";
-
+            static readonly string template_pdf = Log.GetAppCommonDataDir() + "\\RPA.pdf";
         }
 
         static void set_field(AcroFields form, string field_key, string value)
@@ -429,7 +444,7 @@ Developed by: www.cliversoft.com";
             pcb.AddImage(i);
         }
         static System.Drawing.Size image_max_size = new System.Drawing.Size(200, 50);
-        
+
         class PdfItem : InputItem
         {
             public readonly DataItem __ParentItem;
@@ -447,64 +462,6 @@ Developed by: www.cliversoft.com";
                 cb.send(Pdf, __ParentItem.ListAgentEmail);
             }
         }
-
-        //static bool send_pdf(string pdf = null, string email = null)
-        //{
-        //    lock (pdfs2email)
-        //    {
-        //        if (pdf != null)
-        //            pdfs2email[pdf] = email;
-        //        pdf = get_next_pdf(pdf == null);
-        //        if (pdf != null)
-        //            send(pdf, pdfs2email[pdf]);
-        //        return pdf != null;
-        //    }
-        //}
-
-        //static string get_next_pdf(bool blocking_wait)
-        //{
-        //    lock (pdfs2email)
-        //    {
-        //        TimeSpan min_wait_period = TimeSpan.MaxValue;
-        //        string min_wait_period_pdf = null;
-        //        foreach (string pdf in pdfs2email.Keys)
-        //        {
-        //            if (pdf == null)
-        //                continue;
-        //            int delay = Program.Settings.MinRandomDelayMss + (int)((float)(Program.Settings.MaxRandomDelayMss - Program.Settings.MinRandomDelayMss) * random.NextDouble());
-        //            DateTime sent_time;
-        //            if (!emails2sent_time.TryGetValue(pdfs2email[pdf], out sent_time))
-        //            {
-        //                emails2sent_time[pdfs2email[pdf]] = DateTime.Now;
-        //                pdfs2email[pdf] = null;
-        //                return pdf;
-        //            }
-        //            TimeSpan wait_period = sent_time.AddMilliseconds(delay) - DateTime.Now;
-        //            if (wait_period < TimeSpan.FromSeconds(0))
-        //            {
-        //                emails2sent_time[pdfs2email[pdf]] = DateTime.Now;
-        //                pdfs2email[pdf] = null;
-        //                return pdf;
-        //            }
-        //            else if (blocking_wait && wait_period > min_wait_period)
-        //            {
-        //                min_wait_period = wait_period;
-        //                min_wait_period_pdf = pdf;
-        //            }
-        //        }
-        //        if (blocking_wait && min_wait_period_pdf != null)
-        //        {
-        //            Thread.Sleep(min_wait_period);
-        //            emails2sent_time[pdfs2email[min_wait_period_pdf]] = DateTime.Now;
-        //            pdfs2email[min_wait_period_pdf] = null;
-        //            return min_wait_period_pdf;
-        //        }
-        //        return null;
-        //    }
-        //}
-        static Random random = new Random();
-        static Dictionary<string, DateTime> emails2sent_time = new Dictionary<string, DateTime>();
-        //static SingleValueWorkItemDictionary<SingleValueWorkItem<string>, string> pdfs2email = Session.GetSingleValueWorkItemDictionary<SingleValueWorkItem<string>, string>();
 
         void send(string pdf, string to_email)
         {
