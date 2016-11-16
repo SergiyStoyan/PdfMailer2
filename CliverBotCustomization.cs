@@ -228,11 +228,16 @@ Created: " + Cliver.Bot.Program.GetCustomizationCompiledTime().ToString() + @"
 Developed by: www.cliversoft.com";
         }
 
+        new static public void FatalError(string message)
+        {
+        }
+
         new static public void SessionCreating()
         {
             InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 11, 25);
 
             Cliver.BotGui.Program.BindProgressBar2InputItemQueue<EmailItem>();
+            BotCycle.TreatExceptionAsFatal = true;
             Session.GetInputItemQueue<EmailItem>().PickNext = pick_next_PdfItem;
         }
 
@@ -321,6 +326,7 @@ Developed by: www.cliversoft.com";
 
             override public void PROCESSOR(BotCycle bc)
             {
+               // throw new Session.FatalException("fdsfsfs");
                 CustomBot cb = (CustomBot)bc.Bot;
 
                 string d = Log.OutputDir + "\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
@@ -433,7 +439,6 @@ Developed by: www.cliversoft.com";
                 }
 
                 bc.Add(new EmailItem(output_pdf, output_addendum_pdf));
-                //CustomBot.send_pdf(output_pdf, ListAgentEmail);
             }
             static readonly string template_pdf = Log.AppDir + "\\RPA.pdf";
             static readonly string template_addendum_pdf = Log.AppDir + "\\addendum.pdf";
