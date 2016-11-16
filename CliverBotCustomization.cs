@@ -30,15 +30,6 @@ using System.Reflection;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
-
-/*
-TBD:
-- serialize InputItems into json and thus allow arrays etc
-- FatalError()
-- change Cliver.Bot virtual members to event subscriptions
-- change settings engine to json
-- separate Web from Bot
-*/
 namespace Cliver.PdfMailer2
 {
     public class Program
