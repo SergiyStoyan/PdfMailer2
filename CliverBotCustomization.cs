@@ -392,12 +392,14 @@ Developed by: www.cliversoft.com";
                     {
                         var pcb = ps.GetOverContent(i);
                         add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.InitialFile), new System.Drawing.Point(497, 67));
-                        add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(536, 67));
+                        if(Program.Settings.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(536, 67));
                     }
                     {
                         var pcb = ps.GetOverContent(9);
                         add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.SignatureFile), new System.Drawing.Point(60, 190));
-                        add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(60, 155));
+                        if (Program.Settings.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(60, 155));
                     }
 
                     ps.Close();
@@ -417,7 +419,10 @@ Developed by: www.cliversoft.com";
                     //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
                     //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
 
-                    set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Program.Settings.BuyerProfile.Name + " " + Program.Settings.BuyerProfile.CoBuyerName);
+                    if (Program.Settings.BuyerProfile.UseCoBuyer)
+                        set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Program.Settings.BuyerProfile.Name + " and " + Program.Settings.BuyerProfile.CoBuyerName);
+                    else
+                        set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Program.Settings.BuyerProfile.Name);
                     set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
                     set_field(ps.AcroFields, "<Address> <UnitNumber> <City/Town> NV <Zip Code>", Address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
                     set_field(ps.AcroFields, "Agent Name", Program.Settings.AgentProfile.Name);
