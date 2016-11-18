@@ -19,7 +19,7 @@ namespace Cliver.PdfMailer2
             Init(NAME);
         }
 
-        override protected void set_tool_tip()
+        override protected void SetToolTip()
         {
             //toolTip1.SetToolTip(this.DbConnectionString, "Database connection string");
         }

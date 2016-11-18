@@ -195,7 +195,7 @@ namespace Cliver.PdfMailer2
     {
         override public string[] GetConfigControlNames()
         {
-            return new string[] { "General", "Input", "Output", /*"Web", "Browser", "Spider", "Proxy",*/ "Log" };
+            return new string[] { "General", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log" };
         }
 
         override public Cliver.BaseForm GetToolsForm()
@@ -232,18 +232,17 @@ Developed by: www.cliversoft.com";
             Session.GetInputItemQueue<EmailItem>().PickNext = pick_next_PdfItem;
         }
 
-        static InputItem pick_next_PdfItem()
+        static InputItem pick_next_PdfItem(System.Collections.IEnumerator items_ennumerator)
         {
             lock (emails2sent_time)
             {
                 int delay = Program.Settings.MinRandomDelayMss + (int)((float)(Program.Settings.MaxRandomDelayMss - Program.Settings.MinRandomDelayMss) * random.NextDouble());
                 TimeSpan min_wait_period = TimeSpan.MaxValue;
                 EmailItem min_wait_period_ei = null;
-                System.Collections.IEnumerator ie = Session.GetInputItemQueue<EmailItem>().GetEnnumerator();
-                for (ie.Reset(); ie.MoveNext();)
+                for (items_ennumerator.Reset(); items_ennumerator.MoveNext();)
                 {
-                    EmailItem ei = ((EmailItem)ie.Current);
-                    string to_email = ei.__ParentItem.ListAgentEmail;
+                    EmailItem ei = ((EmailItem)items_ennumerator.Current);
+                    string to_email = ei.Parent.ListAgentEmail;
                     DateTime sent_time;
                     if (!emails2sent_time.TryGetValue(to_email, out sent_time))
                     {
@@ -265,7 +264,7 @@ Developed by: www.cliversoft.com";
                 if (min_wait_period_ei != null && Session.GetInputItemQueue<DataItem>().CountOfNew < 1)
                 {
                     Thread.Sleep(min_wait_period);
-                    emails2sent_time[min_wait_period_ei.__ParentItem.ListAgentEmail] = DateTime.Now;
+                    emails2sent_time[min_wait_period_ei.Parent.ListAgentEmail] = DateTime.Now;
                     return min_wait_period_ei;
                 }
                 return null;
@@ -472,7 +471,7 @@ Developed by: www.cliversoft.com";
 
         class EmailItem : InputItem
         {
-            public readonly DataItem __ParentItem;
+            public DataItem Parent { get { return (DataItem)__ParentItem; } }
             public readonly string Pdf;
             public readonly string Addendum;
 
@@ -486,7 +485,7 @@ Developed by: www.cliversoft.com";
             {
                 CustomBot cb = (CustomBot)bc.Bot;
 
-                cb.send( __ParentItem.ListAgentEmail, Pdf, Addendum);
+                cb.send(Parent.ListAgentEmail, Pdf, Addendum);
             }
         }
 
