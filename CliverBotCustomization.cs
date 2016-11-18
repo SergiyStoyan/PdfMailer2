@@ -37,15 +37,22 @@ namespace Cliver.PdfMailer2
         [STAThread]
         static void Main()
         {
-            //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
-            Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
+            try
+            {
+                //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
+                Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
 
-            SettingsForm sf = new SettingsForm();
-            //Application.Run(sf);
+                SettingsForm sf = new SettingsForm();
+                //Application.Run(sf);
+            }
+            catch(Exception e)
+            {
+                LogMessage.Error(e);
+            }
         }
-        internal static readonly SettingsClass Settings = Cliver.Serializable.Load<SettingsClass>("Settings.txt");
+        internal static readonly SettingsClass Settings;// = Cliver.Serializable.Load<SettingsClass>("Settings.txt");
 
-        public class SettingsClass : Serializable
+        public class SettingsClass : Settings
         {
             public Dictionary<string, PartyProfile> PartyProfileNames2PartyProfile = new Dictionary<string, PartyProfile>();
             public Dictionary<string, BuyerProfile> BuyerProfileNames2BuyerProfile = new Dictionary<string, BuyerProfile>();
@@ -65,6 +72,7 @@ namespace Cliver.PdfMailer2
             public string EmailServerProfileName;
             public int[] SelectedAttachmentIds = new int[0];
 
+            [ScriptIgnore]
             public PartyProfile PartyProfile
             {
                 get
@@ -72,6 +80,7 @@ namespace Cliver.PdfMailer2
                     return PartyProfileNames2PartyProfile[PartyProfileName];
                 }
             }
+            [ScriptIgnore]
             public BuyerProfile BuyerProfile
             {
                 get
@@ -79,6 +88,7 @@ namespace Cliver.PdfMailer2
                     return BuyerProfileNames2BuyerProfile[BuyerProfileName];
                 }
             }
+            [ScriptIgnore]
             public BrokerProfile BrokerProfile
             {
                 get
@@ -86,6 +96,7 @@ namespace Cliver.PdfMailer2
                     return BrokerProfileNames2BrokerProfile[BrokerProfileName];
                 }
             }
+            [ScriptIgnore]
             public AgentProfile AgentProfile
             {
                 get
@@ -93,6 +104,7 @@ namespace Cliver.PdfMailer2
                     return AgentProfileNames2AgentProfile[AgentProfileName];
                 }
             }
+            [ScriptIgnore]
             public EscrowProfile EscrowProfile
             {
                 get
@@ -100,6 +112,7 @@ namespace Cliver.PdfMailer2
                     return EscrowProfileNames2EscrowProfile[EscrowProfileName];
                 }
             }
+            [ScriptIgnore]
             public EmailTemplateProfile EmailTemplateProfile
             {
                 get
@@ -107,6 +120,7 @@ namespace Cliver.PdfMailer2
                     return EmailTemplateProfileNames2EmailTemplateProfileProfile[EmailTemplateProfileName];
                 }
             }
+            [ScriptIgnore]
             public EmailServerProfile EmailServerProfile
             {
                 get
