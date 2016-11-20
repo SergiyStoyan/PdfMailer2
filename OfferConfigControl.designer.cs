@@ -58,7 +58,7 @@ namespace Cliver.PdfMailer2
             // group_box
             // 
             this.group_box.Controls.Add(this.tabControl4);
-            this.group_box.Size = new System.Drawing.Size(479, 317);
+            this.group_box.Size = new System.Drawing.Size(498, 313);
             this.group_box.Text = "TestCustom";
             // 
             // toolTip1
@@ -77,7 +77,7 @@ namespace Cliver.PdfMailer2
             this.tabControl4.Location = new System.Drawing.Point(3, 16);
             this.tabControl4.Name = "tabControl4";
             this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(473, 298);
+            this.tabControl4.Size = new System.Drawing.Size(492, 294);
             this.tabControl4.TabIndex = 65;
             // 
             // tabPage7
@@ -89,7 +89,7 @@ namespace Cliver.PdfMailer2
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(465, 269);
+            this.tabPage7.Size = new System.Drawing.Size(484, 265);
             this.tabPage7.TabIndex = 0;
             this.tabPage7.Text = "Offer";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -138,14 +138,14 @@ namespace Cliver.PdfMailer2
             this.tabPage9.Location = new System.Drawing.Point(4, 25);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(465, 269);
+            this.tabPage9.Size = new System.Drawing.Size(484, 265);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "Attachments and Addendums";
             this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // DeleteAttachment
             // 
-            this.DeleteAttachment.Location = new System.Drawing.Point(512, 281);
+            this.DeleteAttachment.Location = new System.Drawing.Point(452, 235);
             this.DeleteAttachment.Name = "DeleteAttachment";
             this.DeleteAttachment.Size = new System.Drawing.Size(24, 23);
             this.DeleteAttachment.TabIndex = 65;
@@ -154,7 +154,7 @@ namespace Cliver.PdfMailer2
             // 
             // bImportAttachment
             // 
-            this.bImportAttachment.Location = new System.Drawing.Point(482, 281);
+            this.bImportAttachment.Location = new System.Drawing.Point(422, 235);
             this.bImportAttachment.Name = "bImportAttachment";
             this.bImportAttachment.Size = new System.Drawing.Size(24, 23);
             this.bImportAttachment.TabIndex = 64;
@@ -176,7 +176,7 @@ namespace Cliver.PdfMailer2
             this.Attachments.HorizontalScrollbar = true;
             this.Attachments.Location = new System.Drawing.Point(6, 105);
             this.Attachments.Name = "Attachments";
-            this.Attachments.Size = new System.Drawing.Size(470, 199);
+            this.Attachments.Size = new System.Drawing.Size(470, 124);
             this.Attachments.TabIndex = 63;
             // 
             // ShortSaleAddendum
@@ -219,7 +219,7 @@ namespace Cliver.PdfMailer2
             this.tabPage11.Location = new System.Drawing.Point(4, 25);
             this.tabPage11.Name = "tabPage11";
             this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(465, 269);
+            this.tabPage11.Size = new System.Drawing.Size(484, 265);
             this.tabPage11.TabIndex = 2;
             this.tabPage11.Text = "Email Template";
             this.tabPage11.UseVisualStyleBackColor = true;
@@ -231,7 +231,7 @@ namespace Cliver.PdfMailer2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EmailBody.Location = new System.Drawing.Point(4, 133);
             this.EmailBody.Name = "EmailBody";
-            this.EmailBody.Size = new System.Drawing.Size(387, 73);
+            this.EmailBody.Size = new System.Drawing.Size(372, 48);
             this.EmailBody.TabIndex = 59;
             this.EmailBody.Text = "";
             // 
@@ -259,7 +259,7 @@ namespace Cliver.PdfMailer2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EmailSubject.Location = new System.Drawing.Point(6, 81);
             this.EmailSubject.Name = "EmailSubject";
-            this.EmailSubject.Size = new System.Drawing.Size(385, 20);
+            this.EmailSubject.Size = new System.Drawing.Size(370, 20);
             this.EmailSubject.TabIndex = 0;
             // 
             // EmailTemplateProfiles
@@ -269,14 +269,14 @@ namespace Cliver.PdfMailer2
             this.EmailTemplateProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.EmailTemplateProfiles.Location = new System.Drawing.Point(3, 3);
             this.EmailTemplateProfiles.Name = "EmailTemplateProfiles";
-            this.EmailTemplateProfiles.Size = new System.Drawing.Size(459, 31);
+            this.EmailTemplateProfiles.Size = new System.Drawing.Size(478, 31);
             this.EmailTemplateProfiles.TabIndex = 63;
             // 
             // OfferConfigControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Name = "OfferConfigControl";
-            this.Size = new System.Drawing.Size(479, 317);
+            this.Size = new System.Drawing.Size(498, 313);
             this.group_box.ResumeLayout(false);
             this.tabControl4.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);

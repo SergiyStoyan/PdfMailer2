@@ -25,8 +25,6 @@ namespace Cliver.PdfMailer2
 
         override protected void Set()
         {
-            set_group_box_values_from_config();
-
             EmailTemplateProfiles.Add = EmailTemplateProfiles_Add;
             EmailTemplateProfiles.Select = EmailTemplateProfiles_Select;
             EmailTemplateProfiles.Delete = () => { Settings.Offer.EmailTemplateProfileNames2EmailTemplateProfileProfile.Remove(EmailTemplateProfiles.Names.Text); };
@@ -34,11 +32,17 @@ namespace Cliver.PdfMailer2
                 EmailTemplateProfiles.Names.Items.Add(name);
 
             EmailTemplateProfiles.Names.SelectedItem = Settings.Offer.EmailTemplateProfileName;
-            
+
             foreach (string file in Settings.Offer.AttachmentFiles)
                 Attachments.Items.Add(file);
             foreach (int id in Settings.Offer.SelectedAttachmentIds)
                 Attachments.SetItemChecked(id, true);
+
+            CloseOfEscrow.Value = Settings.Offer.CloseOfEscrow;
+            Emd.Text = Settings.Offer.Emd;
+            ShortSaleAddendum.Checked = Settings.Offer.ShortSaleAddendum;
+            OtherAddendum1.Checked = Settings.Offer.OtherAddendum1;
+            OtherAddendum2.Checked = Settings.Offer.OtherAddendum2;
         }
 
         private bool EmailTemplateProfiles_Add()
@@ -107,27 +111,38 @@ namespace Cliver.PdfMailer2
             if (!EmailTemplateProfiles_Add())
                 return false;
 
+            if (string.IsNullOrWhiteSpace(EmailTemplateProfiles.Names.Text))
+            {
+                Message.Exclaim(m1 + "EmailServerProfileName" + m2);
+                return false;
+            }
+            Settings.Offer.EmailTemplateProfileName = EmailTemplateProfiles.Names.Text;
+
             if (CloseOfEscrow.Value == null)
             {
                 Message.Exclaim(m1 + "CloseOfEscrow" + m2);
                 return false;
             }
+            Settings.Offer.CloseOfEscrow = CloseOfEscrow.Value;
 
             if (string.IsNullOrWhiteSpace(Emd.Text))
             {
                 Message.Exclaim(m1 + "Emd" + m2);
                 return false;
-            }         
-            
+            }
+            Settings.Offer.Emd = Emd.Text;
+
+            Settings.Offer.ShortSaleAddendum = ShortSaleAddendum.Checked;
+            Settings.Offer.OtherAddendum1 = OtherAddendum1.Checked;
+            Settings.Offer.OtherAddendum2 = OtherAddendum2.Checked;
+
             Settings.Offer.SelectedAttachmentIds = new int[Attachments.CheckedIndices.Count];
             Settings.Offer.AttachmentFiles = new string[Attachments.Items.Count];
             Attachments.Items.CopyTo(Settings.Offer.AttachmentFiles, 0);
             Settings.Offer.SelectedAttachmentIds = new int[Attachments.CheckedIndices.Count];
             Attachments.CheckedIndices.CopyTo(Settings.Offer.SelectedAttachmentIds, 0);
 
-            put_control_values_to_config(Name, group_box);
             return true;
         }
     }
 }
-

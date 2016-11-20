@@ -56,10 +56,10 @@ namespace Cliver.PdfMailer2
                 EscrowProfiles.Names.Items.Add(name);
 
             PartyProfiles.Names.SelectedItem = Settings.Parties.PartyProfileName;
-            BuyerProfiles.Names.SelectedItem = Settings.Parties.BuyerProfileName;
-            BrokerProfiles.Names.SelectedItem = Settings.Parties.BrokerProfileName;
-            AgentProfiles.Names.SelectedItem = Settings.Parties.AgentProfileName;
-            EscrowProfiles.Names.SelectedItem = Settings.Parties.EscrowProfileName;
+            BuyerProfiles.Names.SelectedItem = Settings.Parties.BuyerProfile._ProfileName;
+            BrokerProfiles.Names.SelectedItem = Settings.Parties.BrokerProfile._ProfileName;
+            AgentProfiles.Names.SelectedItem = Settings.Parties.AgentProfile._ProfileName;
+            EscrowProfiles.Names.SelectedItem = Settings.Parties.EscrowProfile._ProfileName;
         }
 
         private void EscrowProfiles_Select()
@@ -409,6 +409,7 @@ namespace Cliver.PdfMailer2
             }
 
             Settings.Parties.PartyProfileNames2PartyProfile[PartyProfiles.Names.Text] = p;
+            Settings.Parties.PartyProfileName = PartyProfiles.Names.Text;
             return true;
         }
 

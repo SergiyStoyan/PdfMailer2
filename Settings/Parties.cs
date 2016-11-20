@@ -23,10 +23,6 @@ namespace Cliver.PdfMailer2
             public Dictionary<string, AgentProfile> AgentProfileNames2AgentProfile = new Dictionary<string, AgentProfile>();
             public Dictionary<string, EscrowProfile> EscrowProfileNames2EscrowProfile = new Dictionary<string, EscrowProfile>();
             public string PartyProfileName;
-            public string BuyerProfileName;
-            public string BrokerProfileName;
-            public string AgentProfileName;
-            public string EscrowProfileName;
             [ScriptIgnore]
             public PartyProfile PartyProfile
             {
@@ -40,7 +36,7 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
-                    return BuyerProfileNames2BuyerProfile[BuyerProfileName];
+                    return BuyerProfileNames2BuyerProfile[PartyProfile.BuyerProfileName];
                 }
             }
             [ScriptIgnore]
@@ -48,7 +44,7 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
-                    return BrokerProfileNames2BrokerProfile[BrokerProfileName];
+                    return BrokerProfileNames2BrokerProfile[PartyProfile.BrokerProfileName];
                 }
             }
             [ScriptIgnore]
@@ -56,7 +52,7 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
-                    return AgentProfileNames2AgentProfile[AgentProfileName];
+                    return AgentProfileNames2AgentProfile[PartyProfile.AgentProfileName];
                 }
             }
             [ScriptIgnore]
@@ -64,7 +60,7 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
-                    return EscrowProfileNames2EscrowProfile[EscrowProfileName];
+                    return EscrowProfileNames2EscrowProfile[PartyProfile.EscrowProfileName];
                 }
             }
         }

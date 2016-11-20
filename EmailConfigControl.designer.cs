@@ -46,6 +46,7 @@ namespace Cliver.PdfMailer2
             this.MaxRandomDelayMss = new System.Windows.Forms.TextBox();
             this.MinRandomDelayMss = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
+            this.group_box.SuspendLayout();
             this.tabControl3.SuspendLayout();
             this.tabPage10.SuspendLayout();
             this.groupBox15.SuspendLayout();
@@ -54,7 +55,8 @@ namespace Cliver.PdfMailer2
             // 
             // group_box
             // 
-            this.group_box.Size = new System.Drawing.Size(460, 332);
+            this.group_box.Controls.Add(this.tabControl3);
+            this.group_box.Size = new System.Drawing.Size(460, 335);
             this.group_box.Text = "TestCustom";
             // 
             // toolTip1
@@ -69,10 +71,10 @@ namespace Cliver.PdfMailer2
             this.tabControl3.Controls.Add(this.tabPage10);
             this.tabControl3.Controls.Add(this.tabPage12);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl3.Location = new System.Drawing.Point(0, 0);
+            this.tabControl3.Location = new System.Drawing.Point(3, 16);
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
-            this.tabControl3.Size = new System.Drawing.Size(460, 332);
+            this.tabControl3.Size = new System.Drawing.Size(454, 316);
             this.tabControl3.TabIndex = 144;
             // 
             // tabPage10
@@ -84,7 +86,7 @@ namespace Cliver.PdfMailer2
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(452, 303);
+            this.tabPage10.Size = new System.Drawing.Size(446, 287);
             this.tabPage10.TabIndex = 1;
             this.tabPage10.Text = "Email";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -177,7 +179,7 @@ namespace Cliver.PdfMailer2
             this.EmailServerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.EmailServerProfiles.Location = new System.Drawing.Point(3, 3);
             this.EmailServerProfiles.Name = "EmailServerProfiles";
-            this.EmailServerProfiles.Size = new System.Drawing.Size(446, 31);
+            this.EmailServerProfiles.Size = new System.Drawing.Size(440, 31);
             this.EmailServerProfiles.TabIndex = 59;
             // 
             // tabPage12
@@ -241,11 +243,9 @@ namespace Cliver.PdfMailer2
             // EmailConfigControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.Controls.Add(this.tabControl3);
             this.Name = "EmailConfigControl";
-            this.Size = new System.Drawing.Size(460, 332);
-            this.Controls.SetChildIndex(this.group_box, 0);
-            this.Controls.SetChildIndex(this.tabControl3, 0);
+            this.Size = new System.Drawing.Size(460, 335);
+            this.group_box.ResumeLayout(false);
             this.tabControl3.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
             this.tabPage10.PerformLayout();

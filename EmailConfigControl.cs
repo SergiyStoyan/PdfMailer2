@@ -25,8 +25,6 @@ namespace Cliver.PdfMailer2
 
         override protected void Set()
         {
-            set_group_box_values_from_config();
-
             EmailServerProfiles.Add = EmailServerProfiles_Add;
             EmailServerProfiles.Select = EmailServerProfiles_Select;
             EmailServerProfiles.Delete = () => { Settings.Email.EmailServerProfileNames2EmailServerProfile.Remove(EmailServerProfiles.Names.Text); };
@@ -34,7 +32,11 @@ namespace Cliver.PdfMailer2
                 EmailServerProfiles.Names.Items.Add(name);
 
             EmailServerProfiles.Names.SelectedItem = Settings.Email.EmailServerProfileName;
-            
+
+            UseRandomDelay.Checked = Settings.Email.UseRandomDelay;
+            MinRandomDelayMss.Text = Settings.Email.MinRandomDelayMss.ToString();
+            MaxRandomDelayMss.Text = Settings.Email.MaxRandomDelayMss.ToString();
+
             UseRandomDelay_CheckedChanged(null, null);
         }
 
@@ -122,7 +124,7 @@ namespace Cliver.PdfMailer2
                 return false;
             }
             Settings.Email.EmailServerProfileName = EmailServerProfiles.Names.Text;
-
+            
             if (UseRandomDelay.Checked)
             {
                 if (string.IsNullOrWhiteSpace(MinRandomDelayMss.Text))
@@ -155,8 +157,7 @@ namespace Cliver.PdfMailer2
             }
 
             Settings.Email.UseRandomDelay = UseRandomDelay.Checked;
-
-            put_control_values_to_config(Name, group_box);
+            
             return true;
         }
     }
