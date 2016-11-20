@@ -41,167 +41,11 @@ namespace Cliver.PdfMailer2
             {
                 //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
                 Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
-
-                SettingsForm sf = new SettingsForm();
-                //Application.Run(sf);
             }
             catch(Exception e)
             {
                 LogMessage.Error(e);
             }
-        }
-        internal static readonly SettingsClass Settings;// = Cliver.Serializable.Load<SettingsClass>("Settings.txt");
-
-        public class SettingsClass : Settings
-        {
-            public Dictionary<string, PartyProfile> PartyProfileNames2PartyProfile = new Dictionary<string, PartyProfile>();
-            public Dictionary<string, BuyerProfile> BuyerProfileNames2BuyerProfile = new Dictionary<string, BuyerProfile>();
-            public Dictionary<string, BrokerProfile> BrokerProfileNames2BrokerProfile = new Dictionary<string, BrokerProfile>();
-            public Dictionary<string, AgentProfile> AgentProfileNames2AgentProfile = new Dictionary<string, AgentProfile>();
-            public Dictionary<string, EscrowProfile> EscrowProfileNames2EscrowProfile = new Dictionary<string, EscrowProfile>();
-            public Dictionary<string, EmailTemplateProfile> EmailTemplateProfileNames2EmailTemplateProfileProfile = new Dictionary<string, EmailTemplateProfile>();
-            public Dictionary<string, EmailServerProfile> EmailServerProfileNames2EmailServerProfile = new Dictionary<string, EmailServerProfile>();
-            public string[] AttachmentFiles = new string[0];
-
-            public string PartyProfileName;
-            public string BuyerProfileName;
-            public string BrokerProfileName;
-            public string AgentProfileName;
-            public string EscrowProfileName;
-            public string EmailTemplateProfileName;
-            public string EmailServerProfileName;
-            public int[] SelectedAttachmentIds = new int[0];
-
-            [ScriptIgnore]
-            public PartyProfile PartyProfile
-            {
-                get
-                {
-                    return PartyProfileNames2PartyProfile[PartyProfileName];
-                }
-            }
-            [ScriptIgnore]
-            public BuyerProfile BuyerProfile
-            {
-                get
-                {
-                    return BuyerProfileNames2BuyerProfile[BuyerProfileName];
-                }
-            }
-            [ScriptIgnore]
-            public BrokerProfile BrokerProfile
-            {
-                get
-                {
-                    return BrokerProfileNames2BrokerProfile[BrokerProfileName];
-                }
-            }
-            [ScriptIgnore]
-            public AgentProfile AgentProfile
-            {
-                get
-                {
-                    return AgentProfileNames2AgentProfile[AgentProfileName];
-                }
-            }
-            [ScriptIgnore]
-            public EscrowProfile EscrowProfile
-            {
-                get
-                {
-                    return EscrowProfileNames2EscrowProfile[EscrowProfileName];
-                }
-            }
-            [ScriptIgnore]
-            public EmailTemplateProfile EmailTemplateProfile
-            {
-                get
-                {
-                    return EmailTemplateProfileNames2EmailTemplateProfileProfile[EmailTemplateProfileName];
-                }
-            }
-            [ScriptIgnore]
-            public EmailServerProfile EmailServerProfile
-            {
-                get
-                {
-                    return EmailServerProfileNames2EmailServerProfile[EmailServerProfileName];
-                }
-            }
-
-            public DateTime CloseOfEscrow = DateTime.Now;
-            public string Emd;
-            public bool ShortSaleAddendum;
-            public bool OtherAddendum1;
-            public bool OtherAddendum2;
-            public bool UseRandomDelay;
-            public int MinRandomDelayMss;
-            public int MaxRandomDelayMss;
-        }
-
-        public abstract class Profile
-        {
-            public string _ProfileName;
-        }
-
-        public class EmailTemplateProfile : Profile
-        {
-            public string Subject;
-            public string Body;
-        }
-
-        public class EmailServerProfile : Profile
-        {
-            public string SmtpHost;
-            public int SmtpPort;
-            public string SmtpPassword;
-            public string SenderEmail;
-        }
-
-        public class PartyProfile : Profile
-        {
-            public string BuyerProfileName;
-            public string BrokerProfileName;
-            public string AgentProfileName;
-            public string EscrowProfileName;
-        }
-
-        public class BuyerProfile : Profile
-        {
-            public string Name;
-            public string InitialFile;
-            public string SignatureFile;
-            public bool UseCoBuyer;
-            public string CoBuyerName;
-            public string CoBuyerInitialFile;
-            public string CoBuyerSignatureFile;
-        }
-
-        public class AgentProfile : Profile
-        {
-            public string Name;
-            public string LicenseNo;
-            public string Email;
-            public string InitialFile;
-            public string SignatureFile;
-        }
-
-        public class BrokerProfile : Profile
-        {
-            public string Name;
-            public string LicenseNo;
-            public string Company;
-            public string Address;
-            public string City;
-            public string State;
-            public string Zip;
-            public string Phone;
-        }
-
-        public class EscrowProfile : Profile
-        {
-            public string TitleCompany;
-            public string Officer;
         }
     }
 
@@ -209,13 +53,13 @@ namespace Cliver.PdfMailer2
     {
         override public string[] GetConfigControlNames()
         {
-            return new string[] { "General", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log" };
+            return new string[] { "Parties", "Offer", "Email", "Engine", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log", };
         }
 
-        override public Cliver.BaseForm GetToolsForm()
-        {
-            return new SettingsForm();
-        }
+        //override public Cliver.BaseForm GetToolsForm()
+        //{
+        //    return new SettingsForm();
+        //}
 
         //override public Type GetBotThreadControlType()
         //{
@@ -250,7 +94,7 @@ Developed by: www.cliversoft.com";
         {
             lock (emails2sent_time)
             {
-                int delay = Program.Settings.MinRandomDelayMss + (int)((float)(Program.Settings.MaxRandomDelayMss - Program.Settings.MinRandomDelayMss) * random.NextDouble());
+                int delay = Settings.Email.MinRandomDelayMss + (int)((float)(Settings.Email.MaxRandomDelayMss - Settings.Email.MinRandomDelayMss) * random.NextDouble());
                 TimeSpan min_wait_period = TimeSpan.MaxValue;
                 EmailItem min_wait_period_ei = null;
                 for (items_ennumerator.Reset(); items_ennumerator.MoveNext();)
@@ -354,7 +198,7 @@ Developed by: www.cliversoft.com";
                     //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
 
                     set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
-                    set_field(ps.AcroFields, "Buyer Name", Program.Settings.BuyerProfile.Name);
+                    set_field(ps.AcroFields, "Buyer Name", Settings.Parties.BuyerProfile.Name);
                     set_field(ps.AcroFields, "Address and Unit Number", Address + " " + UnitNumber);
                     set_field(ps.AcroFields, "City/Town", City);
                     //set_field(ps.AcroFields, "CLARK", );
@@ -364,55 +208,55 @@ Developed by: www.cliversoft.com";
                     string oa = Regex.Replace(OfferAmt, @"[^\d]", "");
                     if (oa.Length > 0)
                         set_field(ps.AcroFields, "OfferAmt in words", ConvertionRoutines.NumberToWords(int.Parse(oa)));
-                    set_field(ps.AcroFields, "EMD", Program.Settings.Emd);
+                    set_field(ps.AcroFields, "EMD", Settings.Offer.Emd);
                     //set_field(ps.AcroFields, "Check Box1", );
                     //set_field(ps.AcroFields, "Balance", );
-                    set_field(ps.AcroFields, "Co Buyer Name", Program.Settings.BuyerProfile.CoBuyerName);
+                    set_field(ps.AcroFields, "Co Buyer Name", Settings.Parties.BuyerProfile.CoBuyerName);
                     set_field(ps.AcroFields, "<address> <UnitNumber> <City/town> NV <ZIP Code>", Address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
                     set_field(ps.AcroFields, "ML#", ML_Id);
-                    set_field(ps.AcroFields, "Title Company", Program.Settings.EscrowProfile.TitleCompany);
-                    set_field(ps.AcroFields, "Escrow Officer", Program.Settings.EscrowProfile.Officer);
-                    set_field(ps.AcroFields, "Close of Escrow", Program.Settings.CloseOfEscrow.ToShortDateString());
+                    set_field(ps.AcroFields, "Title Company", Settings.Parties.EscrowProfile.TitleCompany);
+                    set_field(ps.AcroFields, "Escrow Officer", Settings.Parties.EscrowProfile.Officer);
+                    set_field(ps.AcroFields, "Close of Escrow", Settings.Offer.CloseOfEscrow.ToShortDateString());
                     set_field(ps.AcroFields, "ADDITIONAL TERMS", AdditionalTerms);
                     set_field(ps.AcroFields, "Additional  terms", AdditionalTerms);
-                    set_field(ps.AcroFields, "Buyer Broker", Program.Settings.BrokerProfile.Name);
-                    set_field(ps.AcroFields, "Agent Name", Program.Settings.AgentProfile.Name);
-                    set_field(ps.AcroFields, "Company Name", Program.Settings.BrokerProfile.Company);
-                    set_field(ps.AcroFields, "Agents License", Program.Settings.AgentProfile.LicenseNo);
-                    set_field(ps.AcroFields, "Brokers License", Program.Settings.BrokerProfile.LicenseNo);
-                    set_field(ps.AcroFields, "Office Address", Program.Settings.BrokerProfile.Address);
-                    set_field(ps.AcroFields, "Office Phone", Program.Settings.BrokerProfile.Phone);
-                    set_field(ps.AcroFields, "City State Zip", Program.Settings.BrokerProfile.City + " " + Program.Settings.BrokerProfile.State + " " + Program.Settings.BrokerProfile.Zip);
-                    set_field(ps.AcroFields, "Agent Email", Program.Settings.AgentProfile.Email);
+                    set_field(ps.AcroFields, "Buyer Broker", Settings.Parties.BrokerProfile.Name);
+                    set_field(ps.AcroFields, "Agent Name", Settings.Parties.AgentProfile.Name);
+                    set_field(ps.AcroFields, "Company Name", Settings.Parties.BrokerProfile.Company);
+                    set_field(ps.AcroFields, "Agents License", Settings.Parties.AgentProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Brokers License", Settings.Parties.BrokerProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Office Address", Settings.Parties.BrokerProfile.Address);
+                    set_field(ps.AcroFields, "Office Phone", Settings.Parties.BrokerProfile.Phone);
+                    set_field(ps.AcroFields, "City State Zip", Settings.Parties.BrokerProfile.City + " " + Settings.Parties.BrokerProfile.State + " " + Settings.Parties.BrokerProfile.Zip);
+                    set_field(ps.AcroFields, "Agent Email", Settings.Parties.AgentProfile.Email);
                     //set_field(ps.AcroFields, "Response Month", );
                     //set_field(ps.AcroFields, "Response day", );
                     //set_field(ps.AcroFields, "year", );
                     //set_field(ps.AcroFields,  "Date_2", );
                     //set_field(ps.AcroFields, "Date_3", );
                     //set_field(ps.AcroFields, "Sellers Broker", );
-                    set_field(ps.AcroFields, "Agents Name_2", Program.Settings.AgentProfile.Name);
-                    set_field(ps.AcroFields, "Company Name_2", Program.Settings.BrokerProfile.Company);
-                    set_field(ps.AcroFields, "Agents License Number_2", Program.Settings.AgentProfile.LicenseNo);
-                    set_field(ps.AcroFields, "Brokers License Number_2", Program.Settings.BrokerProfile.LicenseNo);
-                    set_field(ps.AcroFields, "Office Address_2", Program.Settings.BrokerProfile.Address);
-                    set_field(ps.AcroFields, "Phone_2", Program.Settings.BrokerProfile.Phone);
-                    set_field(ps.AcroFields, "City State Zip_2", Program.Settings.BrokerProfile.Zip);
-                    set_field(ps.AcroFields, "Email_2", Program.Settings.AgentProfile.Email);
+                    set_field(ps.AcroFields, "Agents Name_2", Settings.Parties.AgentProfile.Name);
+                    set_field(ps.AcroFields, "Company Name_2", Settings.Parties.BrokerProfile.Company);
+                    set_field(ps.AcroFields, "Agents License Number_2", Settings.Parties.AgentProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Brokers License Number_2", Settings.Parties.BrokerProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Office Address_2", Settings.Parties.BrokerProfile.Address);
+                    set_field(ps.AcroFields, "Phone_2", Settings.Parties.BrokerProfile.Phone);
+                    set_field(ps.AcroFields, "City State Zip_2", Settings.Parties.BrokerProfile.Zip);
+                    set_field(ps.AcroFields, "Email_2", Settings.Parties.AgentProfile.Email);
 
                     ps.FormFlattening = true;
 
                     for (int i = 1; i <= pr.NumberOfPages; i++)
                     {
                         var pcb = ps.GetOverContent(i);
-                        add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.InitialFile), new System.Drawing.Point(497, 67));
-                        if(Program.Settings.BuyerProfile.UseCoBuyer)
-                            add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(536, 67));
+                        add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.InitialFile), new System.Drawing.Point(497, 67));
+                        if(Settings.Parties.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(536, 67));
                     }
                     {
                         var pcb = ps.GetOverContent(9);
-                        add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.SignatureFile), new System.Drawing.Point(60, 190));
-                        if (Program.Settings.BuyerProfile.UseCoBuyer)
-                            add_image(pcb, System.Drawing.Image.FromFile(Program.Settings.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(60, 155));
+                        add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.SignatureFile), new System.Drawing.Point(60, 190));
+                        if (Settings.Parties.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(60, 155));
                     }
 
                     ps.Close();
@@ -420,7 +264,7 @@ Developed by: www.cliversoft.com";
                 }
 
                 string output_addendum_pdf = null;
-                if (Program.Settings.ShortSaleAddendum)
+                if (Settings.Offer.ShortSaleAddendum)
                 {
                     output_addendum_pdf = d + "\\" + PathRoutines.GetFileNameFromPath(template_addendum_pdf);
 
@@ -432,13 +276,13 @@ Developed by: www.cliversoft.com";
                     //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
                     //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
 
-                    if (Program.Settings.BuyerProfile.UseCoBuyer)
-                        set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Program.Settings.BuyerProfile.Name + " and " + Program.Settings.BuyerProfile.CoBuyerName);
+                    if (Settings.Parties.BuyerProfile.UseCoBuyer)
+                        set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Settings.Parties.BuyerProfile.Name + " and " + Settings.Parties.BuyerProfile.CoBuyerName);
                     else
-                        set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Program.Settings.BuyerProfile.Name);
+                        set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Settings.Parties.BuyerProfile.Name);
                     set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
                     set_field(ps.AcroFields, "<Address> <UnitNumber> <City/Town> NV <Zip Code>", Address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
-                    set_field(ps.AcroFields, "Agent Name", Program.Settings.AgentProfile.Name);
+                    set_field(ps.AcroFields, "Agent Name", Settings.Parties.AgentProfile.Name);
                     //set_field(ps.AcroFields, "Agent Phone", );
 
                     ps.FormFlattening = true;
@@ -506,21 +350,21 @@ Developed by: www.cliversoft.com";
         void send(string to_email, params string[] attachments)
         {
             MailMessage mm = new MailMessage(
-                Program.Settings.EmailServerProfile.SenderEmail,
+                Settings.Email.EmailServerProfile.SenderEmail,
                 to_email
                 )
             {
-                Subject = Program.Settings.EmailTemplateProfile.Subject,
-                Body = Program.Settings.EmailTemplateProfile.Body,
-                From = new MailAddress(Program.Settings.EmailServerProfile.SenderEmail)
+                Subject = Settings.Offer.EmailTemplateProfile.Subject,
+                Body = Settings.Offer.EmailTemplateProfile.Body,
+                From = new MailAddress(Settings.Email.EmailServerProfile.SenderEmail)
             };
             foreach (string a in attachments)
             {
                 mm.Attachments.Add(new Attachment(a));
             }
-            foreach (int i in Program.Settings.SelectedAttachmentIds)
+            foreach (int i in Settings.Offer.SelectedAttachmentIds)
             {
-                mm.Attachments.Add(new Attachment(Program.Settings.AttachmentFiles[i]));
+                mm.Attachments.Add(new Attachment(Settings.Offer.AttachmentFiles[i]));
             }
             Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
             try
@@ -533,8 +377,8 @@ Developed by: www.cliversoft.com";
                     + "\r\nPort: " + smtp_client.Port
                     + "\r\nEnableSsl: " + smtp_client.EnableSsl
                     + "\r\nDeliveryMethod: " + smtp_client.DeliveryMethod
-                    + "\r\nUserName: " + Program.Settings.EmailServerProfile.SenderEmail
-                    + "\r\nSmtpPassword: " + Program.Settings.EmailServerProfile.SmtpPassword
+                    + "\r\nUserName: " + Settings.Email.EmailServerProfile.SenderEmail
+                    + "\r\nSmtpPassword: " + Settings.Email.EmailServerProfile.SmtpPassword
                     + "\r\nFrom: " + mm.From.Address
                     + "\r\nTo: " + mm.To
                     );
@@ -544,14 +388,14 @@ Developed by: www.cliversoft.com";
 
         SmtpClient smtp_client = new SmtpClient
         {
-            Host = Program.Settings.EmailServerProfile.SmtpHost,
-            Port = Program.Settings.EmailServerProfile.SmtpPort,
+            Host = Settings.Email.EmailServerProfile.SmtpHost,
+            Port = Settings.Email.EmailServerProfile.SmtpPort,
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
             Credentials = new NetworkCredential(
-                 Program.Settings.EmailServerProfile.SenderEmail,
-                 Program.Settings.EmailServerProfile.SmtpPassword
+                 Settings.Email.EmailServerProfile.SenderEmail,
+                 Settings.Email.EmailServerProfile.SmtpPassword
                  )
         };
     }
