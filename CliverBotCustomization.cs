@@ -76,10 +76,6 @@ namespace Cliver.PdfMailer2
 Created: " + Cliver.Bot.Program.GetCustomizationCompiledTime().ToString() + @"
 Developed by: www.cliversoft.com";
         }
-
-        new static public void FatalError(string message)
-        {
-        }
         
         new static public void SessionCreating()
         {
@@ -100,7 +96,7 @@ Developed by: www.cliversoft.com";
                 for (items_ennumerator.Reset(); items_ennumerator.MoveNext();)
                 {
                     EmailItem ei = ((EmailItem)items_ennumerator.Current);
-                    string to_email = ei.Parent.ListAgentEmail;
+                    string to_email = ei.Data.ListAgentEmail;
                     DateTime sent_time;
                     if (!emails2sent_time.TryGetValue(to_email, out sent_time))
                     {
@@ -122,7 +118,7 @@ Developed by: www.cliversoft.com";
                 if (min_wait_period_ei != null && Session.GetInputItemQueue<DataItem>().CountOfNew < 1)
                 {
                     Thread.Sleep(min_wait_period);
-                    emails2sent_time[min_wait_period_ei.Parent.ListAgentEmail] = DateTime.Now;
+                    emails2sent_time[min_wait_period_ei.Data.ListAgentEmail] = DateTime.Now;
                     return min_wait_period_ei;
                 }
                 return null;
@@ -180,6 +176,10 @@ Developed by: www.cliversoft.com";
                 string d = Log.OutputDir + "\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
                 Directory.CreateDirectory(d);
 
+                //string fontName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "cour.ttf");
+                //BaseFont bf = BaseFont.CreateFont(fontName, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                //BaseFont bf = BaseFont.CreateFont(BaseFont.COURIER, BaseFont. BaseFont.EMBEDDED);
+
                 string output_pdf = d + "\\" + PathRoutines.GetFileNameFromPath(template_pdf);
                 {
                     //lock (template_pdf)
@@ -192,6 +192,10 @@ Developed by: www.cliversoft.com";
                     //pr.RemoveUsageRights();
                     //pr.SelectPages("7,8");
                     PdfStamper ps = new PdfStamper(pr, new FileStream(output_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
+
+                    //BaseFont bf = BaseFont.g GKCOMJ + CourierStd - Bold
+                    //List<object[]> bs = BaseFont.GetDocumentFonts(pr);
+                    //ps.AcroFields.AddSubstitutionFont(bf);
 
                     //string fs = "";
                     //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
@@ -299,6 +303,8 @@ Developed by: www.cliversoft.com";
 
         static void set_field(AcroFields form, string field_key, string value)
         {
+            //BaseFont bf = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, false, null, null, false);
+            //form.SetFieldProperty(field_key, "textfont", "Courier New", null);
             switch (form.GetFieldType(field_key))
             {
                 case AcroFields.FIELD_TYPE_CHECKBOX:
@@ -329,7 +335,7 @@ Developed by: www.cliversoft.com";
 
         class EmailItem : InputItem
         {
-            public DataItem Parent { get { return (DataItem)__ParentItem; } }
+            public DataItem Data { get { return (DataItem)__ParentItem; } }
             public readonly string Pdf;
             public readonly string Addendum;
 
@@ -343,21 +349,17 @@ Developed by: www.cliversoft.com";
             {
                 CustomBot cb = (CustomBot)bc.Bot;
 
-                cb.send(Parent.ListAgentEmail, Pdf, Addendum);
+                cb.send(Data, Pdf, Addendum);
             }
         }
 
-        void send(string to_email, params string[] attachments)
+        void send(DataItem data, params string[] attachments)
         {
-            MailMessage mm = new MailMessage(
-                Settings.Email.EmailServerProfile.SenderEmail,
-                to_email
-                )
-            {
-                Subject = Settings.Offer.EmailTemplateProfile.Subject,
-                Body = Settings.Offer.EmailTemplateProfile.Body,
-                From = new MailAddress(Settings.Email.EmailServerProfile.SenderEmail)
-            };
+            MailMessage mm = new MailMessage(Settings.Email.EmailServerProfile.SenderEmail, data.ListAgentEmail);
+            mm.Subject = Settings.Offer.EmailTemplateProfile.Subject;
+            string afn = Regex.Replace(data.ListAgentFullName.Trim(), @"\s.*", "");
+            mm.Body = Regex.Replace(Settings.Offer.EmailTemplateProfile.Body, "<AgentFirstName>", afn, RegexOptions.Singleline);
+            mm.From = new MailAddress(Settings.Email.EmailServerProfile.SenderEmail);
             foreach (string a in attachments)
             {
                 mm.Attachments.Add(new Attachment(a));

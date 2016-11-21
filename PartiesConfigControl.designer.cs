@@ -355,7 +355,7 @@ namespace Cliver.PdfMailer2
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(473, 257);
+            this.tabPage4.Size = new System.Drawing.Size(499, 258);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Broker";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -548,7 +548,7 @@ namespace Cliver.PdfMailer2
             this.BrokerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.BrokerProfiles.Location = new System.Drawing.Point(3, 3);
             this.BrokerProfiles.Name = "BrokerProfiles";
-            this.BrokerProfiles.Size = new System.Drawing.Size(467, 31);
+            this.BrokerProfiles.Size = new System.Drawing.Size(493, 31);
             this.BrokerProfiles.TabIndex = 0;
             // 
             // tabPage5
@@ -569,7 +569,7 @@ namespace Cliver.PdfMailer2
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(473, 257);
+            this.tabPage5.Size = new System.Drawing.Size(499, 258);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Agent";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -685,7 +685,7 @@ namespace Cliver.PdfMailer2
             this.AgentProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.AgentProfiles.Location = new System.Drawing.Point(3, 3);
             this.AgentProfiles.Name = "AgentProfiles";
-            this.AgentProfiles.Size = new System.Drawing.Size(467, 31);
+            this.AgentProfiles.Size = new System.Drawing.Size(493, 31);
             this.AgentProfiles.TabIndex = 0;
             // 
             // tabPage6
@@ -698,7 +698,7 @@ namespace Cliver.PdfMailer2
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(473, 257);
+            this.tabPage6.Size = new System.Drawing.Size(499, 258);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Escrow";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -742,7 +742,7 @@ namespace Cliver.PdfMailer2
             this.EscrowProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.EscrowProfiles.Location = new System.Drawing.Point(3, 3);
             this.EscrowProfiles.Name = "EscrowProfiles";
-            this.EscrowProfiles.Size = new System.Drawing.Size(467, 31);
+            this.EscrowProfiles.Size = new System.Drawing.Size(493, 31);
             this.EscrowProfiles.TabIndex = 0;
             // 
             // PartyProfiles

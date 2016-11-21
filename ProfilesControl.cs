@@ -21,8 +21,9 @@ namespace Cliver.PdfMailer2
         {
             if (Add == null || !Add())
                 return;
-            Names.Items.Remove(Names.Text);
-            Names.Items.Insert(0, Names.Text);
+            string item = Names.Text;
+            Names.Items.Remove(item);
+            Names.Items.Insert(0, item);
             Names.SelectedIndex = 0;
         }
         public delegate bool OnAdd();
