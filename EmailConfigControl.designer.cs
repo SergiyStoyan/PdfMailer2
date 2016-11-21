@@ -75,7 +75,7 @@ namespace Cliver.PdfMailer2
             this.tabControl3.Name = "tabControl3";
             this.tabControl3.SelectedIndex = 0;
             this.tabControl3.Size = new System.Drawing.Size(454, 316);
-            this.tabControl3.TabIndex = 144;
+            this.tabControl3.TabIndex = 0;
             // 
             // tabPage10
             // 
@@ -136,7 +136,7 @@ namespace Cliver.PdfMailer2
             this.SmtpPort.Location = new System.Drawing.Point(205, 41);
             this.SmtpPort.Name = "SmtpPort";
             this.SmtpPort.Size = new System.Drawing.Size(36, 20);
-            this.SmtpPort.TabIndex = 57;
+            this.SmtpPort.TabIndex = 1;
             // 
             // SmtpPassword
             // 
@@ -144,7 +144,7 @@ namespace Cliver.PdfMailer2
             this.SmtpPassword.Name = "SmtpPassword";
             this.SmtpPassword.PasswordChar = '*';
             this.SmtpPassword.Size = new System.Drawing.Size(183, 20);
-            this.SmtpPassword.TabIndex = 53;
+            this.SmtpPassword.TabIndex = 2;
             this.SmtpPassword.UseSystemPasswordChar = true;
             // 
             // label38
@@ -170,7 +170,7 @@ namespace Cliver.PdfMailer2
             this.EmailSenderEmail.Location = new System.Drawing.Point(31, 235);
             this.EmailSenderEmail.Name = "EmailSenderEmail";
             this.EmailSenderEmail.Size = new System.Drawing.Size(225, 20);
-            this.EmailSenderEmail.TabIndex = 51;
+            this.EmailSenderEmail.TabIndex = 1;
             // 
             // EmailServerProfiles
             // 
@@ -180,7 +180,7 @@ namespace Cliver.PdfMailer2
             this.EmailServerProfiles.Location = new System.Drawing.Point(3, 3);
             this.EmailServerProfiles.Name = "EmailServerProfiles";
             this.EmailServerProfiles.Size = new System.Drawing.Size(440, 31);
-            this.EmailServerProfiles.TabIndex = 59;
+            this.EmailServerProfiles.TabIndex = 0;
             // 
             // tabPage12
             // 
@@ -192,7 +192,7 @@ namespace Cliver.PdfMailer2
             this.tabPage12.Location = new System.Drawing.Point(4, 25);
             this.tabPage12.Name = "tabPage12";
             this.tabPage12.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage12.Size = new System.Drawing.Size(452, 303);
+            this.tabPage12.Size = new System.Drawing.Size(446, 287);
             this.tabPage12.TabIndex = 3;
             this.tabPage12.Text = "Mailer";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -203,7 +203,7 @@ namespace Cliver.PdfMailer2
             this.UseRandomDelay.Location = new System.Drawing.Point(16, 26);
             this.UseRandomDelay.Name = "UseRandomDelay";
             this.UseRandomDelay.Size = new System.Drawing.Size(211, 17);
-            this.UseRandomDelay.TabIndex = 59;
+            this.UseRandomDelay.TabIndex = 0;
             this.UseRandomDelay.Text = "Use Random Delay Within The Range:";
             this.UseRandomDelay.UseVisualStyleBackColor = true;
             this.UseRandomDelay.CheckedChanged += new System.EventHandler(this.UseRandomDelay_CheckedChanged);
@@ -222,21 +222,21 @@ namespace Cliver.PdfMailer2
             this.MaxRandomDelayMss.Location = new System.Drawing.Point(106, 49);
             this.MaxRandomDelayMss.Name = "MaxRandomDelayMss";
             this.MaxRandomDelayMss.Size = new System.Drawing.Size(54, 20);
-            this.MaxRandomDelayMss.TabIndex = 57;
+            this.MaxRandomDelayMss.TabIndex = 2;
             // 
             // MinRandomDelayMss
             // 
             this.MinRandomDelayMss.Location = new System.Drawing.Point(16, 49);
             this.MinRandomDelayMss.Name = "MinRandomDelayMss";
             this.MinRandomDelayMss.Size = new System.Drawing.Size(54, 20);
-            this.MinRandomDelayMss.TabIndex = 0;
+            this.MinRandomDelayMss.TabIndex = 1;
             // 
             // label47
             // 
             this.label47.Location = new System.Drawing.Point(76, 52);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(24, 13);
-            this.label47.TabIndex = 50;
+            this.label47.TabIndex = 1;
             this.label47.Text = "<>";
             this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 

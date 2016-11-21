@@ -128,7 +128,7 @@ namespace Cliver.PdfMailer2
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(481, 286);
-            this.tabControl2.TabIndex = 59;
+            this.tabControl2.TabIndex = 1;
             // 
             // tabPage3
             // 
@@ -158,7 +158,7 @@ namespace Cliver.PdfMailer2
             this.UseCoBuyer.Name = "UseCoBuyer";
             this.UseCoBuyer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UseCoBuyer.Size = new System.Drawing.Size(15, 14);
-            this.UseCoBuyer.TabIndex = 62;
+            this.UseCoBuyer.TabIndex = 4;
             this.UseCoBuyer.UseVisualStyleBackColor = true;
             this.UseCoBuyer.CheckedChanged += new System.EventHandler(this.UseCoBuyer_CheckedChanged);
             // 
@@ -202,7 +202,7 @@ namespace Cliver.PdfMailer2
             this.selectCobuyerSignature.Location = new System.Drawing.Point(117, 171);
             this.selectCobuyerSignature.Name = "selectCobuyerSignature";
             this.selectCobuyerSignature.Size = new System.Drawing.Size(24, 23);
-            this.selectCobuyerSignature.TabIndex = 64;
+            this.selectCobuyerSignature.TabIndex = 2;
             this.selectCobuyerSignature.Text = "...";
             this.selectCobuyerSignature.UseVisualStyleBackColor = true;
             this.selectCobuyerSignature.Click += new System.EventHandler(this.selectCoBuyerSignature_Click);
@@ -212,7 +212,7 @@ namespace Cliver.PdfMailer2
             this.CoBuyerName.Location = new System.Drawing.Point(11, 35);
             this.CoBuyerName.Name = "CoBuyerName";
             this.CoBuyerName.Size = new System.Drawing.Size(208, 20);
-            this.CoBuyerName.TabIndex = 51;
+            this.CoBuyerName.TabIndex = 0;
             // 
             // CoBuyerSignature
             // 
@@ -246,7 +246,7 @@ namespace Cliver.PdfMailer2
             this.selectCoBuyerInitial.Location = new System.Drawing.Point(117, 102);
             this.selectCoBuyerInitial.Name = "selectCoBuyerInitial";
             this.selectCoBuyerInitial.Size = new System.Drawing.Size(24, 23);
-            this.selectCoBuyerInitial.TabIndex = 58;
+            this.selectCoBuyerInitial.TabIndex = 1;
             this.selectCoBuyerInitial.Text = "...";
             this.selectCoBuyerInitial.UseVisualStyleBackColor = true;
             this.selectCoBuyerInitial.Click += new System.EventHandler(this.selectCoBuyerInitial_Click);
@@ -259,14 +259,14 @@ namespace Cliver.PdfMailer2
             this.BuyerProfiles.Location = new System.Drawing.Point(3, 3);
             this.BuyerProfiles.Name = "BuyerProfiles";
             this.BuyerProfiles.Size = new System.Drawing.Size(467, 31);
-            this.BuyerProfiles.TabIndex = 51;
+            this.BuyerProfiles.TabIndex = 0;
             // 
             // selectBuyerSignature
             // 
             this.selectBuyerSignature.Location = new System.Drawing.Point(115, 216);
             this.selectBuyerSignature.Name = "selectBuyerSignature";
             this.selectBuyerSignature.Size = new System.Drawing.Size(24, 23);
-            this.selectBuyerSignature.TabIndex = 61;
+            this.selectBuyerSignature.TabIndex = 3;
             this.selectBuyerSignature.Text = "...";
             this.selectBuyerSignature.UseVisualStyleBackColor = true;
             this.selectBuyerSignature.Click += new System.EventHandler(this.selectBuyerSignature_Click);
@@ -294,7 +294,7 @@ namespace Cliver.PdfMailer2
             this.BuyerName.Location = new System.Drawing.Point(9, 80);
             this.BuyerName.Name = "BuyerName";
             this.BuyerName.Size = new System.Drawing.Size(208, 20);
-            this.BuyerName.TabIndex = 0;
+            this.BuyerName.TabIndex = 1;
             // 
             // label6
             // 
@@ -319,7 +319,7 @@ namespace Cliver.PdfMailer2
             this.selectBuyerInitial.Location = new System.Drawing.Point(115, 147);
             this.selectBuyerInitial.Name = "selectBuyerInitial";
             this.selectBuyerInitial.Size = new System.Drawing.Size(24, 23);
-            this.selectBuyerInitial.TabIndex = 55;
+            this.selectBuyerInitial.TabIndex = 2;
             this.selectBuyerInitial.Text = "...";
             this.selectBuyerInitial.UseVisualStyleBackColor = true;
             this.selectBuyerInitial.Click += new System.EventHandler(this.selectBuyerInitial_Click);
@@ -427,7 +427,7 @@ namespace Cliver.PdfMailer2
             this.BrokerState.Location = new System.Drawing.Point(189, 183);
             this.BrokerState.Name = "BrokerState";
             this.BrokerState.Size = new System.Drawing.Size(73, 21);
-            this.BrokerState.TabIndex = 63;
+            this.BrokerState.TabIndex = 6;
             // 
             // label16
             // 
@@ -452,14 +452,14 @@ namespace Cliver.PdfMailer2
             this.BrokerZip.Location = new System.Drawing.Point(268, 184);
             this.BrokerZip.Name = "BrokerZip";
             this.BrokerZip.Size = new System.Drawing.Size(62, 20);
-            this.BrokerZip.TabIndex = 61;
+            this.BrokerZip.TabIndex = 7;
             // 
             // BrokerName
             // 
             this.BrokerName.Location = new System.Drawing.Point(11, 63);
             this.BrokerName.Name = "BrokerName";
             this.BrokerName.Size = new System.Drawing.Size(172, 20);
-            this.BrokerName.TabIndex = 0;
+            this.BrokerName.TabIndex = 1;
             // 
             // label13
             // 
@@ -484,14 +484,14 @@ namespace Cliver.PdfMailer2
             this.BrokerCompany.Location = new System.Drawing.Point(11, 103);
             this.BrokerCompany.Name = "BrokerCompany";
             this.BrokerCompany.Size = new System.Drawing.Size(172, 20);
-            this.BrokerCompany.TabIndex = 59;
+            this.BrokerCompany.TabIndex = 3;
             // 
             // BrokerAddress
             // 
             this.BrokerAddress.Location = new System.Drawing.Point(11, 143);
             this.BrokerAddress.Name = "BrokerAddress";
             this.BrokerAddress.Size = new System.Drawing.Size(319, 20);
-            this.BrokerAddress.TabIndex = 51;
+            this.BrokerAddress.TabIndex = 4;
             // 
             // label9
             // 
@@ -507,14 +507,14 @@ namespace Cliver.PdfMailer2
             this.BrokerLicenseNo.Location = new System.Drawing.Point(189, 63);
             this.BrokerLicenseNo.Name = "BrokerLicenseNo";
             this.BrokerLicenseNo.Size = new System.Drawing.Size(141, 20);
-            this.BrokerLicenseNo.TabIndex = 57;
+            this.BrokerLicenseNo.TabIndex = 2;
             // 
             // BrokerCity
             // 
             this.BrokerCity.Location = new System.Drawing.Point(11, 183);
             this.BrokerCity.Name = "BrokerCity";
             this.BrokerCity.Size = new System.Drawing.Size(172, 20);
-            this.BrokerCity.TabIndex = 53;
+            this.BrokerCity.TabIndex = 5;
             // 
             // label11
             // 
@@ -539,7 +539,7 @@ namespace Cliver.PdfMailer2
             this.BrokerPhone.Location = new System.Drawing.Point(11, 226);
             this.BrokerPhone.Name = "BrokerPhone";
             this.BrokerPhone.Size = new System.Drawing.Size(172, 20);
-            this.BrokerPhone.TabIndex = 55;
+            this.BrokerPhone.TabIndex = 8;
             // 
             // BrokerProfiles
             // 
@@ -549,7 +549,7 @@ namespace Cliver.PdfMailer2
             this.BrokerProfiles.Location = new System.Drawing.Point(3, 3);
             this.BrokerProfiles.Name = "BrokerProfiles";
             this.BrokerProfiles.Size = new System.Drawing.Size(467, 31);
-            this.BrokerProfiles.TabIndex = 59;
+            this.BrokerProfiles.TabIndex = 0;
             // 
             // tabPage5
             // 
@@ -579,7 +579,7 @@ namespace Cliver.PdfMailer2
             this.selectAgentSignature.Location = new System.Drawing.Point(122, 217);
             this.selectAgentSignature.Name = "selectAgentSignature";
             this.selectAgentSignature.Size = new System.Drawing.Size(24, 23);
-            this.selectAgentSignature.TabIndex = 67;
+            this.selectAgentSignature.TabIndex = 5;
             this.selectAgentSignature.Text = "...";
             this.selectAgentSignature.UseVisualStyleBackColor = true;
             this.selectAgentSignature.Click += new System.EventHandler(this.selectAgentSignature_Click);
@@ -616,7 +616,7 @@ namespace Cliver.PdfMailer2
             this.selectAgentInitial.Location = new System.Drawing.Point(122, 146);
             this.selectAgentInitial.Name = "selectAgentInitial";
             this.selectAgentInitial.Size = new System.Drawing.Size(24, 23);
-            this.selectAgentInitial.TabIndex = 64;
+            this.selectAgentInitial.TabIndex = 4;
             this.selectAgentInitial.Text = "...";
             this.selectAgentInitial.UseVisualStyleBackColor = true;
             this.selectAgentInitial.Click += new System.EventHandler(this.selectAgentInitial_Click);
@@ -626,7 +626,7 @@ namespace Cliver.PdfMailer2
             this.AgentName.Location = new System.Drawing.Point(16, 59);
             this.AgentName.Name = "AgentName";
             this.AgentName.Size = new System.Drawing.Size(206, 20);
-            this.AgentName.TabIndex = 0;
+            this.AgentName.TabIndex = 1;
             // 
             // AgentInitial
             // 
@@ -642,7 +642,7 @@ namespace Cliver.PdfMailer2
             this.AgentLicenseNo.Location = new System.Drawing.Point(241, 59);
             this.AgentLicenseNo.Name = "AgentLicenseNo";
             this.AgentLicenseNo.Size = new System.Drawing.Size(114, 20);
-            this.AgentLicenseNo.TabIndex = 57;
+            this.AgentLicenseNo.TabIndex = 2;
             // 
             // label8
             // 
@@ -676,7 +676,7 @@ namespace Cliver.PdfMailer2
             this.AgentEmail.Location = new System.Drawing.Point(241, 103);
             this.AgentEmail.Name = "AgentEmail";
             this.AgentEmail.Size = new System.Drawing.Size(206, 20);
-            this.AgentEmail.TabIndex = 59;
+            this.AgentEmail.TabIndex = 3;
             // 
             // AgentProfiles
             // 
@@ -686,7 +686,7 @@ namespace Cliver.PdfMailer2
             this.AgentProfiles.Location = new System.Drawing.Point(3, 3);
             this.AgentProfiles.Name = "AgentProfiles";
             this.AgentProfiles.Size = new System.Drawing.Size(467, 31);
-            this.AgentProfiles.TabIndex = 61;
+            this.AgentProfiles.TabIndex = 0;
             // 
             // tabPage6
             // 
@@ -698,7 +698,7 @@ namespace Cliver.PdfMailer2
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(499, 258);
+            this.tabPage6.Size = new System.Drawing.Size(473, 257);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Escrow";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -717,7 +717,7 @@ namespace Cliver.PdfMailer2
             this.EscrowOfficer.Location = new System.Drawing.Point(206, 93);
             this.EscrowOfficer.Name = "EscrowOfficer";
             this.EscrowOfficer.Size = new System.Drawing.Size(150, 20);
-            this.EscrowOfficer.TabIndex = 57;
+            this.EscrowOfficer.TabIndex = 2;
             // 
             // label27
             // 
@@ -733,7 +733,7 @@ namespace Cliver.PdfMailer2
             this.EscrowTitleCompany.Location = new System.Drawing.Point(17, 93);
             this.EscrowTitleCompany.Name = "EscrowTitleCompany";
             this.EscrowTitleCompany.Size = new System.Drawing.Size(183, 20);
-            this.EscrowTitleCompany.TabIndex = 0;
+            this.EscrowTitleCompany.TabIndex = 1;
             // 
             // EscrowProfiles
             // 
@@ -742,8 +742,8 @@ namespace Cliver.PdfMailer2
             this.EscrowProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.EscrowProfiles.Location = new System.Drawing.Point(3, 3);
             this.EscrowProfiles.Name = "EscrowProfiles";
-            this.EscrowProfiles.Size = new System.Drawing.Size(493, 31);
-            this.EscrowProfiles.TabIndex = 61;
+            this.EscrowProfiles.Size = new System.Drawing.Size(467, 31);
+            this.EscrowProfiles.TabIndex = 0;
             // 
             // PartyProfiles
             // 
@@ -753,7 +753,7 @@ namespace Cliver.PdfMailer2
             this.PartyProfiles.Location = new System.Drawing.Point(3, 16);
             this.PartyProfiles.Name = "PartyProfiles";
             this.PartyProfiles.Size = new System.Drawing.Size(481, 32);
-            this.PartyProfiles.TabIndex = 60;
+            this.PartyProfiles.TabIndex = 0;
             // 
             // PartiesConfigControl
             // 
