@@ -167,20 +167,18 @@ Developed by: www.cliversoft.com";
             readonly public string ListAgentDirectWorkPhone;
             readonly public string DOM;
             readonly public string OfferSentDate;
-
+            
             override public void PROCESSOR(BotCycle bc)
             {
-               // throw new Session.FatalException("fdsfsfs");
+                // throw new Session.FatalException("fdsfsfs");
                 CustomBot cb = (CustomBot)bc.Bot;
 
                 string d = Log.OutputDir + "\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
                 Directory.CreateDirectory(d);
 
-                //string fontName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "cour.ttf");
-                //BaseFont bf = BaseFont.CreateFont(fontName, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
-                //BaseFont bf = BaseFont.CreateFont(BaseFont.COURIER, BaseFont. BaseFont.EMBEDDED);
+                string address = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(Address.ToLower());
 
-                string output_pdf = d + "\\" + PathRoutines.GetFileNameFromPath(template_pdf);
+                string output_pdf = d + "\\" + Regex.Replace(address + " RPA.pdf", @"\s+", " ");
                 {
                     //lock (template_pdf)
                     //{
@@ -193,17 +191,13 @@ Developed by: www.cliversoft.com";
                     //pr.SelectPages("7,8");
                     PdfStamper ps = new PdfStamper(pr, new FileStream(output_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
 
-                    //BaseFont bf = BaseFont.g GKCOMJ + CourierStd - Bold
-                    //List<object[]> bs = BaseFont.GetDocumentFonts(pr);
-                    //ps.AcroFields.AddSubstitutionFont(bf);
-
                     //string fs = "";
                     //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
                     //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
 
                     set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
                     set_field(ps.AcroFields, "Buyer Name", Settings.Parties.BuyerProfile.Name);
-                    set_field(ps.AcroFields, "Address and Unit Number", Address + " " + UnitNumber);
+                    set_field(ps.AcroFields, "Address and Unit Number", address + " " + UnitNumber);
                     set_field(ps.AcroFields, "City/Town", City);
                     //set_field(ps.AcroFields, "CLARK", );
                     set_field(ps.AcroFields, "Zip", ZipCode);
@@ -211,13 +205,13 @@ Developed by: www.cliversoft.com";
                     set_field(ps.AcroFields, "OfferAmt", OfferAmt);
                     string oa = Regex.Replace(OfferAmt, @"[^\d]", "");
                     if (oa.Length > 0)
-                        set_field(ps.AcroFields, "OfferAmt in words", ConvertionRoutines.NumberToWords(int.Parse(oa)));
+                        set_field(ps.AcroFields, "OfferAmt in words", ConvertionRoutines.NumberToWords(int.Parse(oa)).ToUpper());
                     set_field(ps.AcroFields, "EMD", Settings.Offer.Emd);
                     //set_field(ps.AcroFields, "Check Box1", );
                     //set_field(ps.AcroFields, "Balance", );
                     set_field(ps.AcroFields, "Co Buyer Name", Settings.Parties.BuyerProfile.CoBuyerName);
-                    set_field(ps.AcroFields, "<address> <UnitNumber> <City/town> NV <ZIP Code>", Address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
-                    set_field(ps.AcroFields, "ML#", ML_Id);
+                    set_field(ps.AcroFields, "<address> <UnitNumber> <City/town> NV <ZIP Code>", address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
+                    set_field(ps.AcroFields, "ML#", "ALL PER ML# " + ML_Id);
                     set_field(ps.AcroFields, "Title Company", Settings.Parties.EscrowProfile.TitleCompany);
                     set_field(ps.AcroFields, "Escrow Officer", Settings.Parties.EscrowProfile.Officer);
                     set_field(ps.AcroFields, "Close of Escrow", Settings.Offer.CloseOfEscrow.ToShortDateString());
@@ -253,8 +247,14 @@ Developed by: www.cliversoft.com";
                     {
                         var pcb = ps.GetOverContent(i);
                         add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.InitialFile), new System.Drawing.Point(497, 67));
-                        if(Settings.Parties.BuyerProfile.UseCoBuyer)
+                        if (Settings.Parties.BuyerProfile.UseCoBuyer)
                             add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(536, 67));
+                    }
+                    {
+                        var pcb = ps.GetOverContent(3);
+                        add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.InitialFile), new System.Drawing.Point(140, 103));
+                        if (Settings.Parties.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(280, 103));
                     }
                     {
                         var pcb = ps.GetOverContent(9);
@@ -270,7 +270,7 @@ Developed by: www.cliversoft.com";
                 string output_addendum_pdf = null;
                 if (Settings.Offer.ShortSaleAddendum)
                 {
-                    output_addendum_pdf = d + "\\" + PathRoutines.GetFileNameFromPath(template_addendum_pdf);
+                    output_addendum_pdf = d + "\\" + Regex.Replace(address + " SS Addendum.pdf", @"\s+", " ");
 
                     PdfReader.unethicalreading = true;
                     PdfReader pr = new PdfReader(template_addendum_pdf);
@@ -285,11 +285,31 @@ Developed by: www.cliversoft.com";
                     else
                         set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Settings.Parties.BuyerProfile.Name);
                     set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
-                    set_field(ps.AcroFields, "<Address> <UnitNumber> <City/Town> NV <Zip Code>", Address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
+                    set_field(ps.AcroFields, "<Address> <UnitNumber> <City/Town> NV <Zip Code>", address + " " + UnitNumber + ", " + City + " NV " + ZipCode);
                     set_field(ps.AcroFields, "Agent Name", Settings.Parties.AgentProfile.Name);
                     //set_field(ps.AcroFields, "Agent Phone", );
 
                     ps.FormFlattening = true;
+
+                    for (int i = 1; i <= pr.NumberOfPages; i++)
+                    {
+                        var pcb = ps.GetOverContent(i);
+                        add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.InitialFile), new System.Drawing.Point(120, 70));
+                        if (Settings.Parties.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(157, 70));
+                    }
+                    {
+                        var pcb = ps.GetOverContent(1);
+                        add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.InitialFile), new System.Drawing.Point(140, 400));
+                        if (Settings.Parties.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(197, 400));
+                    }
+                    {
+                        var pcb = ps.GetOverContent(3);
+                        add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.SignatureFile), new System.Drawing.Point(150, 547));
+                        if (Settings.Parties.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(150, 504));
+                    }
 
                     ps.Close();
                     pr.Close();
@@ -299,39 +319,31 @@ Developed by: www.cliversoft.com";
             }
             static readonly string template_pdf = Log.AppDir + "\\RPA.pdf";
             static readonly string template_addendum_pdf = Log.AppDir + "\\addendum.pdf";
-        }
 
-        static void set_field(AcroFields form, string field_key, string value)
-        {
-            //BaseFont bf = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, false, null, null, false);
-            //form.SetFieldProperty(field_key, "textfont", "Courier New", null);
-            switch (form.GetFieldType(field_key))
+            static void set_field(AcroFields form, string field_key, string value)
             {
-                case AcroFields.FIELD_TYPE_CHECKBOX:
-                case AcroFields.FIELD_TYPE_RADIOBUTTON:
-                case AcroFields.FIELD_TYPE_COMBO:
-                case AcroFields.FIELD_TYPE_LIST:
-                case AcroFields.FIELD_TYPE_NONE:
-                case AcroFields.FIELD_TYPE_PUSHBUTTON:
-                case AcroFields.FIELD_TYPE_SIGNATURE:
-                case AcroFields.FIELD_TYPE_TEXT:
-                    form.SetField(field_key, value);
-                    break;
-                default:
-                    throw new Exception("Unknown option: " + form.GetFieldType(field_key));
+                //BaseFont bf = BaseFont.createFont(FONT, BaseFont.IDENTITY_H, BaseFont.EMBEDDED, false, null, null, false);
+                if (baseFont != null)
+                    form.SetFieldProperty(field_key, "textfont", baseFont, null);
+                if (fontSize != null)
+                    form.SetFieldProperty(field_key, "textsize", fontSize, null);
+                form.SetField(field_key, value);
             }
-        }
+            static string fontName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "cour.ttf");
+            static BaseFont baseFont = BaseFont.CreateFont(fontName, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            static System.Single? fontSize = 8.0f;
 
-        static void add_image(PdfContentByte pcb, System.Drawing.Image image, System.Drawing.Point point)
-        {
-            image = ImageRoutines.GetCroppedByColor(image, System.Drawing.Color.Transparent);
-            Image i = Image.GetInstance(image, (BaseColor)null);
-            var ratio = Math.Min((float)image_max_size.Width / image.Width, (float)image_max_size.Height / image.Height);
-            i.ScalePercent(ratio * 100);
-            i.SetAbsolutePosition(point.X, point.Y);
-            pcb.AddImage(i);
+            static void add_image(PdfContentByte pcb, System.Drawing.Image image, System.Drawing.Point point)
+            {
+                image = ImageRoutines.GetCroppedByColor(image, System.Drawing.Color.Transparent);
+                Image i = Image.GetInstance(image, (BaseColor)null);
+                var ratio = Math.Min((float)image_max_size.Width / image.Width, (float)image_max_size.Height / image.Height);
+                i.ScalePercent(ratio * 100);
+                i.SetAbsolutePosition(point.X, point.Y);
+                pcb.AddImage(i);
+            }
+            static System.Drawing.Size image_max_size = new System.Drawing.Size(105, 22);
         }
-        static System.Drawing.Size image_max_size = new System.Drawing.Size(105, 22);
 
         class EmailItem : InputItem
         {
