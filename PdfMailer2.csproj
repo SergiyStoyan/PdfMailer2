@@ -79,6 +79,7 @@
     <Compile Include="EmailConfigControl.designer.cs">
       <DependentUpon>EmailConfigControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="InternetDateTime.cs" />
     <Compile Include="OfferConfigControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
