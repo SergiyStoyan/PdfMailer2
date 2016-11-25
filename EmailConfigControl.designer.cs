@@ -219,7 +219,7 @@ namespace Cliver.PdfMailer2
             // 
             // MaxRandomDelayMss
             // 
-            this.MaxRandomDelayMss.Location = new System.Drawing.Point(106, 49);
+            this.MaxRandomDelayMss.Location = new System.Drawing.Point(107, 49);
             this.MaxRandomDelayMss.Name = "MaxRandomDelayMss";
             this.MaxRandomDelayMss.Size = new System.Drawing.Size(54, 20);
             this.MaxRandomDelayMss.TabIndex = 2;
@@ -233,11 +233,11 @@ namespace Cliver.PdfMailer2
             // 
             // label47
             // 
-            this.label47.Location = new System.Drawing.Point(76, 52);
+            this.label47.Location = new System.Drawing.Point(70, 52);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(24, 13);
+            this.label47.Size = new System.Drawing.Size(37, 13);
             this.label47.TabIndex = 1;
-            this.label47.Text = "<>";
+            this.label47.Text = "< x <";
             this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // EmailConfigControl

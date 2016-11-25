@@ -28,6 +28,8 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
+                    if (PartyProfileName == null)
+                        return null;
                     return PartyProfileNames2PartyProfile[PartyProfileName];
                 }
             }
@@ -36,6 +38,8 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
+                    if (PartyProfile == null)
+                        return null;
                     return BuyerProfileNames2BuyerProfile[PartyProfile.BuyerProfileName];
                 }
             }
@@ -44,6 +48,8 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
+                    if (PartyProfile == null)
+                        return null;
                     return BrokerProfileNames2BrokerProfile[PartyProfile.BrokerProfileName];
                 }
             }
@@ -52,6 +58,8 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
+                    if (PartyProfile == null)
+                        return null;
                     return AgentProfileNames2AgentProfile[PartyProfile.AgentProfileName];
                 }
             }
@@ -60,6 +68,8 @@ namespace Cliver.PdfMailer2
             {
                 get
                 {
+                    if (PartyProfile == null)
+                        return null;
                     return EscrowProfileNames2EscrowProfile[PartyProfile.EscrowProfileName];
                 }
             }

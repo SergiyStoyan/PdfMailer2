@@ -39,6 +39,8 @@ namespace Cliver.PdfMailer2
         {
             try
             {
+                Cliver.Config.Initialize(new string[] { "Parties", "Offer", "Email", "Engine", "Input", "Log", });
+                Cliver.BotGui.BotGui.ConfigControlSections=new string[] { "Parties", "Offer", "Email", "Engine", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log", };
                 //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
                 Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
             }
@@ -47,25 +49,6 @@ namespace Cliver.PdfMailer2
                 LogMessage.Error(e);
             }
         }
-    }
-
-    public class CustomBotGui : Cliver.BotGui.BotGui
-    {
-        override public string[] GetConfigControlNames()
-        {
-            return new string[] { "Parties", "Offer", "Email", "Engine", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log", };
-        }
-
-        //override public Cliver.BaseForm GetToolsForm()
-        //{
-        //    return new SettingsForm();
-        //}
-
-        //override public Type GetBotThreadControlType()
-        //{
-        //    return typeof(IeRoutineBotThreadControl);
-        //    //return typeof(WebRoutineBotThreadControl);
-        //}
     }
 
     public class CustomBot : Cliver.Bot.Bot
@@ -79,7 +62,7 @@ Developed by: www.cliversoft.com";
         
         new static public void SessionCreating()
         {
-            InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 11, 29);
+            InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 9);
 
             Cliver.BotGui.Program.BindProgressBar2InputItemQueue<EmailItem>();
             BotCycle.TreatExceptionAsFatal = true;

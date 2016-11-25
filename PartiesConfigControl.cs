@@ -56,10 +56,10 @@ namespace Cliver.PdfMailer2
                 EscrowProfiles.Names.Items.Add(name);
 
             PartyProfiles.Names.SelectedItem = Settings.Parties.PartyProfileName;
-            BuyerProfiles.Names.SelectedItem = Settings.Parties.BuyerProfile._ProfileName;
-            BrokerProfiles.Names.SelectedItem = Settings.Parties.BrokerProfile._ProfileName;
-            AgentProfiles.Names.SelectedItem = Settings.Parties.AgentProfile._ProfileName;
-            EscrowProfiles.Names.SelectedItem = Settings.Parties.EscrowProfile._ProfileName;
+            BuyerProfiles.Names.SelectedItem = Settings.Parties.BuyerProfile?._ProfileName;
+            BrokerProfiles.Names.SelectedItem = Settings.Parties.BrokerProfile?._ProfileName;
+            AgentProfiles.Names.SelectedItem = Settings.Parties.AgentProfile?._ProfileName;
+            EscrowProfiles.Names.SelectedItem = Settings.Parties.EscrowProfile?._ProfileName;
         }
 
         private void EscrowProfiles_Select()
