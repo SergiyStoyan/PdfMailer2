@@ -30,6 +30,12 @@ namespace Cliver.PdfMailer2
         {
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.gLicensee = new System.Windows.Forms.GroupBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.RelationshipType = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.LicenseeRelationship = new System.Windows.Forms.TextBox();
+            this.UseLicensee = new System.Windows.Forms.CheckBox();
             this.UseCoBuyer = new System.Windows.Forms.CheckBox();
             this.gCoBuyer = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -88,13 +94,10 @@ namespace Cliver.PdfMailer2
             this.EscrowTitleCompany = new System.Windows.Forms.TextBox();
             this.EscrowProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.PartyProfiles = new Cliver.PdfMailer2.ProfilesControl();
-            this.UseLicensee = new System.Windows.Forms.CheckBox();
-            this.gLicensee = new System.Windows.Forms.GroupBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.group_box.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.gLicensee.SuspendLayout();
             this.gCoBuyer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoBuyerInitial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CoBuyerSignature)).BeginInit();
@@ -105,14 +108,13 @@ namespace Cliver.PdfMailer2
             ((System.ComponentModel.ISupportInitialize)(this.AgentSignature)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AgentInitial)).BeginInit();
             this.tabPage6.SuspendLayout();
-            this.gLicensee.SuspendLayout();
             this.SuspendLayout();
             // 
             // group_box
             // 
             this.group_box.Controls.Add(this.tabControl2);
             this.group_box.Controls.Add(this.PartyProfiles);
-            this.group_box.Size = new System.Drawing.Size(487, 373);
+            this.group_box.Size = new System.Drawing.Size(524, 343);
             this.group_box.Text = "TestCustom";
             // 
             // toolTip1
@@ -132,7 +134,7 @@ namespace Cliver.PdfMailer2
             this.tabControl2.Location = new System.Drawing.Point(3, 48);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(481, 322);
+            this.tabControl2.Size = new System.Drawing.Size(518, 292);
             this.tabControl2.TabIndex = 1;
             // 
             // tabPage3
@@ -153,15 +155,77 @@ namespace Cliver.PdfMailer2
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(473, 293);
+            this.tabPage3.Size = new System.Drawing.Size(510, 263);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Buyer";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // gLicensee
+            // 
+            this.gLicensee.Controls.Add(this.label20);
+            this.gLicensee.Controls.Add(this.RelationshipType);
+            this.gLicensee.Controls.Add(this.label19);
+            this.gLicensee.Controls.Add(this.LicenseeRelationship);
+            this.gLicensee.Location = new System.Drawing.Point(31, 198);
+            this.gLicensee.Name = "gLicensee";
+            this.gLicensee.Size = new System.Drawing.Size(471, 59);
+            this.gLicensee.TabIndex = 62;
+            this.gLicensee.TabStop = false;
+            this.gLicensee.Text = "Licensee";
+            // 
+            // label20
+            // 
+            this.label20.Location = new System.Drawing.Point(27, 16);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(161, 13);
+            this.label20.TabIndex = 66;
+            this.label20.Text = "Relationship Type:";
+            this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // RelationshipType
+            // 
+            this.RelationshipType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.RelationshipType.FormattingEnabled = true;
+            this.RelationshipType.Items.AddRange(new object[] {
+            "Principal",
+            "Family Firm"});
+            this.RelationshipType.Location = new System.Drawing.Point(30, 32);
+            this.RelationshipType.Name = "RelationshipType";
+            this.RelationshipType.Size = new System.Drawing.Size(158, 21);
+            this.RelationshipType.TabIndex = 65;
+            // 
+            // label19
+            // 
+            this.label19.Location = new System.Drawing.Point(249, 16);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(211, 13);
+            this.label19.TabIndex = 52;
+            this.label19.Text = "Licensee Relationship:";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // LicenseeRelationship
+            // 
+            this.LicenseeRelationship.Location = new System.Drawing.Point(252, 33);
+            this.LicenseeRelationship.Name = "LicenseeRelationship";
+            this.LicenseeRelationship.Size = new System.Drawing.Size(208, 20);
+            this.LicenseeRelationship.TabIndex = 51;
+            // 
+            // UseLicensee
+            // 
+            this.UseLicensee.AutoSize = true;
+            this.UseLicensee.Location = new System.Drawing.Point(10, 198);
+            this.UseLicensee.Name = "UseLicensee";
+            this.UseLicensee.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.UseLicensee.Size = new System.Drawing.Size(15, 14);
+            this.UseLicensee.TabIndex = 61;
+            this.UseLicensee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.UseLicensee.UseVisualStyleBackColor = true;
+            this.UseLicensee.CheckedChanged += new System.EventHandler(this.UseLicensee_CheckedChanged);
+            // 
             // UseCoBuyer
             // 
             this.UseCoBuyer.AutoSize = true;
-            this.UseCoBuyer.Location = new System.Drawing.Point(216, 42);
+            this.UseCoBuyer.Location = new System.Drawing.Point(251, 42);
             this.UseCoBuyer.Name = "UseCoBuyer";
             this.UseCoBuyer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UseCoBuyer.Size = new System.Drawing.Size(15, 14);
@@ -179,9 +243,9 @@ namespace Cliver.PdfMailer2
             this.gCoBuyer.Controls.Add(this.label4);
             this.gCoBuyer.Controls.Add(this.label5);
             this.gCoBuyer.Controls.Add(this.selectCoBuyerInitial);
-            this.gCoBuyer.Location = new System.Drawing.Point(237, 42);
+            this.gCoBuyer.Location = new System.Drawing.Point(272, 42);
             this.gCoBuyer.Name = "gCoBuyer";
-            this.gCoBuyer.Size = new System.Drawing.Size(230, 182);
+            this.gCoBuyer.Size = new System.Drawing.Size(230, 156);
             this.gCoBuyer.TabIndex = 57;
             this.gCoBuyer.TabStop = false;
             this.gCoBuyer.Text = "Co-Buyer";
@@ -197,16 +261,16 @@ namespace Cliver.PdfMailer2
             // 
             // CoBuyerInitial
             // 
-            this.CoBuyerInitial.Location = new System.Drawing.Point(11, 75);
+            this.CoBuyerInitial.Location = new System.Drawing.Point(11, 90);
             this.CoBuyerInitial.Name = "CoBuyerInitial";
-            this.CoBuyerInitial.Size = new System.Drawing.Size(100, 39);
+            this.CoBuyerInitial.Size = new System.Drawing.Size(98, 57);
             this.CoBuyerInitial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.CoBuyerInitial.TabIndex = 57;
             this.CoBuyerInitial.TabStop = false;
             // 
             // selectCobuyerSignature
             // 
-            this.selectCobuyerSignature.Location = new System.Drawing.Point(117, 151);
+            this.selectCobuyerSignature.Location = new System.Drawing.Point(195, 63);
             this.selectCobuyerSignature.Name = "selectCobuyerSignature";
             this.selectCobuyerSignature.Size = new System.Drawing.Size(24, 23);
             this.selectCobuyerSignature.TabIndex = 2;
@@ -223,16 +287,16 @@ namespace Cliver.PdfMailer2
             // 
             // CoBuyerSignature
             // 
-            this.CoBuyerSignature.Location = new System.Drawing.Point(11, 135);
+            this.CoBuyerSignature.Location = new System.Drawing.Point(121, 90);
             this.CoBuyerSignature.Name = "CoBuyerSignature";
-            this.CoBuyerSignature.Size = new System.Drawing.Size(100, 39);
+            this.CoBuyerSignature.Size = new System.Drawing.Size(98, 57);
             this.CoBuyerSignature.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.CoBuyerSignature.TabIndex = 63;
             this.CoBuyerSignature.TabStop = false;
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(8, 59);
+            this.label4.Location = new System.Drawing.Point(8, 74);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 56;
@@ -241,7 +305,7 @@ namespace Cliver.PdfMailer2
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(8, 118);
+            this.label5.Location = new System.Drawing.Point(118, 73);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(69, 13);
             this.label5.TabIndex = 62;
@@ -250,7 +314,7 @@ namespace Cliver.PdfMailer2
             // 
             // selectCoBuyerInitial
             // 
-            this.selectCoBuyerInitial.Location = new System.Drawing.Point(117, 91);
+            this.selectCoBuyerInitial.Location = new System.Drawing.Point(85, 63);
             this.selectCoBuyerInitial.Name = "selectCoBuyerInitial";
             this.selectCoBuyerInitial.Size = new System.Drawing.Size(24, 23);
             this.selectCoBuyerInitial.TabIndex = 1;
@@ -265,12 +329,12 @@ namespace Cliver.PdfMailer2
             this.BuyerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.BuyerProfiles.Location = new System.Drawing.Point(3, 3);
             this.BuyerProfiles.Name = "BuyerProfiles";
-            this.BuyerProfiles.Size = new System.Drawing.Size(467, 31);
+            this.BuyerProfiles.Size = new System.Drawing.Size(504, 31);
             this.BuyerProfiles.TabIndex = 0;
             // 
             // selectBuyerSignature
             // 
-            this.selectBuyerSignature.Location = new System.Drawing.Point(115, 187);
+            this.selectBuyerSignature.Location = new System.Drawing.Point(195, 105);
             this.selectBuyerSignature.Name = "selectBuyerSignature";
             this.selectBuyerSignature.Size = new System.Drawing.Size(24, 23);
             this.selectBuyerSignature.TabIndex = 3;
@@ -280,7 +344,7 @@ namespace Cliver.PdfMailer2
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(6, 54);
+            this.label2.Location = new System.Drawing.Point(6, 60);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 50;
@@ -289,23 +353,23 @@ namespace Cliver.PdfMailer2
             // 
             // BuyerSignature
             // 
-            this.BuyerSignature.Location = new System.Drawing.Point(9, 171);
+            this.BuyerSignature.Location = new System.Drawing.Point(121, 132);
             this.BuyerSignature.Name = "BuyerSignature";
-            this.BuyerSignature.Size = new System.Drawing.Size(100, 39);
+            this.BuyerSignature.Size = new System.Drawing.Size(98, 57);
             this.BuyerSignature.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.BuyerSignature.TabIndex = 60;
             this.BuyerSignature.TabStop = false;
             // 
             // BuyerName
             // 
-            this.BuyerName.Location = new System.Drawing.Point(9, 71);
+            this.BuyerName.Location = new System.Drawing.Point(9, 77);
             this.BuyerName.Name = "BuyerName";
-            this.BuyerName.Size = new System.Drawing.Size(208, 20);
+            this.BuyerName.Size = new System.Drawing.Size(210, 20);
             this.BuyerName.TabIndex = 1;
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(6, 154);
+            this.label6.Location = new System.Drawing.Point(118, 116);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 13);
             this.label6.TabIndex = 59;
@@ -314,7 +378,7 @@ namespace Cliver.PdfMailer2
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(6, 95);
+            this.label3.Location = new System.Drawing.Point(6, 116);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 52;
@@ -323,7 +387,7 @@ namespace Cliver.PdfMailer2
             // 
             // selectBuyerInitial
             // 
-            this.selectBuyerInitial.Location = new System.Drawing.Point(115, 127);
+            this.selectBuyerInitial.Location = new System.Drawing.Point(83, 105);
             this.selectBuyerInitial.Name = "selectBuyerInitial";
             this.selectBuyerInitial.Size = new System.Drawing.Size(24, 23);
             this.selectBuyerInitial.TabIndex = 2;
@@ -333,9 +397,9 @@ namespace Cliver.PdfMailer2
             // 
             // BuyerInitial
             // 
-            this.BuyerInitial.Location = new System.Drawing.Point(9, 111);
+            this.BuyerInitial.Location = new System.Drawing.Point(9, 132);
             this.BuyerInitial.Name = "BuyerInitial";
-            this.BuyerInitial.Size = new System.Drawing.Size(100, 39);
+            this.BuyerInitial.Size = new System.Drawing.Size(98, 57);
             this.BuyerInitial.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.BuyerInitial.TabIndex = 54;
             this.BuyerInitial.TabStop = false;
@@ -759,56 +823,20 @@ namespace Cliver.PdfMailer2
             this.PartyProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.PartyProfiles.Location = new System.Drawing.Point(3, 16);
             this.PartyProfiles.Name = "PartyProfiles";
-            this.PartyProfiles.Size = new System.Drawing.Size(481, 32);
+            this.PartyProfiles.Size = new System.Drawing.Size(518, 32);
             this.PartyProfiles.TabIndex = 0;
-            // 
-            // UseLicensee
-            // 
-            this.UseLicensee.AutoSize = true;
-            this.UseLicensee.Location = new System.Drawing.Point(9, 225);
-            this.UseLicensee.Name = "UseLicensee";
-            this.UseLicensee.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.UseLicensee.Size = new System.Drawing.Size(15, 14);
-            this.UseLicensee.TabIndex = 61;
-            this.UseLicensee.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.UseLicensee.UseVisualStyleBackColor = true;
-            // 
-            // gLicensee
-            // 
-            this.gLicensee.Controls.Add(this.label19);
-            this.gLicensee.Controls.Add(this.textBox1);
-            this.gLicensee.Location = new System.Drawing.Point(30, 225);
-            this.gLicensee.Name = "gLicensee";
-            this.gLicensee.Size = new System.Drawing.Size(437, 62);
-            this.gLicensee.TabIndex = 62;
-            this.gLicensee.TabStop = false;
-            this.gLicensee.Text = "Licensee";
-            // 
-            // label19
-            // 
-            this.label19.Location = new System.Drawing.Point(215, 14);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(49, 13);
-            this.label19.TabIndex = 52;
-            this.label19.Text = "Name:";
-            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(218, 31);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(208, 20);
-            this.textBox1.TabIndex = 51;
             // 
             // PartiesConfigControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Name = "PartiesConfigControl";
-            this.Size = new System.Drawing.Size(487, 373);
+            this.Size = new System.Drawing.Size(524, 343);
             this.group_box.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.gLicensee.ResumeLayout(false);
+            this.gLicensee.PerformLayout();
             this.gCoBuyer.ResumeLayout(false);
             this.gCoBuyer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CoBuyerInitial)).EndInit();
@@ -823,8 +851,6 @@ namespace Cliver.PdfMailer2
             ((System.ComponentModel.ISupportInitialize)(this.AgentInitial)).EndInit();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
-            this.gLicensee.ResumeLayout(false);
-            this.gLicensee.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -895,6 +921,8 @@ namespace Cliver.PdfMailer2
         private System.Windows.Forms.CheckBox UseLicensee;
         private System.Windows.Forms.GroupBox gLicensee;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox LicenseeRelationship;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.ComboBox RelationshipType;
     }
 }

@@ -131,6 +131,10 @@ namespace Cliver.PdfMailer2
                 BuyerSignature.ImageLocation = null;
                 UseCoBuyer.Checked = false;
                 UseCoBuyer_CheckedChanged(null, null);
+                RelationshipType.Text = null;
+                LicenseeRelationship.Text = null;
+                UseLicensee.Checked = false;
+                UseLicensee_CheckedChanged(null, null);
                 return;
             }
             Settings.BuyerProfile p = Settings.Parties.BuyerProfileNames2BuyerProfile[(string)BuyerProfiles.Names.SelectedItem];
@@ -142,6 +146,10 @@ namespace Cliver.PdfMailer2
             BuyerSignature.ImageLocation = p.SignatureFile;
             UseCoBuyer.Checked = p.UseCoBuyer;
             UseCoBuyer_CheckedChanged(null, null);
+            RelationshipType.Text = p.RelationshipType;
+            LicenseeRelationship.Text = p.LicenseeRelationship;
+            UseLicensee.Checked = p.UseLicensee;
+            UseLicensee_CheckedChanged(null, null);
         }
 
         private void PartyProfiles_Select()
@@ -317,6 +325,9 @@ namespace Cliver.PdfMailer2
             p.CoBuyerName = CoBuyerName.Text;
             p.CoBuyerInitialFile = CoBuyerInitial.ImageLocation;
             p.CoBuyerSignatureFile = CoBuyerSignature.ImageLocation;
+            p.UseLicensee = UseLicensee.Checked;
+            p.RelationshipType = RelationshipType.Text;
+            p.LicenseeRelationship = LicenseeRelationship.Text;
 
             string m1 = "";
             string m2 = " is not set.";
@@ -355,6 +366,19 @@ namespace Cliver.PdfMailer2
                 if (string.IsNullOrWhiteSpace(p.CoBuyerSignatureFile))
                 {
                     Message.Exclaim(m1 + "CoBuyerSignature" + m2);
+                    return false;
+                }
+            }
+            if (p.UseLicensee)
+            {
+                if (string.IsNullOrWhiteSpace(p.RelationshipType))
+                {
+                    Message.Exclaim(m1 + "RelationshipType" + m2);
+                    return false;
+                }
+                if (string.IsNullOrWhiteSpace(p.LicenseeRelationship))
+                {
+                    Message.Exclaim(m1 + "LicenseeRelationship" + m2);
                     return false;
                 }
             }
@@ -497,6 +521,11 @@ namespace Cliver.PdfMailer2
             }
             
             return true;
+        }
+
+        private void UseLicensee_CheckedChanged(object sender, EventArgs e)
+        {
+            gLicensee.Enabled = UseLicensee.Checked;
         }
     }
 }
