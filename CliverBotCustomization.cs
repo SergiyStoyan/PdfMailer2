@@ -39,7 +39,7 @@ namespace Cliver.PdfMailer2
         {
             try
             {
-                Cliver.Config.Initialize(new string[] { "Parties", "Offer", "Email", "Engine", "Input", "Log", });
+                Cliver.Config.Initialize(new string[] { "Parties", "Offer", "Email", "Engine", "Input", "Log"});
                 Cliver.BotGui.BotGui.ConfigControlSections=new string[] { "Parties", "Offer", "Email", "Engine", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log", };
                 //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
                 Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
@@ -160,6 +160,48 @@ Developed by: www.cliversoft.com";
                 Directory.CreateDirectory(d);
 
                 string address = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(Address.ToLower());
+                
+                string output_addendum1_pdf = null;
+                if (Settings.Offer.OtherAddendum1)
+                {
+                    output_addendum1_pdf = d + "\\" + Regex.Replace("duites " + address + ".pdf", @"\s+", " ");
+                    PdfReader.unethicalreading = true;
+                    PdfReader pr = new PdfReader(template_addendum1_pdf);
+                    PdfStamper ps = new PdfStamper(pr, new FileStream(output_addendum1_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
+
+                    //string fs = "";
+                    //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
+                    //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
+
+                    set_field(ps.AcroFields, "AgentName", Settings.Parties.AgentProfile.Name);
+                    set_field(ps.AcroFields, "Agents License", Settings.Parties.AgentProfile.LicenseNo);
+                    set_field(ps.AcroFields, "Buyer Name", Settings.Parties.BuyerProfile.Name);
+                    set_field(ps.AcroFields, "Co Buyer Name", Settings.Parties.BuyerProfile.CoBuyerName);
+                    set_field(ps.AcroFields, "Buyer Broker", Settings.Parties.BrokerProfile.Name);
+                    set_field(ps.AcroFields, "Company Name", Settings.Parties.BrokerProfile.Company);
+                    set_field(ps.AcroFields, "Date_3", DateTime.Now.ToShortDateString());
+                    set_field(ps.AcroFields, "Time_3", DateTime.Now.ToShortTimeString());
+                    set_field(ps.AcroFields, "Date_4", DateTime.Now.ToShortDateString());
+                    set_field(ps.AcroFields, "Time_4", DateTime.Now.ToShortTimeString());
+
+                    ps.FormFlattening = true;
+
+                    {
+                        var pcb = ps.GetOverContent(1);
+                        add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.InitialFile), new System.Drawing.Point(70, 190));
+                        if (Settings.Parties.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerInitialFile), new System.Drawing.Point(140, 190));
+                    }
+                    {
+                        var pcb = ps.GetOverContent(1);
+                        add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.SignatureFile), new System.Drawing.Point(110, 85));
+                        if (Settings.Parties.BuyerProfile.UseCoBuyer)
+                            add_image(pcb, System.Drawing.Image.FromFile(Settings.Parties.BuyerProfile.CoBuyerSignatureFile), new System.Drawing.Point(110, 85));
+                    }
+
+                    ps.Close();
+                    pr.Close();
+                }
 
                 string output_pdf = d + "\\" + Regex.Replace(address + " RPA.pdf", @"\s+", " ");
                 {
@@ -174,9 +216,9 @@ Developed by: www.cliversoft.com";
                     //pr.SelectPages("7,8");
                     PdfStamper ps = new PdfStamper(pr, new FileStream(output_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
 
-                    //string fs = "";
-                    //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
-                    //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
+                    string fs = "";
+                    foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
+                        fs += "\n{\"" + kvp.Key + "\", \"\"},";
 
                     set_field(ps.AcroFields, "Todays Date", DateTime.Today.ToShortDateString());
                     set_field(ps.AcroFields, "Buyer Name", Settings.Parties.BuyerProfile.Name);
@@ -199,9 +241,9 @@ Developed by: www.cliversoft.com";
                     set_field(ps.AcroFields, "Escrow Officer", Settings.Parties.EscrowProfile.Officer);
                     set_field(ps.AcroFields, "Close of Escrow", Settings.Offer.CloseOfEscrow.ToShortDateString());
 
-//                    string AdditionalTerms = @"This form is available for use by the real estate industry. It is not intended to identify the user as a REALTOR®.
-//8 REALTOR® is a registered collective membership mark which may be used only by members of the NATIONAL
-//9 ASSOCIATION OF REALTORS® who subscribe to its Code.";
+                    //                    string AdditionalTerms = @"This form is available for use by the real estate industry. It is not intended to identify the user as a REALTOR®.
+                    //8 REALTOR® is a registered collective membership mark which may be used only by members of the NATIONAL
+                    //9 ASSOCIATION OF REALTORS® who subscribe to its Code.";
                     string s = AdditionalTerms;
                     s = fill_field_by_words(ps.AcroFields, "AdditionalTerms1", s);
                     s = fill_field_by_words(ps.AcroFields, "AdditionalTerms2", s);
@@ -312,10 +354,11 @@ Developed by: www.cliversoft.com";
                     pr.Close();
                 }
 
-                bc.Add(new EmailItem(output_pdf, output_addendum_pdf));
+                bc.Add(new EmailItem(output_pdf, output_addendum_pdf, output_addendum1_pdf));
             }
             static readonly string template_pdf = Log.AppDir + "\\RPA.pdf";
             static readonly string template_addendum_pdf = Log.AppDir + "\\addendum.pdf";
+            static readonly string template_addendum1_pdf = Log.AppDir + "\\addendum1.pdf";
 
             static void set_field(AcroFields form, string field_key, string value)
             {
@@ -384,18 +427,20 @@ Developed by: www.cliversoft.com";
             public DataItem Data { get { return (DataItem)__ParentItem; } }
             public readonly string Pdf;
             public readonly string Addendum;
+            public readonly string Addendum1;
 
-            internal EmailItem(string pdf, string addendum)
+            internal EmailItem(string pdf, string addendum, string addendum1)
             {
                 Pdf = pdf;
                 Addendum = addendum;
+                Addendum1 = addendum1;
             }
 
             override public void PROCESSOR(BotCycle bc)
             {
                 CustomBot cb = (CustomBot)bc.Bot;
 
-                cb.send(Data, Pdf, Addendum);
+                cb.send(Data, Pdf, Addendum, Addendum1);
             }
         }
 
@@ -408,7 +453,8 @@ Developed by: www.cliversoft.com";
             mm.From = new MailAddress(Settings.Email.EmailServerProfile.SenderEmail);
             foreach (string a in attachments)
             {
-                mm.Attachments.Add(new Attachment(a));
+                if (a != null)
+                    mm.Attachments.Add(new Attachment(a));
             }
             foreach (int i in Settings.Offer.SelectedAttachmentIds)
             {
@@ -417,7 +463,9 @@ Developed by: www.cliversoft.com";
             Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
             try
             {
+#if !DEBUG
                 smtp_client.Send(mm);
+#endif
             }
             catch (Exception e)
             {

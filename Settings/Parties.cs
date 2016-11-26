@@ -97,6 +97,9 @@ namespace Cliver.PdfMailer2
             public string CoBuyerName;
             public string CoBuyerInitialFile;
             public string CoBuyerSignatureFile;
+            public bool UseLicensee;
+            public string RelationshipType;
+            public string LicenseeRelationship;
         }
 
         public class AgentProfile : Profile
