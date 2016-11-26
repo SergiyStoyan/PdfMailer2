@@ -198,8 +198,22 @@ Developed by: www.cliversoft.com";
                     set_field(ps.AcroFields, "Title Company", Settings.Parties.EscrowProfile.TitleCompany);
                     set_field(ps.AcroFields, "Escrow Officer", Settings.Parties.EscrowProfile.Officer);
                     set_field(ps.AcroFields, "Close of Escrow", Settings.Offer.CloseOfEscrow.ToShortDateString());
-                    set_field(ps.AcroFields, "ADDITIONAL TERMS", AdditionalTerms);
-                    set_field(ps.AcroFields, "Additional  terms", AdditionalTerms);
+
+//                    string AdditionalTerms = @"This form is available for use by the real estate industry. It is not intended to identify the user as a REALTOR®.
+//8 REALTOR® is a registered collective membership mark which may be used only by members of the NATIONAL
+//9 ASSOCIATION OF REALTORS® who subscribe to its Code.";
+                    string s = AdditionalTerms;
+                    s = fill_field_by_words(ps.AcroFields, "AdditionalTerms1", s);
+                    s = fill_field_by_words(ps.AcroFields, "AdditionalTerms2", s);
+                    s = fill_field_by_words(ps.AcroFields, "AdditionalTerms3", s);
+                    if (s.Length > 0)
+                    {
+                        s = AdditionalTerms;
+                        s = fill_field_by_chars(ps.AcroFields, "AdditionalTerms1", s);
+                        s = fill_field_by_chars(ps.AcroFields, "AdditionalTerms2", s);
+                        set_field(ps.AcroFields, "AdditionalTerms3", s);
+                    }
+
                     set_field(ps.AcroFields, "Buyer Broker", Settings.Parties.BrokerProfile.Name);
                     set_field(ps.AcroFields, "Agent Name", Settings.Parties.AgentProfile.Name);
                     set_field(ps.AcroFields, "Company Name", Settings.Parties.BrokerProfile.Company);
@@ -315,6 +329,43 @@ Developed by: www.cliversoft.com";
             static string fontName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "cour.ttf");
             static BaseFont baseFont = BaseFont.CreateFont(fontName, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
             static System.Single? fontSize = 8.0f;
+
+            string fill_field_by_words(AcroFields form, string field_key, string text)
+            {
+                IList<AcroFields.FieldPosition> p = form.GetFieldPositions(field_key);
+                float width = p[0].position.Width;
+
+                text = FieldPreparation.Prepare(text);
+                int end = 0;
+                for ( Match m = Regex.Match(text, @".+?([\-\,\:\.]+|(?=\s)|$)"); m.Success; m = m.NextMatch())
+                {
+                    int e = m.Index + m.Length;
+                    float w = baseFont.GetWidthPoint(text.Substring(0, e).Trim(), (float)fontSize);
+                    if (w > width)
+                        break;
+                    end = e;
+                }
+                set_field(form, field_key, text.Substring(0, end).Trim());
+                return text.Substring(end);
+            }
+
+            string fill_field_by_chars(AcroFields form, string field_key, string text)
+            {
+                IList<AcroFields.FieldPosition> p = form.GetFieldPositions(field_key);
+                float width = p[0].position.Width;
+
+                text = FieldPreparation.Prepare(text);
+                int end = 0;
+                for (int e = 1; e <= text.Length; e++)
+                {
+                    float w = baseFont.GetWidthPoint(text.Substring(0, e).Trim(), (float)fontSize);
+                    if (w > width)
+                        break;
+                    end = e;
+                }
+                set_field(form, field_key, text.Substring(0, end).Trim());
+                return text.Substring(end);
+            }
 
             static void add_image(PdfContentByte pcb, System.Drawing.Image image, System.Drawing.Point point)
             {
