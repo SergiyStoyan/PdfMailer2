@@ -114,7 +114,7 @@ namespace Cliver.PdfMailer2
             // 
             this.group_box.Controls.Add(this.tabControl2);
             this.group_box.Controls.Add(this.PartyProfiles);
-            this.group_box.Size = new System.Drawing.Size(524, 343);
+            this.group_box.Size = new System.Drawing.Size(524, 348);
             this.group_box.Text = "TestCustom";
             // 
             // toolTip1
@@ -134,7 +134,7 @@ namespace Cliver.PdfMailer2
             this.tabControl2.Location = new System.Drawing.Point(3, 48);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(518, 292);
+            this.tabControl2.Size = new System.Drawing.Size(518, 297);
             this.tabControl2.TabIndex = 1;
             // 
             // tabPage3
@@ -155,7 +155,7 @@ namespace Cliver.PdfMailer2
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(510, 263);
+            this.tabPage3.Size = new System.Drawing.Size(510, 268);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "Buyer";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -166,9 +166,9 @@ namespace Cliver.PdfMailer2
             this.gLicensee.Controls.Add(this.RelationshipType);
             this.gLicensee.Controls.Add(this.label19);
             this.gLicensee.Controls.Add(this.LicenseeRelationship);
-            this.gLicensee.Location = new System.Drawing.Point(30, 198);
+            this.gLicensee.Location = new System.Drawing.Point(30, 200);
             this.gLicensee.Name = "gLicensee";
-            this.gLicensee.Size = new System.Drawing.Size(472, 59);
+            this.gLicensee.Size = new System.Drawing.Size(472, 62);
             this.gLicensee.TabIndex = 62;
             this.gLicensee.TabStop = false;
             this.gLicensee.Text = "Licensee";
@@ -213,7 +213,7 @@ namespace Cliver.PdfMailer2
             // UseLicensee
             // 
             this.UseLicensee.AutoSize = true;
-            this.UseLicensee.Location = new System.Drawing.Point(9, 198);
+            this.UseLicensee.Location = new System.Drawing.Point(9, 200);
             this.UseLicensee.Name = "UseLicensee";
             this.UseLicensee.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.UseLicensee.Size = new System.Drawing.Size(15, 14);
@@ -829,7 +829,7 @@ namespace Cliver.PdfMailer2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.Name = "PartiesConfigControl";
-            this.Size = new System.Drawing.Size(524, 343);
+            this.Size = new System.Drawing.Size(524, 348);
             this.group_box.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);

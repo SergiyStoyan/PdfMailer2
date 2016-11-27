@@ -55,7 +55,7 @@ namespace Cliver.PdfMailer2
     {
         new static public string GetAbout()
         {
-            return @"PDF MAILER
+            return @"PDF MAILER 2
 Created: " + Cliver.Bot.Program.GetCustomizationCompiledTime().ToString() + @"
 Developed by: www.cliversoft.com";
         }
