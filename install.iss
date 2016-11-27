@@ -36,7 +36,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ;Source: ".\_config_files\*.*"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\bin\Debug\*.*"; Excludes: "*.pdb,*.vshost.*,.svn,"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\bin\Release\*.*"; Excludes: "*.pdb,*.vshost.*,.svn,"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
