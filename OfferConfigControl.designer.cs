@@ -28,13 +28,13 @@ namespace Cliver.PdfMailer2
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl4 = new System.Windows.Forms.TabControl();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this._0_tabControl4 = new System.Windows.Forms.TabControl();
+            this._0_tabPage7 = new System.Windows.Forms.TabPage();
             this.CloseOfEscrow = new System.Windows.Forms.DateTimePicker();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.Emd = new System.Windows.Forms.TextBox();
-            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this._0_tabPage9 = new System.Windows.Forms.TabPage();
             this.DeleteAttachment = new System.Windows.Forms.Button();
             this.bImportAttachment = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
@@ -42,22 +42,22 @@ namespace Cliver.PdfMailer2
             this.ShortSaleAddendum = new System.Windows.Forms.CheckBox();
             this.OtherAddendum2 = new System.Windows.Forms.CheckBox();
             this.OtherAddendum1 = new System.Windows.Forms.CheckBox();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this._0_tabPage11 = new System.Windows.Forms.TabPage();
             this.EmailBody = new System.Windows.Forms.RichTextBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.EmailSubject = new System.Windows.Forms.TextBox();
             this.EmailTemplateProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.group_box.SuspendLayout();
-            this.tabControl4.SuspendLayout();
-            this.tabPage7.SuspendLayout();
-            this.tabPage9.SuspendLayout();
-            this.tabPage11.SuspendLayout();
+            this._0_tabControl4.SuspendLayout();
+            this._0_tabPage7.SuspendLayout();
+            this._0_tabPage9.SuspendLayout();
+            this._0_tabPage11.SuspendLayout();
             this.SuspendLayout();
             // 
             // group_box
             // 
-            this.group_box.Controls.Add(this.tabControl4);
+            this.group_box.Controls.Add(this._0_tabControl4);
             this.group_box.Size = new System.Drawing.Size(498, 364);
             this.group_box.Text = "TestCustom";
             // 
@@ -67,32 +67,32 @@ namespace Cliver.PdfMailer2
             this.toolTip1.InitialDelay = 500;
             this.toolTip1.ReshowDelay = 100;
             // 
-            // tabControl4
+            // _0_tabControl4
             // 
-            this.tabControl4.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl4.Controls.Add(this.tabPage7);
-            this.tabControl4.Controls.Add(this.tabPage9);
-            this.tabControl4.Controls.Add(this.tabPage11);
-            this.tabControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl4.Location = new System.Drawing.Point(3, 16);
-            this.tabControl4.Name = "tabControl4";
-            this.tabControl4.SelectedIndex = 0;
-            this.tabControl4.Size = new System.Drawing.Size(492, 345);
-            this.tabControl4.TabIndex = 0;
+            this._0_tabControl4.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
+            this._0_tabControl4.Controls.Add(this._0_tabPage7);
+            this._0_tabControl4.Controls.Add(this._0_tabPage9);
+            this._0_tabControl4.Controls.Add(this._0_tabPage11);
+            this._0_tabControl4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._0_tabControl4.Location = new System.Drawing.Point(3, 16);
+            this._0_tabControl4.Name = "_0_tabControl4";
+            this._0_tabControl4.SelectedIndex = 0;
+            this._0_tabControl4.Size = new System.Drawing.Size(492, 345);
+            this._0_tabControl4.TabIndex = 0;
             // 
-            // tabPage7
+            // _0_tabPage7
             // 
-            this.tabPage7.Controls.Add(this.CloseOfEscrow);
-            this.tabPage7.Controls.Add(this.label19);
-            this.tabPage7.Controls.Add(this.label20);
-            this.tabPage7.Controls.Add(this.Emd);
-            this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(484, 265);
-            this.tabPage7.TabIndex = 0;
-            this.tabPage7.Text = "Offer";
-            this.tabPage7.UseVisualStyleBackColor = true;
+            this._0_tabPage7.Controls.Add(this.CloseOfEscrow);
+            this._0_tabPage7.Controls.Add(this.label19);
+            this._0_tabPage7.Controls.Add(this.label20);
+            this._0_tabPage7.Controls.Add(this.Emd);
+            this._0_tabPage7.Location = new System.Drawing.Point(4, 25);
+            this._0_tabPage7.Name = "_0_tabPage7";
+            this._0_tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this._0_tabPage7.Size = new System.Drawing.Size(484, 316);
+            this._0_tabPage7.TabIndex = 0;
+            this._0_tabPage7.Text = "Offer";
+            this._0_tabPage7.UseVisualStyleBackColor = true;
             // 
             // CloseOfEscrow
             // 
@@ -126,22 +126,22 @@ namespace Cliver.PdfMailer2
             this.Emd.Size = new System.Drawing.Size(150, 20);
             this.Emd.TabIndex = 1;
             // 
-            // tabPage9
+            // _0_tabPage9
             // 
-            this.tabPage9.Controls.Add(this.DeleteAttachment);
-            this.tabPage9.Controls.Add(this.bImportAttachment);
-            this.tabPage9.Controls.Add(this.label21);
-            this.tabPage9.Controls.Add(this.Attachments);
-            this.tabPage9.Controls.Add(this.ShortSaleAddendum);
-            this.tabPage9.Controls.Add(this.OtherAddendum2);
-            this.tabPage9.Controls.Add(this.OtherAddendum1);
-            this.tabPage9.Location = new System.Drawing.Point(4, 25);
-            this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(484, 265);
-            this.tabPage9.TabIndex = 1;
-            this.tabPage9.Text = "Attachments and Addendums";
-            this.tabPage9.UseVisualStyleBackColor = true;
+            this._0_tabPage9.Controls.Add(this.DeleteAttachment);
+            this._0_tabPage9.Controls.Add(this.bImportAttachment);
+            this._0_tabPage9.Controls.Add(this.label21);
+            this._0_tabPage9.Controls.Add(this.Attachments);
+            this._0_tabPage9.Controls.Add(this.ShortSaleAddendum);
+            this._0_tabPage9.Controls.Add(this.OtherAddendum2);
+            this._0_tabPage9.Controls.Add(this.OtherAddendum1);
+            this._0_tabPage9.Location = new System.Drawing.Point(4, 25);
+            this._0_tabPage9.Name = "_0_tabPage9";
+            this._0_tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this._0_tabPage9.Size = new System.Drawing.Size(484, 316);
+            this._0_tabPage9.TabIndex = 1;
+            this._0_tabPage9.Text = "Attachments and Addendums";
+            this._0_tabPage9.UseVisualStyleBackColor = true;
             // 
             // DeleteAttachment
             // 
@@ -211,20 +211,20 @@ namespace Cliver.PdfMailer2
             this.OtherAddendum1.Text = "Other Addendum1";
             this.OtherAddendum1.UseVisualStyleBackColor = true;
             // 
-            // tabPage11
+            // _0_tabPage11
             // 
-            this.tabPage11.Controls.Add(this.EmailBody);
-            this.tabPage11.Controls.Add(this.label24);
-            this.tabPage11.Controls.Add(this.label25);
-            this.tabPage11.Controls.Add(this.EmailSubject);
-            this.tabPage11.Controls.Add(this.EmailTemplateProfiles);
-            this.tabPage11.Location = new System.Drawing.Point(4, 25);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage11.Size = new System.Drawing.Size(484, 316);
-            this.tabPage11.TabIndex = 2;
-            this.tabPage11.Text = "Email Template";
-            this.tabPage11.UseVisualStyleBackColor = true;
+            this._0_tabPage11.Controls.Add(this.EmailBody);
+            this._0_tabPage11.Controls.Add(this.label24);
+            this._0_tabPage11.Controls.Add(this.label25);
+            this._0_tabPage11.Controls.Add(this.EmailSubject);
+            this._0_tabPage11.Controls.Add(this.EmailTemplateProfiles);
+            this._0_tabPage11.Location = new System.Drawing.Point(4, 25);
+            this._0_tabPage11.Name = "_0_tabPage11";
+            this._0_tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this._0_tabPage11.Size = new System.Drawing.Size(484, 316);
+            this._0_tabPage11.TabIndex = 2;
+            this._0_tabPage11.Text = "Email Template";
+            this._0_tabPage11.UseVisualStyleBackColor = true;
             // 
             // EmailBody
             // 
@@ -233,7 +233,7 @@ namespace Cliver.PdfMailer2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EmailBody.Location = new System.Drawing.Point(6, 99);
             this.EmailBody.Name = "EmailBody";
-            this.EmailBody.Size = new System.Drawing.Size(472, 211);
+            this.EmailBody.Size = new System.Drawing.Size(472, 237);
             this.EmailBody.TabIndex = 2;
             this.EmailBody.Text = "";
             // 
@@ -261,7 +261,7 @@ namespace Cliver.PdfMailer2
             | System.Windows.Forms.AnchorStyles.Right)));
             this.EmailSubject.Location = new System.Drawing.Point(6, 57);
             this.EmailSubject.Name = "EmailSubject";
-            this.EmailSubject.Size = new System.Drawing.Size(325, 20);
+            this.EmailSubject.Size = new System.Drawing.Size(472, 20);
             this.EmailSubject.TabIndex = 1;
             // 
             // EmailTemplateProfiles
@@ -280,13 +280,13 @@ namespace Cliver.PdfMailer2
             this.Name = "OfferConfigControl";
             this.Size = new System.Drawing.Size(498, 364);
             this.group_box.ResumeLayout(false);
-            this.tabControl4.ResumeLayout(false);
-            this.tabPage7.ResumeLayout(false);
-            this.tabPage7.PerformLayout();
-            this.tabPage9.ResumeLayout(false);
-            this.tabPage9.PerformLayout();
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
+            this._0_tabControl4.ResumeLayout(false);
+            this._0_tabPage7.ResumeLayout(false);
+            this._0_tabPage7.PerformLayout();
+            this._0_tabPage9.ResumeLayout(false);
+            this._0_tabPage9.PerformLayout();
+            this._0_tabPage11.ResumeLayout(false);
+            this._0_tabPage11.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,13 +298,13 @@ namespace Cliver.PdfMailer2
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabControl4;
-        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.TabControl _0_tabControl4;
+        private System.Windows.Forms.TabPage _0_tabPage7;
         private System.Windows.Forms.DateTimePicker CloseOfEscrow;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox Emd;
-        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.TabPage _0_tabPage9;
         internal System.Windows.Forms.Button DeleteAttachment;
         internal System.Windows.Forms.Button bImportAttachment;
         private System.Windows.Forms.Label label21;
@@ -312,7 +312,7 @@ namespace Cliver.PdfMailer2
         private System.Windows.Forms.CheckBox ShortSaleAddendum;
         private System.Windows.Forms.CheckBox OtherAddendum2;
         private System.Windows.Forms.CheckBox OtherAddendum1;
-        private System.Windows.Forms.TabPage tabPage11;
+        private System.Windows.Forms.TabPage _0_tabPage11;
         private System.Windows.Forms.RichTextBox EmailBody;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
