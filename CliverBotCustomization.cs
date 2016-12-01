@@ -156,7 +156,7 @@ Developed by: www.cliversoft.com";
                 // throw new Session.FatalException("fdsfsfs");
                 CustomBot cb = (CustomBot)bc.Bot;
 
-                string d = Log.OutputDir + "\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
+                string d = Log.SessionDir + "\\files\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
                 Directory.CreateDirectory(d);
 
                 string address = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(Address.ToLower());
