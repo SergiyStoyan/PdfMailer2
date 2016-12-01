@@ -46,6 +46,7 @@ namespace Cliver.PdfMailer2
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.selectCoBuyerInitial = new System.Windows.Forms.Button();
+            this.BuyerProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.selectBuyerSignature = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.BuyerSignature = new System.Windows.Forms.PictureBox();
@@ -71,6 +72,7 @@ namespace Cliver.PdfMailer2
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.BrokerPhone = new System.Windows.Forms.TextBox();
+            this.BrokerProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.selectAgentSignature = new System.Windows.Forms.Button();
             this.AgentSignature = new System.Windows.Forms.PictureBox();
@@ -84,14 +86,12 @@ namespace Cliver.PdfMailer2
             this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.AgentEmail = new System.Windows.Forms.TextBox();
+            this.AgentProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.label23 = new System.Windows.Forms.Label();
             this.EscrowOfficer = new System.Windows.Forms.TextBox();
             this.label27 = new System.Windows.Forms.Label();
             this.EscrowTitleCompany = new System.Windows.Forms.TextBox();
-            this.BuyerProfiles = new Cliver.PdfMailer2.ProfilesControl();
-            this.BrokerProfiles = new Cliver.PdfMailer2.ProfilesControl();
-            this.AgentProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.EscrowProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.PartyProfiles = new Cliver.PdfMailer2.ProfilesControl();
             this.group_box.SuspendLayout();
@@ -177,7 +177,7 @@ namespace Cliver.PdfMailer2
             // 
             this.label20.Location = new System.Drawing.Point(9, 16);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(131, 13);
+            this.label20.Size = new System.Drawing.Size(123, 13);
             this.label20.TabIndex = 66;
             this.label20.Text = "Relationship Type:";
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -196,7 +196,7 @@ namespace Cliver.PdfMailer2
             // 
             // label19
             // 
-            this.label19.Location = new System.Drawing.Point(147, 16);
+            this.label19.Location = new System.Drawing.Point(135, 16);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(211, 13);
             this.label19.TabIndex = 52;
@@ -205,9 +205,9 @@ namespace Cliver.PdfMailer2
             // 
             // LicenseeRelationship
             // 
-            this.LicenseeRelationship.Location = new System.Drawing.Point(150, 33);
+            this.LicenseeRelationship.Location = new System.Drawing.Point(138, 33);
             this.LicenseeRelationship.Name = "LicenseeRelationship";
-            this.LicenseeRelationship.Size = new System.Drawing.Size(208, 20);
+            this.LicenseeRelationship.Size = new System.Drawing.Size(323, 20);
             this.LicenseeRelationship.TabIndex = 51;
             // 
             // UseLicensee
@@ -321,6 +321,16 @@ namespace Cliver.PdfMailer2
             this.selectCoBuyerInitial.UseVisualStyleBackColor = true;
             this.selectCoBuyerInitial.Click += new System.EventHandler(this.selectCoBuyerInitial_Click);
             // 
+            // BuyerProfiles
+            // 
+            this.BuyerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BuyerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BuyerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BuyerProfiles.Location = new System.Drawing.Point(3, 3);
+            this.BuyerProfiles.Name = "BuyerProfiles";
+            this.BuyerProfiles.Size = new System.Drawing.Size(504, 31);
+            this.BuyerProfiles.TabIndex = 0;
+            // 
             // selectBuyerSignature
             // 
             this.selectBuyerSignature.Location = new System.Drawing.Point(195, 91);
@@ -415,7 +425,7 @@ namespace Cliver.PdfMailer2
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(510, 263);
+            this.tabPage4.Size = new System.Drawing.Size(499, 258);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Broker";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -601,6 +611,16 @@ namespace Cliver.PdfMailer2
             this.BrokerPhone.Size = new System.Drawing.Size(172, 20);
             this.BrokerPhone.TabIndex = 8;
             // 
+            // BrokerProfiles
+            // 
+            this.BrokerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.BrokerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BrokerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.BrokerProfiles.Location = new System.Drawing.Point(3, 3);
+            this.BrokerProfiles.Name = "BrokerProfiles";
+            this.BrokerProfiles.Size = new System.Drawing.Size(493, 31);
+            this.BrokerProfiles.TabIndex = 0;
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.selectAgentSignature);
@@ -619,7 +639,7 @@ namespace Cliver.PdfMailer2
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(510, 263);
+            this.tabPage5.Size = new System.Drawing.Size(499, 258);
             this.tabPage5.TabIndex = 2;
             this.tabPage5.Text = "Agent";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -728,6 +748,16 @@ namespace Cliver.PdfMailer2
             this.AgentEmail.Size = new System.Drawing.Size(206, 20);
             this.AgentEmail.TabIndex = 3;
             // 
+            // AgentProfiles
+            // 
+            this.AgentProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.AgentProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.AgentProfiles.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AgentProfiles.Location = new System.Drawing.Point(3, 3);
+            this.AgentProfiles.Name = "AgentProfiles";
+            this.AgentProfiles.Size = new System.Drawing.Size(493, 31);
+            this.AgentProfiles.TabIndex = 0;
+            // 
             // tabPage6
             // 
             this.tabPage6.Controls.Add(this.label23);
@@ -738,7 +768,7 @@ namespace Cliver.PdfMailer2
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(510, 263);
+            this.tabPage6.Size = new System.Drawing.Size(499, 258);
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = "Escrow";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -775,36 +805,6 @@ namespace Cliver.PdfMailer2
             this.EscrowTitleCompany.Size = new System.Drawing.Size(183, 20);
             this.EscrowTitleCompany.TabIndex = 1;
             // 
-            // BuyerProfiles
-            // 
-            this.BuyerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.BuyerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BuyerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BuyerProfiles.Location = new System.Drawing.Point(3, 3);
-            this.BuyerProfiles.Name = "BuyerProfiles";
-            this.BuyerProfiles.Size = new System.Drawing.Size(504, 31);
-            this.BuyerProfiles.TabIndex = 0;
-            // 
-            // BrokerProfiles
-            // 
-            this.BrokerProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.BrokerProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BrokerProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.BrokerProfiles.Location = new System.Drawing.Point(3, 3);
-            this.BrokerProfiles.Name = "BrokerProfiles";
-            this.BrokerProfiles.Size = new System.Drawing.Size(504, 31);
-            this.BrokerProfiles.TabIndex = 0;
-            // 
-            // AgentProfiles
-            // 
-            this.AgentProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.AgentProfiles.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.AgentProfiles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.AgentProfiles.Location = new System.Drawing.Point(3, 3);
-            this.AgentProfiles.Name = "AgentProfiles";
-            this.AgentProfiles.Size = new System.Drawing.Size(504, 31);
-            this.AgentProfiles.TabIndex = 0;
-            // 
             // EscrowProfiles
             // 
             this.EscrowProfiles.BackColor = System.Drawing.SystemColors.ControlDark;
@@ -812,7 +812,7 @@ namespace Cliver.PdfMailer2
             this.EscrowProfiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.EscrowProfiles.Location = new System.Drawing.Point(3, 3);
             this.EscrowProfiles.Name = "EscrowProfiles";
-            this.EscrowProfiles.Size = new System.Drawing.Size(504, 31);
+            this.EscrowProfiles.Size = new System.Drawing.Size(493, 31);
             this.EscrowProfiles.TabIndex = 0;
             // 
             // PartyProfiles

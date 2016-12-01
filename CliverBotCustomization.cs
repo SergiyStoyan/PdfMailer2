@@ -480,7 +480,7 @@ Developed by: www.cliversoft.com";
             mm.From = new MailAddress(Settings.Email.EmailServerProfile.SenderEmail);
             foreach (string a in attachments)
             {
-                if (a != null)
+                if (!string.IsNullOrEmpty(a))
                     mm.Attachments.Add(new Attachment(a));
             }
             foreach (int i in Settings.Offer.SelectedAttachmentIds)
