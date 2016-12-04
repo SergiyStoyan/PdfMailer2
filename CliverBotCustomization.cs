@@ -67,7 +67,16 @@ Developed by: www.cliversoft.com";
             Cliver.BotGui.Program.BindProgressBar2InputItemQueue<EmailItem>();
             BotCycle.TreatExceptionAsFatal = true;
             Session.GetInputItemQueue<EmailItem>().PickNext = pick_next_PdfItem;
+
+            foreach (int i in Settings.Offer.SelectedAttachmentIds)
+            {
+                string f = PathRoutines.CreateDirectory(output_dir + "\\attachments") + "\\" + PathRoutines.GetFileNameFromPath(Settings.Offer.AttachmentFiles[i]);
+                if(attachment_files.Add(f) && !File.Exists(f))
+                    File.Copy(Settings.Offer.AttachmentFiles[i], f);
+            }                
         }
+        readonly static string output_dir = PathRoutines.CreateDirectory(Session.This.Dir + "\\files");
+        readonly static HashSet<string> attachment_files = new HashSet<string>();
 
         static InputItem pick_next_PdfItem(System.Collections.IEnumerator items_ennumerator)
         {
@@ -158,9 +167,9 @@ Developed by: www.cliversoft.com";
                 CustomBot cb = (CustomBot)bc.Bot;
 
                 string address = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(Address.ToLower());
-                string output_dir = PathRoutines.CreateDirectory(Session.This.Dir + "\\files\\" + address, true);
+                string file_dir = PathRoutines.CreateDirectory(output_dir + "\\" + address, true);
               
-                string output_pdf = output_dir + "\\" + Regex.Replace(address + " RPA.pdf", @"\s+", " ");
+                string output_pdf = file_dir + "\\" + Regex.Replace(address + " RPA.pdf", @"\s+", " ");
                 {
                     //lock (template_pdf)
                     //{
@@ -223,7 +232,7 @@ Developed by: www.cliversoft.com";
 
                     DateTime date = DateTime.Now.AddDays(7);
                     set_field(ps.AcroFields, "Response Month", date.ToString("MMMM"));
-                    set_field(ps.AcroFields, "Response day", date.ToString("d"));
+                    set_field(ps.AcroFields, "Response day", date.ToString("%d"));
                     set_field(ps.AcroFields, "year", date.ToString("yyyy")); ;
                     string emd_ = Regex.Replace(Settings.Offer.Emd, @"[^\d]", "");
                     if (offer_amt_.Length > 0 && emd_.Length > 0)
@@ -300,7 +309,7 @@ Developed by: www.cliversoft.com";
                 string output_addendum_pdf = null;
                 if (Settings.Offer.ShortSaleAddendum)
                 {
-                    output_addendum_pdf = output_dir + "\\" + Regex.Replace(address + " SS Addendum.pdf", @"\s+", " ");
+                    output_addendum_pdf = file_dir + "\\" + Regex.Replace(address + " SS Addendum.pdf", @"\s+", " ");
 
                     PdfReader.unethicalreading = true;
                     PdfReader pr = new PdfReader(template_addendum_pdf);
@@ -348,7 +357,7 @@ Developed by: www.cliversoft.com";
                 string output_addendum1_pdf = null;
                 if (Settings.Offer.OtherAddendum1)
                 {
-                    output_addendum1_pdf = output_dir + "\\" + Regex.Replace("duites " + address + ".pdf", @"\s+", " ");
+                    output_addendum1_pdf = file_dir + "\\" + Regex.Replace("duites " + address + ".pdf", @"\s+", " ");
                     PdfReader.unethicalreading = true;
                     PdfReader pr = new PdfReader(template_addendum1_pdf);
                     PdfStamper ps = new PdfStamper(pr, new FileStream(output_addendum1_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
@@ -499,10 +508,8 @@ Developed by: www.cliversoft.com";
                 if (!string.IsNullOrEmpty(a))
                     mm.Attachments.Add(new Attachment(a));
             }
-            foreach (int i in Settings.Offer.SelectedAttachmentIds)
-            {
-                mm.Attachments.Add(new Attachment(Settings.Offer.AttachmentFiles[i]));
-            }
+            foreach (string f in attachment_files)
+                mm.Attachments.Add(new Attachment(f));
             Log.Write("Emailing to " + mm.To + ": " + mm.Subject);
             try
             {
