@@ -39,12 +39,12 @@ namespace Cliver.PdfMailer2
         {
             try
             {
-                Cliver.Config.Initialize(new string[] { "Parties", "Offer", "Email", "Engine", "Input", "Log"});
-                Cliver.BotGui.BotGui.ConfigControlSections=new string[] { "Parties", "Offer", "Email", "Engine", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log", };
+                Cliver.Config.Initialize(new string[] { "Parties", "Offer", "Email", "Engine", "Input", "Log" });
+                Cliver.BotGui.BotGui.ConfigControlSections = new string[] { "Parties", "Offer", "Email", "Engine", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log", };
                 //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
                 Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 LogMessage.Error(e);
             }
@@ -56,7 +56,7 @@ namespace Cliver.PdfMailer2
         new static public string GetAbout()
         {
             return @"PDF MAILER 2
-Created: " + Cliver.Bot.Program.GetCustomizationCompiledTime().ToString() + @"
+Compiled: " + Cliver.Bot.Program.GetCustomizationCompiledTime().ToString() + @"
 Developed by: www.cliversoft.com";
         }
         
@@ -112,6 +112,8 @@ Developed by: www.cliversoft.com";
 
         new static public void SessionClosing()
         {
+            //if (Session.State == Session.SessionState.COMPLETED)
+            //    Directory.Move(Session.This.OutputDir, Log.WorkDir + "\\" + Session.This.TimeMark);
         }
 
         override public void CycleStarting()
@@ -156,7 +158,7 @@ Developed by: www.cliversoft.com";
                 // throw new Session.FatalException("fdsfsfs");
                 CustomBot cb = (CustomBot)bc.Bot;
 
-                string d = Log.SessionDir + "\\files\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
+                string d = Session.This.Dir + "\\files\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
                 Directory.CreateDirectory(d);
 
                 string address = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(Address.ToLower());
@@ -186,9 +188,9 @@ Developed by: www.cliversoft.com";
                     set_field(ps.AcroFields, "Zip", ZipCode);
                     set_field(ps.AcroFields, "PARCEL NUMBER", ParcelNumber);
                     set_field(ps.AcroFields, "OfferAmt", OfferAmt);
-                    string oa = Regex.Replace(OfferAmt, @"[^\d]", "");
-                    if (oa.Length > 0)
-                        set_field(ps.AcroFields, "OfferAmt in words", ConvertionRoutines.NumberToWords(int.Parse(oa)).ToUpper());
+                    string offer_amt_ = Regex.Replace(OfferAmt, @"[^\d]", "");
+                    if (offer_amt_.Length > 0)
+                        set_field(ps.AcroFields, "OfferAmt in words", ConvertionRoutines.NumberToWords(int.Parse(offer_amt_)).ToUpper());
                     set_field(ps.AcroFields, "EMD", Settings.Offer.Emd);
                     //set_field(ps.AcroFields, "Check Box1", );
                     //set_field(ps.AcroFields, "Balance", );
@@ -204,14 +206,31 @@ Developed by: www.cliversoft.com";
                     if (Settings.Parties.BuyerProfile.UseLicensee)
                     {
                         set_field(ps.AcroFields, "Licensee Yes", "Yes");
-                        set_field(ps.AcroFields, "Licensee No", "Off");
+                        //set_field(ps.AcroFields, "Licensee No", "Off");
                         set_field(ps.AcroFields, "Licensee relationship", DateTime.Today.ToShortDateString());
+                        switch (Settings.Parties.BuyerProfile.RelationshipType)
+                        {
+                            case "Family Firm":
+                                set_field(ps.AcroFields, "Licensee Family Firm", "Yes");
+                                break;
+                            case "Principal":
+                                set_field(ps.AcroFields, "Licensee Principal", "Yes");
+                                break;
+                        }
                     }
                     else
                     {
                         set_field(ps.AcroFields, "Licensee No", "Yes");
-                        set_field(ps.AcroFields, "Licensee Yes", "Off");
+                        //set_field(ps.AcroFields, "Licensee Yes", "Off");
                     }
+
+                    DateTime date = DateTime.Now.AddDays(7);
+                    set_field(ps.AcroFields, "Response Month", date.ToString("MMMM"));
+                    set_field(ps.AcroFields, "Response day", date.ToString("d"));
+                    set_field(ps.AcroFields, "year", date.ToString("yyyy")); ;
+                    string emd_ = Regex.Replace(Settings.Offer.Emd, @"[^\d]", "");
+                    if (offer_amt_.Length > 0 && emd_.Length > 0)
+                        set_field(ps.AcroFields, "Balance", (int.Parse(offer_amt_) - int.Parse(emd_)).ToString());
 
                     //                    string AdditionalTerms = @"This form is available for use by the real estate industry. It is not intended to identify the user as a REALTOR®.
                     //8 REALTOR® is a registered collective membership mark which may be used only by members of the NATIONAL
