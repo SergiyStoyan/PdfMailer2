@@ -155,15 +155,12 @@ Developed by: www.cliversoft.com";
             
             override public void PROCESSOR(BotCycle bc)
             {
-                // throw new Session.FatalException("fdsfsfs");
                 CustomBot cb = (CustomBot)bc.Bot;
 
-                string d = Session.This.Dir + "\\files\\" + Log.This.Id + "_" + DateTime.Now.GetSecondsSinceUnixEpoch();
-                Directory.CreateDirectory(d);
-
                 string address = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(Address.ToLower());
+                string output_dir = PathRoutines.CreateDirectory(Session.This.Dir + "\\files\\" + address, true);
               
-                string output_pdf = d + "\\" + Regex.Replace(address + " RPA.pdf", @"\s+", " ");
+                string output_pdf = output_dir + "\\" + Regex.Replace(address + " RPA.pdf", @"\s+", " ");
                 {
                     //lock (template_pdf)
                     //{
@@ -303,7 +300,7 @@ Developed by: www.cliversoft.com";
                 string output_addendum_pdf = null;
                 if (Settings.Offer.ShortSaleAddendum)
                 {
-                    output_addendum_pdf = d + "\\" + Regex.Replace(address + " SS Addendum.pdf", @"\s+", " ");
+                    output_addendum_pdf = output_dir + "\\" + Regex.Replace(address + " SS Addendum.pdf", @"\s+", " ");
 
                     PdfReader.unethicalreading = true;
                     PdfReader pr = new PdfReader(template_addendum_pdf);
@@ -351,7 +348,7 @@ Developed by: www.cliversoft.com";
                 string output_addendum1_pdf = null;
                 if (Settings.Offer.OtherAddendum1)
                 {
-                    output_addendum1_pdf = d + "\\" + Regex.Replace("duites " + address + ".pdf", @"\s+", " ");
+                    output_addendum1_pdf = output_dir + "\\" + Regex.Replace("duites " + address + ".pdf", @"\s+", " ");
                     PdfReader.unethicalreading = true;
                     PdfReader pr = new PdfReader(template_addendum1_pdf);
                     PdfStamper ps = new PdfStamper(pr, new FileStream(output_addendum1_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
