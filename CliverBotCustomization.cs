@@ -71,15 +71,8 @@ Developed by: www.cliversoft.com";
 
     public class CustomSession : Session
     {
-        /// <summary>
-        /// Invoked when a fatal error happened and session is aborting.
-        /// </summary>
-        public override void FATAL_ERROR(string message)
-        {
-        }
-
         public override void CREATING()
-        {
+        {            
             InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 9);
 
             Cliver.BotGui.Program.BindProgressBar2InputItemQueue<EmailItem>();
@@ -137,17 +130,10 @@ Developed by: www.cliversoft.com";
         Random random = new Random();
         Dictionary<string, DateTime> emails2sent_time = new Dictionary<string, DateTime>();
 
-        new static public void CLOSING()
+        override public void CLOSING()
         {
             //if (Session.State == Session.SessionState.COMPLETED)
             //    Directory.Move(Session.This.OutputDir, Log.WorkDir + "\\" + Session.This.TimeMark);
-        }
-
-        public class CustomBotCycle : BotCycle
-        {
-            override public void STARTING()
-            {
-            }
         }
 
         public class DataItem : InputItem
