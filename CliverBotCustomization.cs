@@ -40,7 +40,7 @@ namespace Cliver.PdfMailer2
             try
             {
                 Cliver.Config.Initialize(new string[] { "Parties", "Offer", "Email", "Engine", "Input", "Log" });
-                Cliver.BotGui.BotGui.ConfigControlSections = new string[] { "Parties", "Offer", "Email", "Engine", "Input", /*"Output", "Web", "Browser", "Spider", "Proxy",*/ "Log", };
+
                 //Cliver.Bot.Program.Run();//It is the entry when the app runs as a console app.
                 Cliver.BotGui.Program.Run();//It is the entry when the app uses the default GUI.
             }
@@ -51,16 +51,34 @@ namespace Cliver.PdfMailer2
         }
     }
 
-    public class CustomBot : Cliver.Bot.Bot
+    public class CustomConfigForm : ConfigForm
     {
-        new static public string GetAbout()
+        override public List<string> GetConfigControlSections()
+        {
+            return new List<string> { "Parties", "Offer", "Email", "Engine", "Input", "Log", };
+        }
+    }
+
+    public class AboutFormForm : AboutForm
+    {
+        override public string GetAbout()
         {
             return @"PDF MAILER 2
 Compiled: " + Cliver.Bot.Program.GetCustomizationCompiledTime().ToString() + @"
 Developed by: www.cliversoft.com";
         }
-        
-        new static public void SessionCreating()
+    }
+
+    public class CustomSession : Session
+    {
+        /// <summary>
+        /// Invoked when a fatal error happened and session is aborting.
+        /// </summary>
+        public override void FATAL_ERROR(string message)
+        {
+        }
+
+        public override void CREATING()
         {
             InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 9);
 
@@ -71,14 +89,14 @@ Developed by: www.cliversoft.com";
             foreach (int i in Settings.Offer.SelectedAttachmentIds)
             {
                 string f = PathRoutines.CreateDirectory(output_dir + "\\attachments") + "\\" + PathRoutines.GetFileNameFromPath(Settings.Offer.AttachmentFiles[i]);
-                if(attachment_files.Add(f) && !File.Exists(f))
+                if (attachment_files.Add(f) && !File.Exists(f))
                     File.Copy(Settings.Offer.AttachmentFiles[i], f);
-            }                
+            }
         }
-        readonly static string output_dir = PathRoutines.CreateDirectory(Session.This.Dir + "\\files");
-        readonly static HashSet<string> attachment_files = new HashSet<string>();
+        readonly string output_dir = PathRoutines.CreateDirectory(Session.This.Dir + "\\files");
+        readonly HashSet<string> attachment_files = new HashSet<string>();
 
-        static InputItem pick_next_PdfItem(System.Collections.IEnumerator items_ennumerator)
+        InputItem pick_next_PdfItem(System.Collections.IEnumerator items_ennumerator)
         {
             lock (emails2sent_time)
             {
@@ -116,17 +134,20 @@ Developed by: www.cliversoft.com";
                 return null;
             }
         }
-        static Random random = new Random();
-        static Dictionary<string, DateTime> emails2sent_time = new Dictionary<string, DateTime>();
+        Random random = new Random();
+        Dictionary<string, DateTime> emails2sent_time = new Dictionary<string, DateTime>();
 
-        new static public void SessionClosing()
+        new static public void CLOSING()
         {
             //if (Session.State == Session.SessionState.COMPLETED)
             //    Directory.Move(Session.This.OutputDir, Log.WorkDir + "\\" + Session.This.TimeMark);
         }
 
-        override public void CycleStarting()
+        public class CustomBotCycle : BotCycle
         {
+            override public void STARTING()
+            {
+            }
         }
 
         public class DataItem : InputItem
@@ -161,14 +182,14 @@ Developed by: www.cliversoft.com";
             readonly public string ListAgentDirectWorkPhone;
             readonly public string DOM;
             readonly public string OfferSentDate;
-            
+
             override public void PROCESSOR(BotCycle bc)
             {
-                CustomBot cb = (CustomBot)bc.Bot;
+                CustomSession session = (CustomSession)bc.Session;
 
                 string address = new System.Globalization.CultureInfo("en-US", false).TextInfo.ToTitleCase(Address.ToLower());
-                string file_dir = PathRoutines.CreateDirectory(output_dir + "\\" + address, true);
-              
+                string file_dir = PathRoutines.CreateDirectory(session.output_dir + "\\" + address, true);
+
                 string output_pdf = file_dir + "\\" + Regex.Replace(address + " RPA.pdf", @"\s+", " ");
                 {
                     //lock (template_pdf)
@@ -255,7 +276,7 @@ Developed by: www.cliversoft.com";
 
                     set_field(ps.AcroFields, "Buyer Broker", Settings.Parties.BrokerProfile.Name);
                     set_field(ps.AcroFields, "Agent Name", Settings.Parties.AgentProfile.Name);
-                    set_field(ps.AcroFields, "ListAgentFullName", ListAgentFullName); 
+                    set_field(ps.AcroFields, "ListAgentFullName", ListAgentFullName);
                     set_field(ps.AcroFields, "Company Name", Settings.Parties.BrokerProfile.Company);
                     set_field(ps.AcroFields, "ListOfficeName", ListOfficeName);
                     set_field(ps.AcroFields, "Agents License", Settings.Parties.AgentProfile.LicenseNo);
@@ -277,7 +298,7 @@ Developed by: www.cliversoft.com";
                     set_field(ps.AcroFields, "Office Address_2", Settings.Parties.BrokerProfile.Address);
                     set_field(ps.AcroFields, "Phone_2", Settings.Parties.BrokerProfile.Phone);
                     set_field(ps.AcroFields, "City State Zip_2", Settings.Parties.BrokerProfile.Zip);
-                    set_field(ps.AcroFields, "Email_2", Settings.Parties.AgentProfile.Email); 
+                    set_field(ps.AcroFields, "Email_2", Settings.Parties.AgentProfile.Email);
                     set_field(ps.AcroFields, "ListAgentEmail", ListAgentEmail);
 
                     ps.FormFlattening = true;
@@ -422,7 +443,7 @@ Developed by: www.cliversoft.com";
 
                 text = FieldPreparation.Prepare(text);
                 int end = 0;
-                for ( Match m = Regex.Match(text, @".+?([\-\,\:\.]+|(?=\s)|$)"); m.Success; m = m.NextMatch())
+                for (Match m = Regex.Match(text, @".+?([\-\,\:\.]+|(?=\s)|$)"); m.Success; m = m.NextMatch())
                 {
                     int e = m.Index + m.Length;
                     float w = baseFont.GetWidthPoint(text.Substring(0, e).Trim(), (float)fontSize);
@@ -480,9 +501,9 @@ Developed by: www.cliversoft.com";
 
             override public void PROCESSOR(BotCycle bc)
             {
-                CustomBot cb = (CustomBot)bc.Bot;
+                CustomSession session = (CustomSession)bc.Session;
 
-                cb.send(Data, Pdf, Addendum, Addendum1);
+                session.send(Data, Pdf, Addendum, Addendum1);
             }
         }
 
