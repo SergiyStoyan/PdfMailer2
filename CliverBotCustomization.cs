@@ -71,10 +71,11 @@ Developed by: www.cliversoft.com";
 
     public class CustomSession : Session
     {
-        public override void CREATING()
+        public CustomSession()
         {            
-            InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 9);
+            InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 18);
 
+            output_dir = PathRoutines.CreateDirectory(Dir + "\\files");
             Cliver.BotGui.Program.BindProgressBar2InputItemQueue<EmailItem>();
             BotCycle.TreatExceptionAsFatal = true;
             Session.GetInputItemQueue<EmailItem>().PickNext = pick_next_PdfItem;
@@ -86,7 +87,7 @@ Developed by: www.cliversoft.com";
                     File.Copy(Settings.Offer.AttachmentFiles[i], f);
             }
         }
-        readonly string output_dir = PathRoutines.CreateDirectory(Session.This.Dir + "\\files");
+        readonly string output_dir;
         readonly HashSet<string> attachment_files = new HashSet<string>();
 
         InputItem pick_next_PdfItem(System.Collections.IEnumerator items_ennumerator)
@@ -130,7 +131,7 @@ Developed by: www.cliversoft.com";
         Random random = new Random();
         Dictionary<string, DateTime> emails2sent_time = new Dictionary<string, DateTime>();
 
-        override public void CLOSING()
+        override public void __Closing()
         {
             //if (Session.State == Session.SessionState.COMPLETED)
             //    Directory.Move(Session.This.OutputDir, Log.WorkDir + "\\" + Session.This.TimeMark);
@@ -169,7 +170,7 @@ Developed by: www.cliversoft.com";
             readonly public string DOM;
             readonly public string OfferSentDate;
 
-            override public void PROCESSOR(BotCycle bc)
+            override public void __Processor(BotCycle bc)
             {
                 CustomSession session = (CustomSession)bc.Session;
 
@@ -485,7 +486,7 @@ Developed by: www.cliversoft.com";
                 Addendum1 = addendum1;
             }
 
-            override public void PROCESSOR(BotCycle bc)
+            override public void __Processor(BotCycle bc)
             {
                 CustomSession session = (CustomSession)bc.Session;
 
