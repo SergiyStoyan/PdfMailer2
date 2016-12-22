@@ -7,6 +7,7 @@
 //Copyright: (C) 2007, Sergey Stoyan
 //********************************************************************************************
 
+
 using System;
 using System.Linq;
 using System.Net;
@@ -72,8 +73,8 @@ Developed by: www.cliversoft.com";
     public class CustomSession : Session
     {
         public CustomSession()
-        {            
-            InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 23);
+        {        
+            InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 24);
 
             output_dir = PathRoutines.CreateDirectory(Dir + "\\files");
             Cliver.BotGui.Program.BindProgressBar2InputItemQueue<EmailItem>();
@@ -221,7 +222,8 @@ Developed by: www.cliversoft.com";
                     {
                         set_field(ps.AcroFields, "Licensee Yes", "Yes");
                         //set_field(ps.AcroFields, "Licensee No", "Off");
-                        set_field(ps.AcroFields, "Licensee relationship", DateTime.Today.ToShortDateString());
+                        //set_field(ps.AcroFields, "Licensee relationship", DateTime.Today.ToShortDateString());
+                        set_field(ps.AcroFields, "Licensee relationship", Settings.Parties.BuyerProfile.LicenseeRelationship);
                         switch (Settings.Parties.BuyerProfile.RelationshipType)
                         {
                             case "Family Firm":
@@ -323,9 +325,9 @@ Developed by: www.cliversoft.com";
                     PdfReader pr = new PdfReader(template_addendum_pdf);
                     PdfStamper ps = new PdfStamper(pr, new FileStream(output_addendum_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
 
-                    //string fs = "";
-                    //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
-                    //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
+                    string fs = "";
+                    foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
+                        fs += "\n{\"" + kvp.Key + "\", \"\"},";
 
                     if (Settings.Parties.BuyerProfile.UseCoBuyer)
                         set_field(ps.AcroFields, "<Buyer Name> and <Co Buyer Name>", Settings.Parties.BuyerProfile.Name + " and " + Settings.Parties.BuyerProfile.CoBuyerName);
@@ -370,16 +372,16 @@ Developed by: www.cliversoft.com";
                     PdfReader pr = new PdfReader(template_addendum1_pdf);
                     PdfStamper ps = new PdfStamper(pr, new FileStream(output_addendum1_pdf, FileMode.Create, FileAccess.Write, FileShare.None));
 
-                    //string fs = "";
-                    //foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
-                    //    fs += "\n{\"" + kvp.Key + "\", \"\"},";
+                    string fs = "";
+                    foreach (KeyValuePair<string, AcroFields.Item> kvp in ps.AcroFields.Fields)
+                        fs += "\n{\"" + kvp.Key + "\", \"\"},";
 
                     set_field(ps.AcroFields, "AgentName", Settings.Parties.AgentProfile.Name);
-                    set_field(ps.AcroFields, "Agents License", Settings.Parties.AgentProfile.LicenseNo);
+                    set_field(ps.AcroFields, "LicenseNumber", Settings.Parties.AgentProfile.LicenseNo);
                     set_field(ps.AcroFields, "Buyer Name", Settings.Parties.BuyerProfile.Name);
-                    set_field(ps.AcroFields, "Co Buyer Name", Settings.Parties.BuyerProfile.CoBuyerName);
-                    set_field(ps.AcroFields, "Buyer Broker", Settings.Parties.BrokerProfile.Name);
-                    set_field(ps.AcroFields, "Company Name", Settings.Parties.BrokerProfile.Company);
+                    set_field(ps.AcroFields, "Co-Buyer Name", Settings.Parties.BuyerProfile.CoBuyerName);
+                    set_field(ps.AcroFields, "BrokerName", Settings.Parties.BrokerProfile.Name);
+                    set_field(ps.AcroFields, "Company", Settings.Parties.BrokerProfile.Company);
                     set_field(ps.AcroFields, "Date_3", DateTime.Now.ToShortDateString());
                     set_field(ps.AcroFields, "Time_3", DateTime.Now.ToShortTimeString());
                     set_field(ps.AcroFields, "Date_4", DateTime.Now.ToShortDateString());
