@@ -74,7 +74,7 @@ Developed by: www.cliversoft.com";
     {
         public CustomSession()
         {        
-            InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 24);
+            //InternetDateTime.CHECK_TEST_PERIOD_VALIDITY(2016, 12, 25);
 
             output_dir = PathRoutines.CreateDirectory(Dir + "\\files");
             Cliver.BotGui.Program.BindProgressBar2InputItemQueue<EmailItem>();
